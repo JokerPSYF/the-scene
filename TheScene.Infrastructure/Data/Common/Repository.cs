@@ -26,7 +26,7 @@ namespace TheScene.Infrastructure.Data.Common
             return this.Context.Set<T>();
         }
 
-        public Repository(ApplicationDbContext context)
+        public Repository(DbContext context)
         {
             Context = context;
         }

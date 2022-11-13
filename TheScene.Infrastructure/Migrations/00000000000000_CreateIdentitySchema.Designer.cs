@@ -7,7 +7,7 @@ using TheScene.Infrastructure.Data;
 
 namespace TheScene.Infrastructure.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(Data.DbContext))]
     [Migration("00000000000000_CreateIdentitySchema")]
     partial class CreateIdentitySchema
     {

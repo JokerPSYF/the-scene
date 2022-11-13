@@ -11,7 +11,7 @@ using TheScene.Infrastructure.Data;
 
 namespace TheScene.Infrastructure.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(Data.DbContext))]
     [Migration("20221112192432_start")]
     partial class start
     {
