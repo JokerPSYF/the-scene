@@ -20,6 +20,11 @@ namespace TheScene.Infrastructure.Data.Entities
         public virtual PlaceType PlaceType { get; set; } = null!;
 
         public virtual ICollection<Event> Events { get; set; } = new List<Event>();
+
+        /// <summary>
+        /// It is deleted or not?
+        /// </summary>
+        public bool IsActive { get; set; }
         // how many seats ?
     }
 }

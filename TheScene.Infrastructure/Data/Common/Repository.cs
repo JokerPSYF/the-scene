@@ -16,7 +16,7 @@ namespace TheScene.Infrastructure.Data.Common
         /// Entity framework DB context holding connection information and properties
         /// and tracking entity states 
         /// </summary>
-        protected DbContext Context { get; set; }
+        protected ApplicationDbContext Context { get; set; }
 
         /// <summary>
         /// Representation of table in database
@@ -26,7 +26,7 @@ namespace TheScene.Infrastructure.Data.Common
             return this.Context.Set<T>();
         }
 
-        public Repository(DbContext context)
+        public Repository(ApplicationDbContext context)
         {
             Context = context;
         }

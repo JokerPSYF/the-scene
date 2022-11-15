@@ -41,6 +41,15 @@ namespace TheScene.Infrastructure.Data.Entities
         [StringLength(PerfomanceConstants.MaxDescription, ErrorMessage = LengthErrorMessage)]
         public string? Description { get; set; }
 
+        [StringLength(PerfomanceConstants.MaxImageURL)]
+        public string? ImageURL { get; set; }
+
+        /// <summary>
+        /// It is deleted or not?
+        /// </summary>
+        public bool IsActive { get; set; } = true;
+
         public virtual ICollection<Event> Events { get; set; } = new List<Event>();
+
     }
 }

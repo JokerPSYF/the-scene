@@ -11,9 +11,9 @@ using TheScene.Infrastructure.Data;
 
 namespace TheScene.Infrastructure.Migrations
 {
-    [DbContext(typeof(Data.DbContext))]
-    [Migration("20221112192432_start")]
-    partial class start
+    [DbContext(typeof(ApplicationDbContext))]
+    [Migration("20221115194936_money")]
+    partial class money
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -226,6 +226,172 @@ namespace TheScene.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("TheScene.Infrastructure.Data.Entities.Event", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("FreeSeats")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LocationId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("OccupiedSeats")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PerfomanceId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("PricePerTicket")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("money");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LocationId");
+
+                    b.HasIndex("PerfomanceId");
+
+                    b.ToTable("Events");
+                });
+
+            modelBuilder.Entity("TheScene.Infrastructure.Data.Entities.Genre", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Genres");
+                });
+
+            modelBuilder.Entity("TheScene.Infrastructure.Data.Entities.Location", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("PlaceTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PlaceTypeId");
+
+                    b.ToTable("Locations");
+                });
+
+            modelBuilder.Entity("TheScene.Infrastructure.Data.Entities.Perfomance", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Actors")
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<string>("Director")
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.Property<int>("GenreId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImageURL")
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("PerfomanceTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GenreId");
+
+                    b.HasIndex("PerfomanceTypeId");
+
+                    b.ToTable("Perfomances");
+                });
+
+            modelBuilder.Entity("TheScene.Infrastructure.Data.Entities.PerfomanceType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PerfomanceTypes");
+                });
+
+            modelBuilder.Entity("TheScene.Infrastructure.Data.Entities.PlaceType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PlaceTypes");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -275,6 +441,80 @@ namespace TheScene.Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("TheScene.Infrastructure.Data.Entities.Event", b =>
+                {
+                    b.HasOne("TheScene.Infrastructure.Data.Entities.Location", "Location")
+                        .WithMany("Events")
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TheScene.Infrastructure.Data.Entities.Perfomance", "Perfomance")
+                        .WithMany("Events")
+                        .HasForeignKey("PerfomanceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Location");
+
+                    b.Navigation("Perfomance");
+                });
+
+            modelBuilder.Entity("TheScene.Infrastructure.Data.Entities.Location", b =>
+                {
+                    b.HasOne("TheScene.Infrastructure.Data.Entities.PlaceType", "PlaceType")
+                        .WithMany("Locations")
+                        .HasForeignKey("PlaceTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PlaceType");
+                });
+
+            modelBuilder.Entity("TheScene.Infrastructure.Data.Entities.Perfomance", b =>
+                {
+                    b.HasOne("TheScene.Infrastructure.Data.Entities.Genre", "Genre")
+                        .WithMany("Perfomances")
+                        .HasForeignKey("GenreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TheScene.Infrastructure.Data.Entities.PerfomanceType", "PerfomanceType")
+                        .WithMany("Perfomances")
+                        .HasForeignKey("PerfomanceTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Genre");
+
+                    b.Navigation("PerfomanceType");
+                });
+
+            modelBuilder.Entity("TheScene.Infrastructure.Data.Entities.Genre", b =>
+                {
+                    b.Navigation("Perfomances");
+                });
+
+            modelBuilder.Entity("TheScene.Infrastructure.Data.Entities.Location", b =>
+                {
+                    b.Navigation("Events");
+                });
+
+            modelBuilder.Entity("TheScene.Infrastructure.Data.Entities.Perfomance", b =>
+                {
+                    b.Navigation("Events");
+                });
+
+            modelBuilder.Entity("TheScene.Infrastructure.Data.Entities.PerfomanceType", b =>
+                {
+                    b.Navigation("Perfomances");
+                });
+
+            modelBuilder.Entity("TheScene.Infrastructure.Data.Entities.PlaceType", b =>
+                {
+                    b.Navigation("Locations");
                 });
 #pragma warning restore 612, 618
         }

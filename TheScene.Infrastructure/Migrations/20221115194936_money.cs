@@ -4,7 +4,7 @@
 
 namespace TheScene.Infrastructure.Migrations
 {
-    public partial class start : Migration
+    public partial class money : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

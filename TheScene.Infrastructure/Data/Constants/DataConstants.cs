@@ -95,9 +95,14 @@ namespace TheScene.Infrastructure.Data.Constants
             public const int MinActors = 2;
 
             /// <summary>
-            /// Description name maximum lentgth constant
+            /// Description maximum lentgth constant
             /// </summary>
             public const int MaxDescription = 2000;
+
+            /// <summary>
+            /// ImageUrl maximum lentgth constant
+            /// </summary>
+            public const int MaxImageURL = 2000;
         }
 
         /// <summary>
@@ -122,14 +127,24 @@ namespace TheScene.Infrastructure.Data.Constants
         public static class EventConstants
         {
             /// <summary>
-            /// Seats and price maximum lentgth constant
+            /// Seats maximum lentgth constant
             /// </summary>
             public const int MaxSeats = 1000000;
 
             /// <summary>
-            /// Seats and price minimum lentgth constant
+            /// Seats minimum lentgth constant
             /// </summary>
             public const int MinSeats = 0;
+
+            /// <summary>
+            /// Price maximum lentgth constant
+            /// </summary>
+            public const decimal MaxPice = 1000000;
+
+            /// <summary>
+            /// Price minimum lentgth constant
+            /// </summary>
+            public const decimal MinPrice = 0;
 
             public const string RangerErrorMessage = "The range of {0} has to be between {2} and {1}";
         }

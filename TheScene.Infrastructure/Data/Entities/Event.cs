@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 using static TheScene.Infrastructure.Data.Constants.DataConstants;
@@ -29,11 +30,17 @@ namespace TheScene.Infrastructure.Data.Entities
         public int? FreeSeats { get; set; }
 
         [Required]
-        [Range(EventConstants.MinSeats, EventConstants.MaxSeats, ErrorMessage = EventConstants.RangerErrorMessage)]
-        public int PricePerTicket { get; set; }
+        [Column(TypeName = "money")]
+        [Precision(18,2)]
+        public decimal PricePerTicket { get; set; }
 
         [Required]
         public DateTime Date { get; set; }
+
+        /// <summary>
+        /// It is deleted or not?
+        /// </summary>
+        public bool IsActive { get; set; } = true;
 
         //can we sell tickets? or only to make reservations?
     }
