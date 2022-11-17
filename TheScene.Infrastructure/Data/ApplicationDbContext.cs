@@ -18,6 +18,8 @@ namespace TheScene.Infrastructure.Data
             builder.ApplyConfiguration(new PerfomanceTypeConfiguration());
             builder.ApplyConfiguration(new PlaceTypeConfiguration());
             builder.ApplyConfiguration(new GenreConfiguration());
+            builder.ApplyConfiguration(new LocationConfiguration());
+            builder.ApplyConfiguration(new PerfomanceConfiguration());
 
             base.OnModelCreating(builder);
         }

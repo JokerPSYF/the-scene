@@ -37,6 +37,8 @@ namespace TheScene.Infrastructure.Data.Entities
         [Required]
         public DateTime Date { get; set; }
 
+        public bool IsPremiere { get; set; } = false;
+
         /// <summary>
         /// It is deleted or not?
         /// </summary>

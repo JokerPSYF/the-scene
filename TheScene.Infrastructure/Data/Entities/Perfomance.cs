@@ -41,6 +41,11 @@ namespace TheScene.Infrastructure.Data.Entities
         [StringLength(PerfomanceConstants.MaxDescription, ErrorMessage = LengthErrorMessage)]
         public string? Description { get; set; }
 
+        [Range(minimum: PerfomanceConstants.MinYear,
+               maximum: PerfomanceConstants.MaxYear,
+               ErrorMessage = LengthErrorMessage)]
+        public int? Year { get; set; }
+
         [StringLength(PerfomanceConstants.MaxImageURL)]
         public string? ImageURL { get; set; }
 

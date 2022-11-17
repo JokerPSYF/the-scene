@@ -24,7 +24,7 @@ namespace TheScene.Infrastructure.Data.Entities
         /// <summary>
         /// It is deleted or not?
         /// </summary>
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
         // how many seats ?
     }
 }

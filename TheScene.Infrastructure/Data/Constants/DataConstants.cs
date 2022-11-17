@@ -103,6 +103,16 @@ namespace TheScene.Infrastructure.Data.Constants
             /// ImageUrl maximum lentgth constant
             /// </summary>
             public const int MaxImageURL = 2000;
+
+            /// <summary>
+            /// Year maximum constant
+            /// </summary>
+            public const int MaxYear = 2023;
+
+            /// <summary>
+            /// Year maximum constant
+            /// </summary>
+            public const int MinYear = 1975;
         }
 
         /// <summary>
