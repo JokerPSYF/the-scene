@@ -24,7 +24,7 @@ namespace TheScene.Infrastructure.Data.Entities
         public virtual Location Location { get; set; } = null!;
 
         [Range(EventConstants.MinSeats, EventConstants.MaxSeats, ErrorMessage = EventConstants.RangerErrorMessage)]
-        public int? OccupiedSeats { get; set; }
+        public int? OccupiedSeats { get; set; } = 0;
 
         [Range(EventConstants.MinSeats, EventConstants.MaxSeats, ErrorMessage = EventConstants.RangerErrorMessage)]
         public int? FreeSeats { get; set; }
@@ -35,6 +35,7 @@ namespace TheScene.Infrastructure.Data.Entities
         public decimal PricePerTicket { get; set; }
 
         [Required]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
         public bool IsPremiere { get; set; } = false;

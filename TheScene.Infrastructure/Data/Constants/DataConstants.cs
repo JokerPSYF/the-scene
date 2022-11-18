@@ -121,6 +121,16 @@ namespace TheScene.Infrastructure.Data.Constants
         public static class LocationConstants
         {
             /// <summary>
+            /// Name maximum length constant
+            /// </summary>
+            public const int MaxName = 100;
+
+            /// <summary>
+            /// Name minimum length constant
+            /// </summary>
+            public const int MinName = 1;
+
+            /// <summary>
             /// Address maximum lentgth constant
             /// </summary>
             public const int MaxAddress= 255;
