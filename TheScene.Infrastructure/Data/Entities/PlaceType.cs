@@ -13,7 +13,10 @@ namespace TheScene.Infrastructure.Data.Entities
         public int Id { get; set; }
 
         [Required]
-        [StringLength(PlaceTypeConstants.MaxName, MinimumLength = PlaceTypeConstants.MinName, ErrorMessage = LengthErrorMessage)]
+        [StringLength(
+            PlaceTypeConstants.MaxName,
+            MinimumLength = PlaceTypeConstants.MinName,
+            ErrorMessage = LengthErrorMessage)]
         public string Name { get; set; } = null!;
 
         public virtual ICollection<Location> Locations { get; set; } = new List<Location>();

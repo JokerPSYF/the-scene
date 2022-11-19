@@ -8,7 +8,7 @@ namespace TheScene.Infrastructure.Configuration
     {
         public void Configure(EntityTypeBuilder<Perfomance> builder)
         {
-            throw new NotImplementedException();
+            builder.HasData(CreatePerfomances());
         }
 
         private List<Perfomance> CreatePerfomances()
@@ -73,8 +73,6 @@ namespace TheScene.Infrastructure.Configuration
                     ImageURL = "https://www.programata.bg/img/gallery/event_107182.jpg?630607749"
                 }
             };
-
-
             return perfomances;
         }
     }

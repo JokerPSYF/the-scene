@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TheScene.Infrastructure.Migrations
 {
-    public partial class addImage : Migration
+    public partial class seedTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -205,6 +205,7 @@ namespace TheScene.Infrastructure.Migrations
                     Actors = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: true),
                     PerfomanceTypeId = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: true),
+                    Year = table.Column<int>(type: "int", nullable: true),
                     ImageURL = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
@@ -231,8 +232,10 @@ namespace TheScene.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Address = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     PlaceTypeId = table.Column<int>(type: "int", nullable: false),
+                    Seats = table.Column<int>(type: "int", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -256,8 +259,9 @@ namespace TheScene.Infrastructure.Migrations
                     LocationId = table.Column<int>(type: "int", nullable: false),
                     OccupiedSeats = table.Column<int>(type: "int", nullable: true),
                     FreeSeats = table.Column<int>(type: "int", nullable: true),
-                    PricePerTicket = table.Column<decimal>(type: "money", nullable: false),
+                    PricePerTicket = table.Column<decimal>(type: "money", precision: 18, scale: 2, nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsPremiere = table.Column<bool>(type: "bit", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>

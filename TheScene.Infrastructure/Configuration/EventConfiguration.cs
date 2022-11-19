@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System.Security.Cryptography.X509Certificates;
 using TheScene.Infrastructure.Data.Entities;
 
 namespace TheScene.Infrastructure.Configuration
@@ -9,7 +8,7 @@ namespace TheScene.Infrastructure.Configuration
     {
         public void Configure(EntityTypeBuilder<Event> builder)
         {
-            throw new NotImplementedException();
+            builder.HasData(CreateEvents());
         }
 
         private List<Event> CreateEvents()
@@ -22,8 +21,8 @@ namespace TheScene.Infrastructure.Configuration
                     PerfomanceId = 1,
                     LocationId = 6,
                     PricePerTicket = 12,
+                    OccupiedSeats = 0,
                     Date = new DateTime(2022, 12, 13, 19, 00, 00),
-                    
                 },
 
                 new Event()
@@ -32,6 +31,7 @@ namespace TheScene.Infrastructure.Configuration
                     PerfomanceId = 2,
                     LocationId = 5,
                     PricePerTicket = 14,
+                    OccupiedSeats = 0,
                     Date = new DateTime(2022, 11, 24, 22, 30, 00),
                 },
 
@@ -41,8 +41,8 @@ namespace TheScene.Infrastructure.Configuration
                     PerfomanceId = 3,
                     LocationId = 7,
                     PricePerTicket = 12,
+                    OccupiedSeats = 0,
                     Date = new DateTime(2022, 11, 22, 14, 00, 00),
-
                 },
                 new Event()
                 {
@@ -50,6 +50,7 @@ namespace TheScene.Infrastructure.Configuration
                     PerfomanceId = 4,
                     LocationId = 7,
                     PricePerTicket = 25,
+                    OccupiedSeats = 0,
                     Date = new DateTime(2022, 12, 23, 19, 00, 00),
                 },
                 new Event()
@@ -58,8 +59,9 @@ namespace TheScene.Infrastructure.Configuration
                     PerfomanceId = 5,
                     LocationId = 4,
                     PricePerTicket = 40,
+                    OccupiedSeats = 0,
                     Date = new DateTime(2022, 12, 18, 20, 00, 00),
-                },
+                }
             };
 
             events.ForEach(x => { x.FreeSeats = x.Location.Seats; });

@@ -12,8 +12,8 @@ using TheScene.Infrastructure.Data;
 namespace TheScene.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221115194936_money")]
-    partial class money
+    [Migration("20221119085349_seedPerfomanceType")]
+    partial class seedPerfomanceType
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -243,6 +243,9 @@ namespace TheScene.Infrastructure.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<bool?>("IsPremiere")
+                        .HasColumnType("bit");
+
                     b.Property<int>("LocationId")
                         .HasColumnType("int");
 
@@ -299,7 +302,15 @@ namespace TheScene.Infrastructure.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<int>("PlaceTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Seats")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -347,6 +358,9 @@ namespace TheScene.Infrastructure.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
+                    b.Property<int?>("Year")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("GenreId");
@@ -372,6 +386,33 @@ namespace TheScene.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PerfomanceTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Movie"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Theatrical play"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Opera"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Ballet"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Concert"
+                        });
                 });
 
             modelBuilder.Entity("TheScene.Infrastructure.Data.Entities.PlaceType", b =>

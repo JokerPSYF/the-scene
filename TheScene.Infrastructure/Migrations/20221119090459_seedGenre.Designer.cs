@@ -12,8 +12,8 @@ using TheScene.Infrastructure.Data;
 namespace TheScene.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221115194751_addImage")]
-    partial class addImage
+    [Migration("20221119090459_seedGenre")]
+    partial class seedGenre
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -139,6 +139,24 @@ namespace TheScene.Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "7a15400e-4991-4d66-87df-05a82c3bf851",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "cdbe96da-741e-46c6-b192-ea897374d7d2",
+                            Email = "TODOR@MAIL.COM",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "todor@mail.com",
+                            NormalizedUserName = "Todor",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHCQTHdne6QBoD7y3cpYM5W7phc7mZubqBtzk3NJBPDdyvM8wKcanPe7rT2PX2IXAA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "503c774c-d14a-4708-a962-e9606a383fc3",
+                            TwoFactorEnabled = false,
+                            UserName = "TODOR"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -243,6 +261,9 @@ namespace TheScene.Infrastructure.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<bool?>("IsPremiere")
+                        .HasColumnType("bit");
+
                     b.Property<int>("LocationId")
                         .HasColumnType("int");
 
@@ -253,6 +274,7 @@ namespace TheScene.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("PricePerTicket")
+                        .HasPrecision(18, 2)
                         .HasColumnType("money");
 
                     b.HasKey("Id");
@@ -280,6 +302,98 @@ namespace TheScene.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Genres");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Action"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Comedy"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Drama"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Fantasy"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Horror"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Mystery"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Romance"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Thriller"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Western"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Pop music"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "Hip hop music"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Name = "Rock music"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Name = "Folk music"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Name = "Pop Folk music"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Name = "Jazz music"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Name = "Electronic music"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Name = "Classical music"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Name = "Christian music"
+                        });
                 });
 
             modelBuilder.Entity("TheScene.Infrastructure.Data.Entities.Location", b =>
@@ -298,7 +412,15 @@ namespace TheScene.Infrastructure.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<int>("PlaceTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Seats")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -306,6 +428,71 @@ namespace TheScene.Infrastructure.Migrations
                     b.HasIndex("PlaceTypeId");
 
                     b.ToTable("Locations");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "pl. \"Troykata\" 1, 8000 Burgas Center, Burgas",
+                            IsActive = true,
+                            Name = "Културен дом НХК",
+                            PlaceTypeId = 2,
+                            Seats = 400
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Address = "48 улица „Христо Ботев“, 8000 Burgas",
+                            IsActive = true,
+                            Name = "Military Hotel",
+                            PlaceTypeId = 2,
+                            Seats = 300
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Address = "ul. \"Tsar Asen I\" 28, вх.А, 8000 Wasraschdane, Burgas",
+                            IsActive = true,
+                            Name = "Drama Theatre Adriana Budevska",
+                            PlaceTypeId = 2,
+                            Seats = 320
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Address = "Demokratsia Blvd 94, 8001 Burgas Center, Burgas",
+                            IsActive = true,
+                            Name = "Open-air theater",
+                            PlaceTypeId = 3,
+                            Seats = 1970
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Address = "Mall Galleria, Blvd. \"Dame Gruev\" 6, 8005 Burgas",
+                            IsActive = true,
+                            Name = "Cinema City",
+                            PlaceTypeId = 1,
+                            Seats = 153
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Address = "ul. \"Sveti Kliment Ohridski\" 2, 8000 g.k. Vazrazhdane, Burgas",
+                            IsActive = true,
+                            Name = "Държавен куклен театър",
+                            PlaceTypeId = 2,
+                            Seats = 200
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Address = "ul. \"Sveti Kliment Ohridski\" 2, 8000 g.k. Vazrazhdane, Burgas",
+                            IsActive = true,
+                            Name = "The Opera House",
+                            PlaceTypeId = 2,
+                            Seats = 300
+                        });
                 });
 
             modelBuilder.Entity("TheScene.Infrastructure.Data.Entities.Perfomance", b =>
@@ -346,6 +533,9 @@ namespace TheScene.Infrastructure.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
+                    b.Property<int?>("Year")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("GenreId");
@@ -371,6 +561,33 @@ namespace TheScene.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PerfomanceTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Movie"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Theatrical play"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Opera"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Ballet"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Concert"
+                        });
                 });
 
             modelBuilder.Entity("TheScene.Infrastructure.Data.Entities.PlaceType", b =>
@@ -389,6 +606,28 @@ namespace TheScene.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PlaceTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Cinema"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Theater"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Open air theater"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Stadium"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

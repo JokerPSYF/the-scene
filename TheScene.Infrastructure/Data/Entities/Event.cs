@@ -38,12 +38,12 @@ namespace TheScene.Infrastructure.Data.Entities
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
-        public bool IsPremiere { get; set; } = false;
+        public bool? IsPremiere { get; set; } = false;
 
         /// <summary>
         /// It is deleted or not?
         /// </summary>
-        public bool IsActive { get; set; } = true;
+        public bool? IsActive { get; set; } = true;
 
         //can we sell tickets? or only to make reservations?
     }

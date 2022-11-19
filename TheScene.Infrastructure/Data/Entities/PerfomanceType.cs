@@ -13,7 +13,10 @@ namespace TheScene.Infrastructure.Data.Entities
         public int Id { get; set; }
 
         [Required]
-        [StringLength(PerfomanceTypeConstants.MaxName, MinimumLength = PerfomanceTypeConstants.MinName, ErrorMessage = LengthErrorMessage)]
+        [StringLength(
+            PerfomanceTypeConstants.MaxName,
+            MinimumLength = PerfomanceTypeConstants.MinName,
+            ErrorMessage = LengthErrorMessage)]
         public string Name { get; set; } = null!;
         
         public virtual ICollection<Perfomance> Perfomances { get; set; } = new List<Perfomance>();

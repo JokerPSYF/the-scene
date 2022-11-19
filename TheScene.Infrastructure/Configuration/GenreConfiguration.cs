@@ -121,7 +121,7 @@ namespace TheScene.Infrastructure.Configuration
                 {
                     Id = 18,
                     Name = "Christian music"
-                },
+                }
             };
 
             return genres;
