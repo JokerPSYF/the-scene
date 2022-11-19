@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TheScene.Infrastructure.Migrations
 {
-    public partial class seedTables : Migration
+    public partial class createBase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -262,7 +262,7 @@ namespace TheScene.Infrastructure.Migrations
                     PricePerTicket = table.Column<decimal>(type: "money", precision: 18, scale: 2, nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsPremiere = table.Column<bool>(type: "bit", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                    IsActive = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -279,6 +279,97 @@ namespace TheScene.Infrastructure.Migrations
                         principalTable: "Perfomances",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "7a15400e-4991-4d66-87df-05a82c3bf851", 0, "0279369b-6982-4ca0-a1f0-d377a4628e07", "TODOR@MAIL.COM", false, false, null, "todor@mail.com", "Todor", "AQAAAAEAACcQAAAAEE9mv1sF2VFnyEWi7n/Sglh1xUbhQONrVLDVzznwL2ELyc4iyWXMetoxeMwu4lpsFQ==", null, false, "6274fdeb-8db6-4943-a607-7d5591155f76", false, "TODOR" });
+
+            migrationBuilder.InsertData(
+                table: "Genres",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Action" },
+                    { 2, "Comedy" },
+                    { 3, "Drama" },
+                    { 4, "Fantasy" },
+                    { 5, "Horror" },
+                    { 6, "Mystery" },
+                    { 7, "Romance" },
+                    { 8, "Thriller" },
+                    { 9, "Western" },
+                    { 10, "Pop music" },
+                    { 11, "Hip hop music" },
+                    { 12, "Rock music" },
+                    { 13, "Folk music" },
+                    { 14, "Pop Folk music" },
+                    { 15, "Jazz music" },
+                    { 16, "Electronic music" },
+                    { 17, "Classical music" },
+                    { 18, "Christian music" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "PerfomanceTypes",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Movie" },
+                    { 2, "Theatrical play" },
+                    { 3, "Opera" },
+                    { 4, "Ballet" },
+                    { 5, "Concert" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "PlaceTypes",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Cinema" },
+                    { 2, "Theater" },
+                    { 3, "Open air theater" },
+                    { 4, "Stadium" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Locations",
+                columns: new[] { "Id", "Address", "IsActive", "Name", "PlaceTypeId", "Seats" },
+                values: new object[,]
+                {
+                    { 1, "pl. \"Troykata\" 1, 8000 Burgas Center, Burgas", true, "Културен дом НХК", 2, 400 },
+                    { 2, "48 улица „Христо Ботев“, 8000 Burgas", true, "Military Hotel", 2, 300 },
+                    { 3, "ul. \"Tsar Asen I\" 28, вх.А, 8000 Wasraschdane, Burgas", true, "Drama Theatre Adriana Budevska", 2, 320 },
+                    { 4, "Demokratsia Blvd 94, 8001 Burgas Center, Burgas", true, "Open-air theater", 3, 1970 },
+                    { 5, "Mall Galleria, Blvd. \"Dame Gruev\" 6, 8005 Burgas", true, "Cinema City", 1, 153 },
+                    { 6, "ul. \"Sveti Kliment Ohridski\" 2, 8000 g.k. Vazrazhdane, Burgas", true, "Държавен куклен театър", 2, 200 },
+                    { 7, "ul. \"Sveti Kliment Ohridski\" 2, 8000 g.k. Vazrazhdane, Burgas", true, "The Opera House", 2, 300 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Perfomances",
+                columns: new[] { "Id", "Actors", "Description", "Director", "GenreId", "ImageURL", "IsActive", "PerfomanceTypeId", "Title", "Year" },
+                values: new object[,]
+                {
+                    { 1, "Стефан Василев, Таня Памукчиева", "„Талантино“ предупреждава: Страстта може да бъде много опасна!\r\nПсихопат – сериен убиец и жертва – психолог, разказват една история. История, в която истината и лъжата са винаги на тънка и опасна граница. В търсенето на причината, която ги е довела до тази екстремна ситуация, ролята на палач преминава от ръка на ръка и това, което изглежда като предсказуем край, търпи обрат след обрат. Трябва ли да превърнем живота си в една трагична история, за да го разберем? Ще получи ли психопата желаната си терапия или ще вземе поредната си жертва?", "Станимир Карагьозов", 8, "https://scontent-sof1-2.xx.fbcdn.net/v/t39.30808-6/312262525_523539703113345_5372908178241038288_n.jpg?stp=dst-jpg_s960x960&_nc_cat=110&ccb=1-7&_nc_sid=340051&_nc_ohc=sqvojeCwuhUAX-sD6f5&_nc_ht=scontent-sof1-2.xx&oh=00_AfD9_3plCjvaqT6IiWveG_8HOaVI37UEvZJ8PuuE4Hw3Bg&oe=637B30E4", true, 2, "Верига от думи", null },
+                    { 2, "Sosie Bacon, Jessie T. Usher, Kyle Gallner", "After witnessing a bizarre, traumatic incident involving a patient, Dr. Rose Cotter starts experiencing frightening occurrences that she can't explain. Rose must confront her troubling past in order to survive and escape her horrifying new reality.", "Parker Finn", 5, "https://www.cinemacity.bg/xmedia-cw/repo/feats/posters/5170S2R-lg.jpg", true, 1, "Smile", 2022 },
+                    { 3, "Йоана Кадийска, Яни Николов, Йордан Христозов", "Оригинални декори пренасят присъстващите в най-големия храм на древна Елада и в покоите на Елена. Изрисуваните по тях известни случки от ловни и любовни сцени използват техниката на гръцкия вазопис.", "Александър Текелиев", 2, "https://www.programata.bg/img/gallery/event_50529.jpg?997794843", true, 2, "La belle Hellene", null },
+                    { 4, null, "Едно неочаквано претворяване на познатия сюжет от новелата Кармен на Мериме и любимата музика от едноименната опера на Бизе. Спектакъл за неустоимата страст на Кармен, търсеща всепоглъщаща любов или просто хладна любовна игра на живот и смърт.", "Боряна Сечанова", 7, "https://www.programata.bg/img/gallery/event_107123.jpg?1331961416", true, 4, "Колекция Кармен", null },
+                    { 5, null, "Самюел Андре Мадсън израства в религиозно семейство в провинция в Дания и се учи да свири на бас и барабани в църквата там, а сега е един от най-успешните диджеи и лейбъл мениджъри.", null, 16, "https://www.programata.bg/img/gallery/event_107182.jpg?630607749", true, 5, "Ritual Gatherings present S.A.M.", null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Events",
+                columns: new[] { "Id", "Date", "FreeSeats", "IsActive", "IsPremiere", "LocationId", "OccupiedSeats", "PerfomanceId", "PricePerTicket" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2022, 12, 13, 19, 0, 0, 0, DateTimeKind.Unspecified), null, true, false, 6, 0, 1, 12m },
+                    { 2, new DateTime(2022, 11, 24, 22, 30, 0, 0, DateTimeKind.Unspecified), null, true, false, 5, 0, 2, 14m },
+                    { 3, new DateTime(2022, 11, 22, 14, 0, 0, 0, DateTimeKind.Unspecified), null, true, false, 7, 0, 3, 12m },
+                    { 4, new DateTime(2022, 12, 23, 19, 0, 0, 0, DateTimeKind.Unspecified), null, true, false, 7, 0, 4, 25m },
+                    { 5, new DateTime(2022, 12, 18, 20, 0, 0, 0, DateTimeKind.Unspecified), null, true, false, 4, 0, 5, 40m }
                 });
 
             migrationBuilder.CreateIndex(

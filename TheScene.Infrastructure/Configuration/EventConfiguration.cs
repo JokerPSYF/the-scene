@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using TheScene.Infrastructure.Data;
 using TheScene.Infrastructure.Data.Entities;
 
 namespace TheScene.Infrastructure.Configuration
@@ -58,7 +59,6 @@ namespace TheScene.Infrastructure.Configuration
                     Date = new DateTime(2022, 12, 18, 20, 00, 00)
                 }
             };
-
             return events;
         }
     }

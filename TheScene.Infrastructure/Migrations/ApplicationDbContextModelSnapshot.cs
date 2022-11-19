@@ -143,15 +143,15 @@ namespace TheScene.Infrastructure.Migrations
                         {
                             Id = "7a15400e-4991-4d66-87df-05a82c3bf851",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f0eacc77-d58e-4258-a989-032249a85847",
+                            ConcurrencyStamp = "0279369b-6982-4ca0-a1f0-d377a4628e07",
                             Email = "TODOR@MAIL.COM",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "todor@mail.com",
                             NormalizedUserName = "Todor",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHnvBzt8n0butYWPMPZuztt+nZtPuNCw2JhGm4I5khEqmyr0sX5Typka2xd1YFDiNw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEE9mv1sF2VFnyEWi7n/Sglh1xUbhQONrVLDVzznwL2ELyc4iyWXMetoxeMwu4lpsFQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "48f83095-57bf-4c3b-8da0-0e70156aa74c",
+                            SecurityStamp = "6274fdeb-8db6-4943-a607-7d5591155f76",
                             TwoFactorEnabled = false,
                             UserName = "TODOR"
                         });
@@ -253,6 +253,9 @@ namespace TheScene.Infrastructure.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("FreeSeats")
+                        .HasColumnType("int");
+
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
 
@@ -260,6 +263,9 @@ namespace TheScene.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<int>("LocationId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("OccupiedSeats")
                         .HasColumnType("int");
 
                     b.Property<int>("PerfomanceId")
@@ -285,6 +291,7 @@ namespace TheScene.Infrastructure.Migrations
                             IsActive = true,
                             IsPremiere = false,
                             LocationId = 6,
+                            OccupiedSeats = 0,
                             PerfomanceId = 1,
                             PricePerTicket = 12m
                         },
@@ -295,6 +302,7 @@ namespace TheScene.Infrastructure.Migrations
                             IsActive = true,
                             IsPremiere = false,
                             LocationId = 5,
+                            OccupiedSeats = 0,
                             PerfomanceId = 2,
                             PricePerTicket = 14m
                         },
@@ -305,6 +313,7 @@ namespace TheScene.Infrastructure.Migrations
                             IsActive = true,
                             IsPremiere = false,
                             LocationId = 7,
+                            OccupiedSeats = 0,
                             PerfomanceId = 3,
                             PricePerTicket = 12m
                         },
@@ -315,6 +324,7 @@ namespace TheScene.Infrastructure.Migrations
                             IsActive = true,
                             IsPremiere = false,
                             LocationId = 7,
+                            OccupiedSeats = 0,
                             PerfomanceId = 4,
                             PricePerTicket = 25m
                         },
@@ -325,6 +335,7 @@ namespace TheScene.Infrastructure.Migrations
                             IsActive = true,
                             IsPremiere = false,
                             LocationId = 4,
+                            OccupiedSeats = 0,
                             PerfomanceId = 5,
                             PricePerTicket = 40m
                         });

@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
 using static TheScene.Infrastructure.Data.Constants.DataConstants;
 
 namespace TheScene.Infrastructure.Data.Entities
@@ -23,11 +22,11 @@ namespace TheScene.Infrastructure.Data.Entities
 
         public virtual Location Location { get; set; } = null!;
 
-        //[Range(EventConstants.MinSeats, EventConstants.MaxSeats, ErrorMessage = EventConstants.RangerErrorMessage)]
-        //public int? OccupiedSeats { get; set; } = 0;
+        [Range(EventConstants.MinSeats, EventConstants.MaxSeats, ErrorMessage = EventConstants.RangerErrorMessage)]
+        public int? OccupiedSeats { get; set; } = 0;
 
-        //[Range(EventConstants.MinSeats, EventConstants.MaxSeats, ErrorMessage = EventConstants.RangerErrorMessage)]
-        //public int? FreeSeats { get; set; }
+        [Range(EventConstants.MinSeats, EventConstants.MaxSeats, ErrorMessage = EventConstants.RangerErrorMessage)]
+        public int? FreeSeats { get; set; }
 
         [Required]
         [Column(TypeName = "money")]
