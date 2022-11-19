@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TheScene.Extensions.DependencyInjection;
 using TheScene.Infrastructure.Data;
+using TheScene.Infrastructure.Data.Entities;
+
 
 namespace TheScene
 {
@@ -30,7 +32,7 @@ namespace TheScene
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
-                
+
                 app.UseDeveloperExceptionPage();
             }
             else

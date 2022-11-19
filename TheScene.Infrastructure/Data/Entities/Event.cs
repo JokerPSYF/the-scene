@@ -23,11 +23,11 @@ namespace TheScene.Infrastructure.Data.Entities
 
         public virtual Location Location { get; set; } = null!;
 
-        [Range(EventConstants.MinSeats, EventConstants.MaxSeats, ErrorMessage = EventConstants.RangerErrorMessage)]
-        public int? OccupiedSeats { get; set; } = 0;
+        //[Range(EventConstants.MinSeats, EventConstants.MaxSeats, ErrorMessage = EventConstants.RangerErrorMessage)]
+        //public int? OccupiedSeats { get; set; } = 0;
 
-        [Range(EventConstants.MinSeats, EventConstants.MaxSeats, ErrorMessage = EventConstants.RangerErrorMessage)]
-        public int? FreeSeats { get; set; }
+        //[Range(EventConstants.MinSeats, EventConstants.MaxSeats, ErrorMessage = EventConstants.RangerErrorMessage)]
+        //public int? FreeSeats { get; set; }
 
         [Required]
         [Column(TypeName = "money")]
