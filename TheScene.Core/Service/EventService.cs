@@ -1,4 +1,6 @@
-﻿using TheScene.Core.Exception;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Globalization;
+using TheScene.Core.Exception;
 using TheScene.Core.Interface;
 using TheScene.Core.Models.Event;
 using TheScene.Infrastructure.Data.Common;
@@ -34,7 +36,27 @@ namespace TheScene.Core.Service
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                searchTerm = $"%{searchTerm.ToLower()}%";
+                bool IsDate = DateTime.TryParseExact(
+                    searchTerm, "dd/MM/yyyy",
+                    CultureInfo.InvariantCulture, DateTimeStyles.None,
+                    out DateTime date);
+
+                if (IsDate)
+                {
+                    events = events
+                        .Where(e => e.Date == date);
+                }
+                else
+                {
+                    searchTerm = $"%{searchTerm.ToLower()}%";
+
+                    events = events
+                        .Where(e => EF.Functions.Like(e.Perfomance.Title.ToLower(), searchTerm) ||
+                            EF.Functions.Like(e.Location.Name.ToLower(), searchTerm) ||
+                            (e.Perfomance.Year? == int.TryParse(searchTerm, out int year))
+                            );
+                }
+
             }
 
             return null;
