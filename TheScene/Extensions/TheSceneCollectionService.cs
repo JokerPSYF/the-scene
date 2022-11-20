@@ -15,5 +15,6 @@ namespace TheScene.Extensions.DependencyInjection
 
             return services;
         }
+
     }
 }
