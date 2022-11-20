@@ -14,7 +14,7 @@ namespace TheScene.Controllers
 
         public async Task<IActionResult> All()
         {
-            var model = new AllEventModel();
+            var model = new EventQueryModel();
 
             return View(model);
         }
