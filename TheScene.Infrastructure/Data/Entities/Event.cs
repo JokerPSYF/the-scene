@@ -42,7 +42,7 @@ namespace TheScene.Infrastructure.Data.Entities
         /// <summary>
         /// It is deleted or not?
         /// </summary>
-        public bool? IsActive { get; set; } = true;
+        public bool IsActive { get; set; } = true;
 
         //can we sell tickets? or only to make reservations?
     }

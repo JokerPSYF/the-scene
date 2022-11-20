@@ -23,9 +23,14 @@ namespace TheScene.Controllers
 
         public IActionResult Add() => View();
 
-        public Task<IActionResult> Add(AddEventModel model)
+        public async Task<IActionResult> Add(AddEventModel model)
         {
-            throw new NotImplementedException();
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

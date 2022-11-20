@@ -1,6 +1,9 @@
 ﻿namespace TheScene.Core.Models.PerfomanceModels
 {
-    public class DetailPerfomanceModel
+    /// <summary>
+    /// Perfomance view model that will show all the perfomance
+    /// </summary>
+    public class AllPerfomanceModel
     {
         public int Id { get; set; }
 
@@ -12,10 +15,10 @@
 
         public string? Actors { get; set; }
 
-        public string PerfomanceType { get; set; } = null!;
+        public string PefomanceType { get; set; } = null!;
 
         public int? Year { get; set; }
 
-        public string? ImageURL { get; set; }
+        public string? ImageUrl { get; set; }
     }
 }

@@ -55,6 +55,5 @@ namespace TheScene.Infrastructure.Data.Entities
         public bool IsActive { get; set; } = true;
 
         public virtual ICollection<Event> Events { get; set; } = new List<Event>();
-
     }
 }

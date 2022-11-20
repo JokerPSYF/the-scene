@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TheScene.Infrastructure.Data.Constants
+﻿namespace TheScene.Infrastructure.Data.Constants
 {
     /// <summary>
     /// Data constats of all properties of entities.
@@ -159,12 +153,12 @@ namespace TheScene.Infrastructure.Data.Constants
             /// <summary>
             /// Price maximum lentgth constant
             /// </summary>
-            public const decimal MaxPice = 1000000;
+            public const double MaxPrice = 1000000;
 
             /// <summary>
             /// Price minimum lentgth constant
             /// </summary>
-            public const decimal MinPrice = 0;
+            public const double MinPrice = 0;
 
             public const string RangerErrorMessage = "The range of {0} has to be between {2} and {1}";
         }
