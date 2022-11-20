@@ -1,13 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using TheScene.Core.Interface;
 
 namespace TheScene.Controllers
 {
-    public class PerfomanceController : Controller, IPerfomanceController
+    public class PerfomanceController : Controller
     {
         // GET: PerfomanceController
-        public ActionResult Index()
+        public ActionResult All()
         {
             return View();
         }
@@ -19,7 +18,7 @@ namespace TheScene.Controllers
         }
 
         // GET: PerfomanceController/Create
-        public ActionResult Create()
+        public ActionResult Add()
         {
             return View();
         }
@@ -27,11 +26,11 @@ namespace TheScene.Controllers
         // POST: PerfomanceController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Add(IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(All));
             }
             catch
             {
@@ -52,7 +51,7 @@ namespace TheScene.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(All));
             }
             catch
             {
@@ -73,7 +72,7 @@ namespace TheScene.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(All));
             }
             catch
             {

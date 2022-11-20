@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TheScene.Core.Interface;
-using TheScene.Core.Models;
 using TheScene.Core.Models.Event;
 
 namespace TheScene.Controllers
 {
-    public class EventController : Controller, IEventController
+    public class EventController : Controller
     {
         public async Task<IActionResult> Details()
         {
