@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TheScene.Core.Interface;
 using TheScene.Core.Models.Event;
+using TheScene.Models;
 
 namespace TheScene.Controllers
 {
@@ -20,11 +21,15 @@ namespace TheScene.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> All(string? genre = null, string? perfomanceType = null,
-            string? searchTerm = null, EventSorting sorting = EventSorting.Newest,
-            int currentPage = 1, int eventPerPage = 5)
+        public async Task<IActionResult> All([FromQuery] AllEventsQueryModel query)
         {
-            var model = eventService.All(genre, perfomanceType, searchTerm, sorting, currentPage, eventPerPage);
+            var model = await eventService.All(
+                query.Genre,
+                query.PerfomanceType,
+                query.SearchTerm,
+                query.Sorting,
+                query.CurrentPage,
+                AllEventsQueryModel.EventsPerPage);
 
             return View(model);
         }
