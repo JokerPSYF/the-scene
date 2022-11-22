@@ -18,7 +18,7 @@ namespace TheScene.Infrastructure.Data.Entities
             MinimumLength = PerfomanceTypeConstants.MinName,
             ErrorMessage = LengthErrorMessage)]
         public string Name { get; set; } = null!;
-        
+
         public virtual ICollection<Perfomance> Perfomances { get; set; } = new List<Perfomance>();
     }
 }
