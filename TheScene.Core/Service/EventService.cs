@@ -25,7 +25,7 @@ namespace TheScene.Core.Service
             int currentPage = 1, int eventPerPage = 5)
         {
             var result = new EventQueryModel();
-            var events = this.repo.AllReadonly<Event>()
+            var events = repo.AllReadonly<Event>()
                 .Where(e => e.IsActive);
 
             if (!string.IsNullOrEmpty(Genre))
@@ -63,7 +63,7 @@ namespace TheScene.Core.Service
                             EF.Functions.Like(e.Location.Name.ToLower(), searchTerm) ||
                             EF.Functions.Like(e.Perfomance.Director!.ToLower(), searchTerm) ||
                             EF.Functions.Like(e.Perfomance.Genre.Name.ToLower(), searchTerm) ||
-                            EF.Functions.Like(e.Perfomance.Actors!.ToLower(),searchTerm));
+                            EF.Functions.Like(e.Perfomance.Actors!.ToLower(), searchTerm));
                 }
 
             }
