@@ -102,6 +102,5 @@ namespace TheScene.Core.Service
 
             return result;
         }
-
     }
 }
