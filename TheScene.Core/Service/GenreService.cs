@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TheScene.Core.Exception;
 using TheScene.Core.Interface;
-using TheScene.Core.Models.GenreModels;
+using TheScene.Core.Models.Common;
 using TheScene.Infrastructure.Data.Common;
 using TheScene.Infrastructure.Data.Entities;
 
@@ -19,14 +19,14 @@ namespace TheScene.Core.Service
             this.guard = guard;
         }
 
-        public async Task<IEnumerable<GenreModel>> AllGenres()
+        public async Task<IEnumerable<NomenclatureDTO<int>>> AllGenres()
         {
             return await repository.AllReadonly<Genre>()
                 .OrderBy(g => g.Name)
-                .Select(g => new GenreModel()
+                .Select(g => new NomenclatureDTO<int>()
                 {
-                    Id = g.Id,
-                    Name = g.Name
+                    Value = g.Id,
+                    DisplayName = g.Name
                 })
                 .ToListAsync();
         }

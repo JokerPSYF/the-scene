@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
-using TheScene.Core.Exception;
 using TheScene.Core.Interface;
+using TheScene.Core.Models.Common;
 using TheScene.Core.Models.Event;
+using TheScene.Core.Models.PerfomanceModels;
 using TheScene.Infrastructure.Data.Common;
 using TheScene.Infrastructure.Data.Entities;
 
@@ -11,25 +12,23 @@ namespace TheScene.Core.Service
     public class EventService : IEventService
     {
         private readonly IRepository repository;
-        private readonly IGuard guard;
 
-        public EventService(IRepository _repo, IGuard _guard)
+        public EventService(IRepository _repo)
         {
             this.repository = _repo;
-            this.guard = _guard;
         }
 
-        public async Task<EventQueryModel> All(
-            string? Genre = null, string? perfomanceType = null,
+        public async Task<QueryModel<AllEventModel>> All(
+            string? genre = null, string? perfomanceType = null,
             string? searchTerm = null, EventSorting sorting = EventSorting.Newest,
             int currentPage = 1, int eventPerPage = 5)
         {
-            var result = new EventQueryModel();
+            var result = new QueryModel<AllEventModel>();
             var events = repository.AllReadonly<Event>()
                 .Where(e => e.IsActive);
 
-            if (!string.IsNullOrEmpty(Genre))
-                events = events.Where(e => e.Perfomance.Genre.Name == Genre);
+            if (!string.IsNullOrEmpty(genre))
+                events = events.Where(e => e.Perfomance.Genre.Name == genre);
 
             if (!string.IsNullOrEmpty(perfomanceType))
                 events = events.Where(e => e.Perfomance.PerfomanceType.Name == perfomanceType);
@@ -84,7 +83,7 @@ namespace TheScene.Core.Service
                     break;
             }
 
-            result.Events = await events
+            result.Collection = await events
                 .Skip((currentPage - 1) * eventPerPage)
                 .Take(eventPerPage)
                 .Select(e => new AllEventModel()
@@ -98,7 +97,7 @@ namespace TheScene.Core.Service
                 })
                 .ToListAsync();
 
-            result.TotalEventsCount = await events.CountAsync();
+            result.TotalCount = await events.CountAsync();
 
             return result;
         }
@@ -133,6 +132,55 @@ namespace TheScene.Core.Service
             eventEntity.IsActive = false;
 
             await repository.SaveChangesAsync();
+        }
+
+        public async Task<DetailEventModel> DetailsById(int eventId)
+        {
+            return await repository.AllReadonly<Event>()
+                .Where(e => e.IsActive && e.Id == eventId)
+                .Select(e => new DetailEventModel()
+                {
+                    Id = e.Id,
+                    Perfomance = new DetailPerfomanceModel()
+                    {
+                        Id = e.Perfomance.Id,
+                        Title = e.Perfomance.Title,
+                        Director = e.Perfomance.Director,
+                        Genre = e.Perfomance.Genre.Name,
+                        Actors = e.Perfomance.Actors,
+                        PerfomanceType = e.Perfomance.PerfomanceType.Name,
+                        Year = e.Perfomance.Year,
+                        ImageURL = e.Perfomance.ImageURL
+                    },
+                    LocationName = e.Location.Name,
+                    Address = e.Location.Address,
+                    OccupiedSeats = e.OccupiedSeats,
+                    FreeSeats = e.FreeSeats,
+                    PricePerTicket = e.PricePerTicket,
+                    Date = e.Date,
+                    IsPremiere = e.IsPremiere ?? false
+                }).FirstAsync();
+        }
+
+        public async Task Edit(int eventId, EditEventModel model)
+        {
+            var eventEntity = await repository.GetByIdAsync<Event>(eventId);
+
+            eventEntity.PerfomanceId = model.PerfomanceId;
+            eventEntity.LocationId = model.LocationId;
+            eventEntity.OccupiedSeats = model.OccupiedSeats; ;
+            eventEntity.FreeSeats = model.FreeSeats;
+            eventEntity.PricePerTicket = model.PricePerTicket;
+            eventEntity.Date = model.Date;
+            eventEntity.IsPremiere = model.IsPremiere;
+
+            await repository.SaveChangesAsync();
+        }
+
+        public async Task<bool> Exists(int eventId)
+        {
+            return await repository.AllReadonly<Event>()
+                .AnyAsync(e => e.IsActive && e.Id == eventId);
         }
     }
 }
