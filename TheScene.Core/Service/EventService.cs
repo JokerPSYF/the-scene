@@ -10,12 +10,12 @@ namespace TheScene.Core.Service
 {
     public class EventService : IEventService
     {
-        private readonly IRepository repo;
+        private readonly IRepository repository;
         private readonly IGuard guard;
 
         public EventService(IRepository _repo, IGuard _guard)
         {
-            this.repo = _repo;
+            this.repository = _repo;
             this.guard = _guard;
         }
 
@@ -25,7 +25,7 @@ namespace TheScene.Core.Service
             int currentPage = 1, int eventPerPage = 5)
         {
             var result = new EventQueryModel();
-            var events = repo.AllReadonly<Event>()
+            var events = repository.AllReadonly<Event>()
                 .Where(e => e.IsActive);
 
             if (!string.IsNullOrEmpty(Genre))
@@ -103,5 +103,39 @@ namespace TheScene.Core.Service
             return result;
         }
 
+<<<<<<< Updated upstream
+=======
+        public async Task<int> Create(AddEventModel model)
+        {
+            var eventEntity = new Event()
+            {
+                PerfomanceId = model.PerfomanceId,
+                LocationId = model.LocationId,
+                OccupiedSeats = 0,
+                PricePerTicket = model.PricePerTicket,
+                IsPremiere = model.IsPremiere
+            };
+
+            // We want the to take the seats from the location of the event
+            var location = await repository.GetByIdAsync<Location>(model.LocationId);
+
+            // Add them in freeSeats couse all free
+            eventEntity.FreeSeats = location.Seats;
+
+            await repository.AddAsync(eventEntity);
+            await repository.SaveChangesAsync();
+
+            return eventEntity.Id;
+        }
+
+        public async Task Delete(int eventId)
+        {
+            var eventEntity = await repository.GetByIdAsync<Event>(eventId);
+
+            eventEntity.IsActive = false;
+
+            await repository.SaveChangesAsync();
+        }
+>>>>>>> Stashed changes
     }
 }
