@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 using TheScene.Core.Exception;
 using TheScene.Core.Interface;
@@ -103,8 +103,6 @@ namespace TheScene.Core.Service
             return result;
         }
 
-<<<<<<< Updated upstream
-=======
         public async Task<int> Create(AddEventModel model)
         {
             var eventEntity = new Event()
@@ -136,6 +134,5 @@ namespace TheScene.Core.Service
 
             await repository.SaveChangesAsync();
         }
->>>>>>> Stashed changes
     }
 }

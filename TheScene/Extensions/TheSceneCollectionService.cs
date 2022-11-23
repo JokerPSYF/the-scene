@@ -12,9 +12,9 @@ namespace TheScene.Extensions.DependencyInjection
             services.AddScoped<IRepository, Repository>();
             services.AddScoped<IGuard, Guard>();
             services.AddScoped<IEventService, EventService>();
-
+            services.AddScoped<IGenreService, GenreService>();
+            services.AddScoped<IPerfomanceTypeService, PerfomanceTypeService>();
             return services;
         }
-
     }
 }
