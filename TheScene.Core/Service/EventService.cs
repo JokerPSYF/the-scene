@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
-using TheScene.Core.Exception;
 using TheScene.Core.Interface;
+using TheScene.Core.Models.Common;
 using TheScene.Core.Models.Event;
 using TheScene.Core.Models.PerfomanceModels;
 using TheScene.Infrastructure.Data.Common;
@@ -12,25 +12,23 @@ namespace TheScene.Core.Service
     public class EventService : IEventService
     {
         private readonly IRepository repository;
-        private readonly IGuard guard;
 
-        public EventService(IRepository _repo, IGuard _guard)
+        public EventService(IRepository _repo)
         {
             this.repository = _repo;
-            this.guard = _guard;
         }
 
-        public async Task<EventQueryModel> All(
-            string? Genre = null, string? perfomanceType = null,
+        public async Task<QueryModel<AllEventModel>> All(
+            string? genre = null, string? perfomanceType = null,
             string? searchTerm = null, EventSorting sorting = EventSorting.Newest,
             int currentPage = 1, int eventPerPage = 5)
         {
-            var result = new EventQueryModel();
+            var result = new QueryModel<AllEventModel>();
             var events = repository.AllReadonly<Event>()
                 .Where(e => e.IsActive);
 
-            if (!string.IsNullOrEmpty(Genre))
-                events = events.Where(e => e.Perfomance.Genre.Name == Genre);
+            if (!string.IsNullOrEmpty(genre))
+                events = events.Where(e => e.Perfomance.Genre.Name == genre);
 
             if (!string.IsNullOrEmpty(perfomanceType))
                 events = events.Where(e => e.Perfomance.PerfomanceType.Name == perfomanceType);
@@ -85,7 +83,7 @@ namespace TheScene.Core.Service
                     break;
             }
 
-            result.Events = await events
+            result.Collection = await events
                 .Skip((currentPage - 1) * eventPerPage)
                 .Take(eventPerPage)
                 .Select(e => new AllEventModel()
@@ -99,7 +97,7 @@ namespace TheScene.Core.Service
                 })
                 .ToListAsync();
 
-            result.TotalEventsCount = await events.CountAsync();
+            result.TotalCount = await events.CountAsync();
 
             return result;
         }

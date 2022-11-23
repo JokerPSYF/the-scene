@@ -18,7 +18,7 @@
             /// <summary>
             /// Name maximum lentgth constant
             /// </summary>
-          public const int MaxName = 20;
+            public const int MaxName = 20;
         }
 
         /// <summary>
@@ -127,7 +127,7 @@
             /// <summary>
             /// Address maximum lentgth constant
             /// </summary>
-            public const int MaxAddress= 255;
+            public const int MaxAddress = 255;
 
             /// <summary>
             /// Address minimum lentgth constant
