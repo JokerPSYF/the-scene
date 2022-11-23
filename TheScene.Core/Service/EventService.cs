@@ -3,6 +3,7 @@ using System.Globalization;
 using TheScene.Core.Exception;
 using TheScene.Core.Interface;
 using TheScene.Core.Models.Event;
+using TheScene.Core.Models.PerfomanceModels;
 using TheScene.Infrastructure.Data.Common;
 using TheScene.Infrastructure.Data.Entities;
 
@@ -133,6 +134,55 @@ namespace TheScene.Core.Service
             eventEntity.IsActive = false;
 
             await repository.SaveChangesAsync();
+        }
+
+        public async Task<DetailEventModel> DetailsById(int eventId)
+        {
+            return await repository.AllReadonly<Event>()
+                .Where(e => e.IsActive && e.Id == eventId)
+                .Select(e => new DetailEventModel()
+                {
+                    Id = e.Id,
+                    Perfomance = new DetailPerfomanceModel()
+                    {
+                        Id = e.Perfomance.Id,
+                        Title = e.Perfomance.Title,
+                        Director = e.Perfomance.Director,
+                        Genre = e.Perfomance.Genre.Name,
+                        Actors = e.Perfomance.Actors,
+                        PerfomanceType = e.Perfomance.PerfomanceType.Name,
+                        Year = e.Perfomance.Year,
+                        ImageURL = e.Perfomance.ImageURL
+                    },
+                    LocationName = e.Location.Name,
+                    Address = e.Location.Address,
+                    OccupiedSeats = e.OccupiedSeats,
+                    FreeSeats = e.FreeSeats,
+                    PricePerTicket = e.PricePerTicket,
+                    Date = e.Date,
+                    IsPremiere = e.IsPremiere ?? false
+                }).FirstAsync();
+        }
+
+        public async Task Edit(int eventId, EditEventModel model)
+        {
+            var eventEntity = await repository.GetByIdAsync<Event>(eventId);
+
+            eventEntity.PerfomanceId = model.PerfomanceId;
+            eventEntity.LocationId = model.LocationId;
+            eventEntity.OccupiedSeats = model.OccupiedSeats; ;
+            eventEntity.FreeSeats = model.FreeSeats;
+            eventEntity.PricePerTicket = model.PricePerTicket;
+            eventEntity.Date = model.Date;
+            eventEntity.IsPremiere = model.IsPremiere;
+
+            await repository.SaveChangesAsync();
+        }
+
+        public async Task<bool> Exists(int eventId)
+        {
+            return await repository.AllReadonly<Event>()
+                .AnyAsync(e => e.IsActive && e.Id == eventId);
         }
     }
 }

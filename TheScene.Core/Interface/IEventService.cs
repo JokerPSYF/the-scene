@@ -13,6 +13,11 @@ namespace TheScene.Core.Interface
 
         public Task Delete(int eventId);
 
-       // public Task Edit(int eventId), EditEventModel;
+        public Task<DetailEventModel> DetailsById(int eventId);
+
+        public Task Edit(int eventId, EditEventModel model);
+
+        public Task<bool> Exists(int eventId);
+
     }
 }
