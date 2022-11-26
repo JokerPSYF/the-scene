@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TheScene.Core.Interface;
 using TheScene.Core.Models.Event;
+using TheScene.Infrastructure.Data.Entities;
 using TheScene.Models;
 
 namespace TheScene.Controllers
@@ -10,21 +11,20 @@ namespace TheScene.Controllers
     public class EventController : Controller
     {
         private readonly IEventService eventService;
-        private readonly IGenreService genreService;
-        private readonly IPerfomanceTypeService perfomanceTypeService;
+        private readonly ICommonService commonService;
 
-        public EventController(IEventService _eventService, IGenreService _genreService, IPerfomanceTypeService _perfomanceTypeService)
+        public EventController(IEventService _eventService,
+            ICommonService _commonService)
         {
             this.eventService = _eventService;
-            this.genreService = _genreService;
-            this.perfomanceTypeService = _perfomanceTypeService;
+            this.commonService = _commonService;
         }
 
         /// <summary>
-        /// 
+        /// Return All Events
         /// </summary>
-        /// <param name="query"></param>
-        /// <returns></returns>
+        /// <param name="query">AllEventsQueryModel</param>
+        /// <returns>Events</returns>
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> All([FromQuery] AllEventsQueryModel query)
@@ -38,25 +38,43 @@ namespace TheScene.Controllers
                 AllEventsQueryModel.EventsPerPage);
 
             query.TotalEventsCount = result.TotalCount;
-            query.Genres = await genreService.AllGenresNames();
-            query.PerfomanceTypes = await perfomanceTypeService.AllPErfomanceTypesNames();
+            query.Genres = await commonService.AllGenresNames();
+            query.PerfomanceTypes = await commonService.AllPerfomanceTypesNames();
             query.Events = result.Collection;
 
             return View(result);
         }
 
-        public async Task<IActionResult> Details()
+        [AllowAnonymous]
+        public async Task<IActionResult> Details(int id)
         {
-            var model = new DetailEventModel();
+            if (!(await eventService.Exists(id)))
+            {
+                return RedirectToAction(nameof(All));
+            }
+
+            var model = await eventService.DetailsById(id);
 
             return View(model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Add()
+        {
+            // TODO Check User id
 
-        public IActionResult Add() => View();
+            var model = new AddEventModel()
+            {
+                Perfomances = await commonService.AllPerfomances(),
+                Locations = await commonService.AllLocations()
+            };
+
+            return View(model); 
+        }
 
         public async Task<IActionResult> Add(AddEventModel model)
         {
+
             if (!ModelState.IsValid)
             {
                 return View(model);

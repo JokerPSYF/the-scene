@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TheScene.Core.Models.Common;
 using TheScene.Infrastructure.Data.Entities;
 using static TheScene.Infrastructure.Data.Constants.DataConstants;
 
@@ -25,8 +26,8 @@ namespace TheScene.Core.Models.Event
 
         public bool IsPremiere { get; set; }
 
-        public IEnumerable<Location> Locations { get; set; } = new List<Location>();
+        public IEnumerable<NomenclatureDTO<int>> Locations { get; set; } = new List<NomenclatureDTO<int>>();
 
-        public IEnumerable<Perfomance> Perfomances { get; set; } = new List<Perfomance>();
+        public IEnumerable<NomenclatureDTO<int>> Perfomances { get; set; } = new List<NomenclatureDTO<int>>();
     }
 }

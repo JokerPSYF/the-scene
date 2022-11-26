@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using TheScene.Extensions.DependencyInjection;
 using TheScene.Infrastructure.Data;
-using TheScene.Infrastructure.Data.Entities;
 
 
 namespace TheScene
