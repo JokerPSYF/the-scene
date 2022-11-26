@@ -11,12 +11,9 @@ namespace TheScene.Core.Service
     {
         private readonly IRepository repository;
 
-        private readonly IGuard guard;
-
-        public GenreService(IRepository repository, IGuard guard)
+        public GenreService(IRepository repository)
         {
             this.repository = repository;
-            this.guard = guard;
         }
 
         public async Task<IEnumerable<GenreModel>> AllGenres()

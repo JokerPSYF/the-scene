@@ -11,12 +11,9 @@ namespace TheScene.Core.Service
     {
         private readonly IRepository repository;
 
-        private readonly IGuard guard;
-
-        public PerfomanceTypeService(IRepository repository, IGuard guard)
+        public PerfomanceTypeService(IRepository repository)
         {
             this.repository = repository;
-            this.guard = guard;
         }
 
         public async Task<IEnumerable<PerfomanceTypeModel>> AllPerfomancesTypes()
