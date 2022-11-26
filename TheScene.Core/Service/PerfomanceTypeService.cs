@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TheScene.Core.Exception;
 using TheScene.Core.Interface;
-using TheScene.Core.Models.PerfomanceTypeModels;
+using TheScene.Core.Models.Common;
 using TheScene.Infrastructure.Data.Common;
 using TheScene.Infrastructure.Data.Entities;
 
@@ -16,14 +16,14 @@ namespace TheScene.Core.Service
             this.repository = repository;
         }
 
-        public async Task<IEnumerable<PerfomanceTypeModel>> AllPerfomancesTypes()
+        public async Task<IEnumerable<NomenclatureDTO<int>>> AllPerfomancesTypes()
         {
             return await repository.AllReadonly<PerfomanceType>()
                 .OrderBy(pt => pt.Name)
-                .Select(pt => new PerfomanceTypeModel()
+                .Select(pt => new NomenclatureDTO<int>()
                 {
-                    Id = pt.Id,
-                    Name = pt.Name
+                    Value = pt.Id,
+                    DisplayName = pt.Name
                 })
                 .ToListAsync();
         }
