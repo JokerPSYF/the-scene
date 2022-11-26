@@ -72,8 +72,10 @@ namespace TheScene.Controllers
             return View(model); 
         }
 
+        [HttpPost]
         public async Task<IActionResult> Add(AddEventModel model)
         {
+            // TODO Check User id
 
             if (!ModelState.IsValid)
             {
