@@ -3,7 +3,7 @@ using TheScene.Core.Interface;
 using TheScene.Core.Service;
 using TheScene.Infrastructure.Data.Common;
 
-namespace TheScene.Extensions.DependencyInjection
+namespace Microsoft.Extensions.DependencyInjection
 {
     public static class TheSceneCollectionService
     {

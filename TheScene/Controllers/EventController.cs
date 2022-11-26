@@ -1,17 +1,48 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TheScene.Core.Interface;
 using TheScene.Core.Models.Event;
 using TheScene.Models;
 
 namespace TheScene.Controllers
 {
+    [Authorize]
     public class EventController : Controller
     {
         private readonly IEventService eventService;
+        private readonly IGenreService genreService;
+        private readonly IPerfomanceTypeService perfomanceTypeService;
 
-        public EventController(IEventService _eventService)
+        public EventController(IEventService _eventService, IGenreService _genreService, IPerfomanceTypeService _perfomanceTypeService)
         {
             this.eventService = _eventService;
+            this.genreService = _genreService;
+            this.perfomanceTypeService = _perfomanceTypeService;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> All([FromQuery] AllEventsQueryModel query)
+        {
+            var result = await eventService.All(
+                query.Genre,
+                query.PerfomanceType,
+                query.SearchTerm,
+                query.Sorting,
+                query.CurrentPage,
+                AllEventsQueryModel.EventsPerPage);
+
+            query.TotalEventsCount = result.TotalCount;
+            query.Genres = await genreService.AllGenresNames();
+            query.PerfomanceTypes = await perfomanceTypeService.AllPErfomanceTypesNames();
+            query.Events = result.Collection;
+
+            return View(result);
         }
 
         public async Task<IActionResult> Details()
@@ -21,18 +52,6 @@ namespace TheScene.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> All([FromQuery] AllEventsQueryModel query)
-        {
-            var model = await eventService.All(
-                query.Genre,
-                query.PerfomanceType,
-                query.SearchTerm,
-                query.Sorting,
-                query.CurrentPage,
-                AllEventsQueryModel.EventsPerPage);
-
-            return View(model);
-        }
 
         public IActionResult Add() => View();
 
