@@ -90,6 +90,7 @@ namespace TheScene.Core.Service
                 {
                     Id = e.Id,
                     PerfomanceTitle = e.Perfomance.Title,
+                    ImageUrl = e.Perfomance.ImageURL,
                     LocationName = e.Location.Name,
                     PricePerTicket = e.PricePerTicket,
                     Date = e.Date,

@@ -42,7 +42,7 @@ namespace TheScene.Controllers
             query.PerfomanceTypes = await commonService.AllPerfomanceTypesNames();
             query.Events = result.Collection;
 
-            return View(result);
+            return View(query);
         }
 
         [AllowAnonymous]
@@ -77,12 +77,27 @@ namespace TheScene.Controllers
         {
             // TODO Check User id
 
+            if (!(await commonService.LocationExists(model.LocationId)))
+            {
+                ModelState.AddModelError(nameof(model.LocationId), "Location does not exists");
+            }
+
+            if (!(await commonService.LocationExists(model.PerfomanceId)))
+            {
+                ModelState.AddModelError(nameof(model.PerfomanceId), "Perfomance does not exists");
+            }
+
             if (!ModelState.IsValid)
             {
+                model.Locations = await commonService.AllLocations();
+                model.Perfomances = await commonService.AllPerfomances();
+
                 return View(model);
             }
 
-            return RedirectToAction("Index");
+            int id = await eventService.Create(model);
+
+            return RedirectToAction(nameof(Details), new { id = id });
         }
     }
 }
