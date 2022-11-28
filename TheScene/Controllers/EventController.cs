@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
 using TheScene.Core.Interface;
 using TheScene.Core.Models.Event;
 using TheScene.Infrastructure.Data.Entities;
@@ -98,6 +99,94 @@ namespace TheScene.Controllers
             int id = await eventService.Create(model);
 
             return RedirectToAction(nameof(Details), new { id = id });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            if (!(await eventService.Exists(id)))
+            {
+                return RedirectToAction(nameof(All));
+            }
+
+
+            var Event = await eventService.DetailsById(id);
+
+            var model = new EditEventModel()
+            {
+                Id = Event.Id,
+                PerfomanceId = Event.Perfomance.Id,
+                LocationId = Event.Perfomance.Id,
+                OccupiedSeats = Event.OccupiedSeats,
+                FreeSeats = Event.FreeSeats,
+                PricePerTicket = Event.PricePerTicket,
+                Date = Event.Date,
+                IsPremiere = Event.IsPremiere
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, EditEventModel model)
+        {
+            //if (id != model.Id)
+            //{
+            //    return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
+            //}
+
+            if (!(await eventService.Exists(model.Id)))
+            {
+                ModelState.AddModelError("", "Event does not exist");
+                return View(model);
+            }
+
+            if (!ModelState.IsValid)
+                return View(model);
+
+            await eventService.Edit(model.Id, model);
+
+            return RedirectToAction(nameof(Details), new {id = model.Id});
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (!(await eventService.Exists(id)))
+            {
+                return RedirectToAction(nameof(All));
+            }
+
+            var Event = await eventService.DetailsById(id);
+            var model = new DeleteViewModel()
+            {
+                Title = Event.Perfomance.Title,
+                Location = Event.LocationName,
+                Image = Event.Perfomance.ImageURL,
+                Date = Event.Date,
+                PricePerTicket = Event.PricePerTicket,
+                IsPremiere = Event.IsPremiere
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id, DeleteViewModel model)
+        {
+            if (!(await eventService.Exists(id)))
+            {
+                return RedirectToAction(nameof(All));
+            }
+
+            //if ((await houseService.HasAgentWithId(id, User.Id())) == false)
+            //{
+            //    return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
+            //}
+
+            await eventService.Delete(id);
+
+            return RedirectToAction(nameof(All));
         }
     }
 }

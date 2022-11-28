@@ -183,5 +183,15 @@ namespace TheScene.Core.Service
             return await repository.AllReadonly<Event>()
                 .AnyAsync(e => e.IsActive && e.Id == eventId);
         }
+
+        public async Task<int> GetEventGenreId(int houseId)
+        {
+            return (await repository.GetByIdAsync<Event>(houseId)).Perfomance.GenreId;
+        }
+
+        public async Task<int> GetEventPerfomanceTypeId(int houseId)
+        {
+            return (await repository.GetByIdAsync<Event>(houseId)).Perfomance.PerfomanceTypeId;
+        }
     }
 }
