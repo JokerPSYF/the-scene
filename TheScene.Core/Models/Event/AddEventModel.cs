@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using TheScene.Core.Models.Common;
-using TheScene.Infrastructure.Data.Entities;
 using static TheScene.Infrastructure.Data.Constants.DataConstants;
 
 namespace TheScene.Core.Models.Event
@@ -19,7 +18,7 @@ namespace TheScene.Core.Models.Event
 
         [Range(
             maximum: EventConstants.MaxPrice,
-            minimum:  EventConstants.MinPrice,
+            minimum: EventConstants.MinPrice,
             ErrorMessage = EventConstants.RangerErrorMessage)]
         [Display(Name = "Price per ticket")]
         public decimal PricePerTicket { get; set; }
@@ -32,8 +31,8 @@ namespace TheScene.Core.Models.Event
         [Display(Name = "Premiere")]
         public bool IsPremiere { get; set; }
 
-        public IEnumerable<NomenclatureDTO<int>> Locations { get; set; } = new List<NomenclatureDTO<int>>();
+        public IEnumerable<NomenclatureDTO> Locations { get; set; } = new List<NomenclatureDTO>();
 
-        public IEnumerable<NomenclatureDTO<int>> Perfomances { get; set; } = new List<NomenclatureDTO<int>>();
+        public IEnumerable<NomenclatureDTO> Perfomances { get; set; } = new List<NomenclatureDTO>();
     }
 }

@@ -1,8 +1,8 @@
 ﻿namespace TheScene.Core.Models.Common
 {
-    public class NomenclatureDTO<T>
+    public class NomenclatureDTO
     {
-        public T Value { get; set; }
+        public int Id { get; set; }
 
         public string DisplayName { get; set; } = null!;
 

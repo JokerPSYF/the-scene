@@ -5,7 +5,7 @@ namespace TheScene.Core.Interface
     public interface ICommonService
     {
         #region Genre
-        public Task<IEnumerable<NomenclatureDTO<int>>> AllGenres();
+        public Task<IEnumerable<NomenclatureDTO>> AllGenres();
 
         public Task<IEnumerable<string>> AllGenresNames();
 
@@ -13,15 +13,15 @@ namespace TheScene.Core.Interface
         #endregion
 
         #region Location
-        public Task<IEnumerable<NomenclatureDTO<int>>> AllLocations();
+        public Task<IEnumerable<NomenclatureDTO>> AllLocations();
 
         public Task<IEnumerable<string>> AllLocationsNames();
 
         public Task<bool> LocationExists(int locationId);
         #endregion
-  
+
         #region Perfomance
-        public Task<IEnumerable<NomenclatureDTO<int>>> AllPerfomances();
+        public Task<IEnumerable<NomenclatureDTO>> AllPerfomances();
 
         public Task<IEnumerable<string>> AllPerfomancesNames();
 
@@ -29,7 +29,7 @@ namespace TheScene.Core.Interface
         #endregion
 
         #region Perfomance Type
-        public Task<IEnumerable<NomenclatureDTO<int>>> AllPerfomancesTypes();
+        public Task<IEnumerable<NomenclatureDTO>> AllPerfomancesTypes();
 
         public Task<IEnumerable<string>> AllPerfomanceTypesNames();
 

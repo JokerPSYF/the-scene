@@ -19,13 +19,13 @@ namespace TheScene.Core.Service
         }
 
         #region Genre
-        public async Task<IEnumerable<NomenclatureDTO<int>>> AllGenres()
+        public async Task<IEnumerable<NomenclatureDTO>> AllGenres()
         {
             return await repository.AllReadonly<Genre>()
                 .OrderBy(g => g.Name)
-                .Select(g => new NomenclatureDTO<int>()
+                .Select(g => new NomenclatureDTO()
                 {
-                    Value = g.Id,
+                    Id = g.Id,
                     DisplayName = g.Name
                 })
                 .ToListAsync();
@@ -47,13 +47,13 @@ namespace TheScene.Core.Service
         #endregion
 
         #region Location
-        public async Task<IEnumerable<NomenclatureDTO<int>>> AllLocations()
+        public async Task<IEnumerable<NomenclatureDTO>> AllLocations()
         {
             return await repository.AllReadonly<Location>()
                 .OrderBy(l => l.Name)
-                .Select(l => new NomenclatureDTO<int>()
+                .Select(l => new NomenclatureDTO()
                 {
-                    Value = l.Id,
+                    Id = l.Id,
                     DisplayName = l.Name
                 })
                 .ToListAsync();
@@ -75,13 +75,13 @@ namespace TheScene.Core.Service
         #endregion
 
         #region Perfomance
-        public async Task<IEnumerable<NomenclatureDTO<int>>> AllPerfomances()
+        public async Task<IEnumerable<NomenclatureDTO>> AllPerfomances()
         {
             return await repository.AllReadonly<Perfomance>()
                 .OrderBy(p => p.Title)
-                .Select(p => new NomenclatureDTO<int>()
+                .Select(p => new NomenclatureDTO()
                 {
-                    Value = p.Id,
+                    Id = p.Id,
                     DisplayName = p.Title
                 })
                 .ToListAsync();
@@ -103,13 +103,13 @@ namespace TheScene.Core.Service
         #endregion
 
         #region Perfomance Type
-        public async Task<IEnumerable<NomenclatureDTO<int>>> AllPerfomancesTypes()
+        public async Task<IEnumerable<NomenclatureDTO>> AllPerfomancesTypes()
         {
             return await repository.AllReadonly<PerfomanceType>()
                 .OrderBy(pt => pt.Name)
-                .Select(pt => new NomenclatureDTO<int>()
+                .Select(pt => new NomenclatureDTO()
                 {
-                    Value = pt.Id,
+                    Id = pt.Id,
                     DisplayName = pt.Name
                 })
                 .ToListAsync();
