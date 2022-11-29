@@ -39,7 +39,5 @@ namespace TheScene.Core.Models.Event
         public DateTime Date { get; set; }
 
         public bool? IsPremiere { get; set; } = false;
-
-        //did i need IEnumerable from perfomance ?
     }
 }

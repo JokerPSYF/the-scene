@@ -20,5 +20,8 @@ namespace TheScene.Core.Interface
 
         public Task<bool> Exists(int eventId);
 
+        public Task<int> GetEventGenreId(int houseId);
+
+        public Task<int> GetEventPerfomanceTypeId(int houseId);
     }
 }

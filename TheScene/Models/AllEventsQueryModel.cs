@@ -1,15 +1,18 @@
-﻿using TheScene.Core.Models.Event;
+﻿using System.ComponentModel.DataAnnotations;
+using TheScene.Core.Models.Event;
 
 namespace TheScene.Models
 {
     public class AllEventsQueryModel
     {
-        public const int EventsPerPage = 5;
+        public const int EventsPerPage = 3;
 
         public string? Genre { get; set; }
 
+        [Display(Name = "Type")]
         public string? PerfomanceType { get; set; }
 
+        [Display(Name = "Search")]
         public string? SearchTerm { get; set; }
 
         public EventSorting Sorting { get; set; }

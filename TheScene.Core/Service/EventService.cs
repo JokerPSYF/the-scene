@@ -90,6 +90,7 @@ namespace TheScene.Core.Service
                 {
                     Id = e.Id,
                     PerfomanceTitle = e.Perfomance.Title,
+                    ImageUrl = e.Perfomance.ImageURL,
                     LocationName = e.Location.Name,
                     PricePerTicket = e.PricePerTicket,
                     Date = e.Date,
@@ -181,6 +182,16 @@ namespace TheScene.Core.Service
         {
             return await repository.AllReadonly<Event>()
                 .AnyAsync(e => e.IsActive && e.Id == eventId);
+        }
+
+        public async Task<int> GetEventGenreId(int houseId)
+        {
+            return (await repository.GetByIdAsync<Event>(houseId)).Perfomance.GenreId;
+        }
+
+        public async Task<int> GetEventPerfomanceTypeId(int houseId)
+        {
+            return (await repository.GetByIdAsync<Event>(houseId)).Perfomance.PerfomanceTypeId;
         }
     }
 }

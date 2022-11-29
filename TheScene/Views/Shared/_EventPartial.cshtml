@@ -1,0 +1,30 @@
+﻿@model AllEventModel
+
+<div class="col-md-4">
+    <div class="card mb-3" style="height:500px !important; background-color: #eb8934;">
+        <img class="card-img-top" src="@Model.ImageUrl" alt="Event Image" style="height:300px !important;">
+        <div class="card-body text-center">
+            <h4>@Model.PerfomanceTitle</h4>
+            <h6>Location: <b>@Model.LocationName</b></h6>
+            <h6>Date: <b>@Model.Date</b></h6>
+            <h6>
+                Price Per Ticket:
+                <b>@String.Format("{0:f2}", Model.PricePerTicket) BGN</b>
+            </h6>
+            @if (Model.IsPremiere)
+            {
+                <h6>Premiere</h6>
+            }
+            <br />
+            <a asp-controller="Event" asp-action="Details" asp-route-id="@Model.Id" 
+             class="btn btn-success">Details</a>
+            @if (this.User.Identity.IsAuthenticated)
+            {
+                    <a asp-controller="Event" asp-action="Edit" asp-route-id="@Model.Id"
+               class="btn btn-warning">Edit</a>
+                    <a asp-controller="Event" asp-action="Delete" asp-route-id="@Model.Id"
+               class="btn btn-danger">Delete</a>
+            }
+        </div>
+    </div>
+</div>

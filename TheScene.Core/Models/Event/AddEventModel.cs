@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using TheScene.Infrastructure.Data.Entities;
+using TheScene.Core.Models.Common;
 using static TheScene.Infrastructure.Data.Constants.DataConstants;
 
 namespace TheScene.Core.Models.Event
@@ -9,24 +9,30 @@ namespace TheScene.Core.Models.Event
         public int Id { get; set; }
 
         [Required]
+        [Display(Name = "Perfomance")]
         public int PerfomanceId { get; set; }
 
         [Required]
+        [Display(Name = "Location")]
         public int LocationId { get; set; }
 
         [Range(
             maximum: EventConstants.MaxPrice,
-            minimum:  EventConstants.MinPrice,
+            minimum: EventConstants.MinPrice,
             ErrorMessage = EventConstants.RangerErrorMessage)]
+        [Display(Name = "Price per ticket")]
         public decimal PricePerTicket { get; set; }
+
+
 
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
+        [Display(Name = "Premiere")]
         public bool IsPremiere { get; set; }
 
-        public IEnumerable<Location> Locations { get; set; } = new List<Location>();
+        public IEnumerable<NomenclatureDTO> Locations { get; set; } = new List<NomenclatureDTO>();
 
-        public IEnumerable<Perfomance> Perfomances { get; set; } = new List<Perfomance>();
+        public IEnumerable<NomenclatureDTO> Perfomances { get; set; } = new List<NomenclatureDTO>();
     }
 }
