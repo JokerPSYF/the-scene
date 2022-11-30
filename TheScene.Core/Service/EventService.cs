@@ -25,7 +25,7 @@ namespace TheScene.Core.Service
         {
             var result = new QueryModel<AllEventModel>();
             var events = repository.AllReadonly<Event>()
-                .Where(e => e.IsActive);
+                .Where(e => e.IsActive && e.Date >= DateTime.Today);
 
             if (!string.IsNullOrEmpty(genre))
                 events = events.Where(e => e.Perfomance.Genre.Name == genre);
@@ -70,7 +70,7 @@ namespace TheScene.Core.Service
             switch (sorting)
             {
                 case EventSorting.Newest:
-                    events = events.OrderByDescending(e => e.Date);
+                    events = events.OrderBy(e => e.Date);
                     break;
                 case EventSorting.Oldest:
                     events = events.OrderBy(e => e.Date);
@@ -79,7 +79,7 @@ namespace TheScene.Core.Service
                     events = events.OrderBy(e => e.IsPremiere);
                     break;
                 default:
-                    events = events.OrderBy(e => e.Id);
+                    events = events.OrderBy(e => e.Date);
                     break;
             }
 

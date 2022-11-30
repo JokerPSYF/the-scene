@@ -31,7 +31,9 @@ namespace TheScene.Core.Models.Event
         [Display(Name = "Price per ticket")]
         [Column(TypeName = "money")]
         [Precision(18, 2)]
-        [Range(EventConstants.MinPrice, EventConstants.MaxPrice, ErrorMessage = EventConstants.RangerErrorMessage)]
+        [Range(EventConstants.MinPrice,
+               EventConstants.MaxPrice,
+               ErrorMessage = EventConstants.RangerErrorMessage)]
         public decimal PricePerTicket { get; set; }
 
         [Required]
