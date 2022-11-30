@@ -16,10 +16,7 @@ namespace TheScene.Core.Models.Event
         [Display(Name = "Location")]
         public int LocationId { get; set; }
 
-        [Range(
-            maximum: EventConstants.MaxPrice,
-            minimum: EventConstants.MinPrice,
-            ErrorMessage = EventConstants.RangerErrorMessage)]
+        [Range(maximum: EventConstants.MaxPrice, minimum: EventConstants.MinPrice, ErrorMessage = EventConstants.RangerErrorMessage)]
         [Display(Name = "Price per ticket")]
         public decimal PricePerTicket { get; set; }
 
