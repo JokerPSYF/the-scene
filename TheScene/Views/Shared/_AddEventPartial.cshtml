@@ -10,36 +10,37 @@
                 <select asp-for="PerfomanceId" class="form-control">
                     @foreach (var perfomance in Model.Perfomances)
                     {
-                        <option value="@perfomance.Value">@perfomance.DisplayName</option>
+                        <option value="@perfomance.Id">@perfomance.DisplayName</option>
                     }
                 </select>
-                <span asp-validation-for="CategoryId" class="small text-danger"></span>
+                <span asp-validation-for="PerfomanceId" class="small text-danger"></span>
+                <button type="button" class="btn-primary" id="newPerfomance" onclick="AddPerfomance()">New Perfomance</button>
             </div>
 
             <div class="form-group">
-                <label asp-for="Title"></label>
-                <input asp-for="Title" class="form-control" placeholder="Title...">
-                <span asp-validation-for="Title" class="small text-danger"></span>
+                <label asp-for="LocationId"></label>
+                <select asp-for="LocationId" class="form-control">
+                    @foreach (var location in Model.Locations)
+                    {
+                        <option value="@location.Id">@location.DisplayName</option>
+                    }
+                </select>
+                <span asp-validation-for="PerfomanceId" class="small text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PricePerTicket"></label>
+                <input asp-for="PricePerTicket" class="form-control" placeholder="Price">
+                <span asp-validation-for="PricePerTicket" class="small text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Address"></label>
-                <input asp-for="Address" class="form-control" placeholder="Address...">
-                <span asp-validation-for="Address" class="small text-danger"></span>
+                <label asp-for="Date"></label>
+                <input asp-for="Date" class="form-control" placeholder="Date">
+                <span asp-validation-for="Date" class="small text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Description"></label>
-                <textarea asp-for="Description" rows="4" class="form-control" placeholder="Two bedrooms..."></textarea>
-                <span asp-validation-for="Description" class="small text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ImageUrl"></label>
-                <input asp-for="ImageUrl" class="form-control" placeholder="Your fine URL here...">
-                <span asp-validation-for="ImageUrl" class="small text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PricePerMonth"></label>
-                <input asp-for="PricePerMonth" class="form-control">
-                <span asp-validation-for="PricePerMonth" class="small text-danger"></span>
+            <div class="form-check">
+                <label asp-for="IsPremiere">Premiere</label>
+                <input asp-for="IsPremiere" class="form-check-input" type="checkbox">
             </div>
             <div class="text-center">
                 <input class="btn btn-primary mt-3" type="submit" value="Save" />

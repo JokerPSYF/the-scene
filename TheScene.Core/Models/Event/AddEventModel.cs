@@ -23,8 +23,6 @@ namespace TheScene.Core.Models.Event
         [Display(Name = "Price per ticket")]
         public decimal PricePerTicket { get; set; }
 
-
-
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 

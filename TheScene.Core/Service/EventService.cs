@@ -111,7 +111,8 @@ namespace TheScene.Core.Service
                 LocationId = model.LocationId,
                 OccupiedSeats = 0,
                 PricePerTicket = model.PricePerTicket,
-                IsPremiere = model.IsPremiere
+                IsPremiere = model.IsPremiere,
+                Date = model.Date
             };
 
             // We want the to take the seats from the location of the event
