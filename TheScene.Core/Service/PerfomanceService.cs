@@ -128,7 +128,8 @@ namespace TheScene.Core.Service
                     Actors = p.Actors,
                     PerfomanceType = p.PerfomanceType.Name,
                     Year = p.Year,
-                    ImageURL = p.ImageURL
+                    ImageURL = p.ImageURL,
+                    Description = p.Description,
                 })
                 .FirstAsync();
         }

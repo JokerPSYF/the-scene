@@ -152,7 +152,8 @@ namespace TheScene.Core.Service
                         Actors = e.Perfomance.Actors,
                         PerfomanceType = e.Perfomance.PerfomanceType.Name,
                         Year = e.Perfomance.Year,
-                        ImageURL = e.Perfomance.ImageURL
+                        ImageURL = e.Perfomance.ImageURL,
+                        Description = e.Perfomance.Description
                     },
                     LocationName = e.Location.Name,
                     Address = e.Location.Address,
