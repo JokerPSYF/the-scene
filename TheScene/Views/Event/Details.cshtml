@@ -21,11 +21,11 @@
                 <b>@String.Format("{0:f2}", Model.PricePerTicket) BGN</b>
             </p>
             <p>Genre: <b>@Model.Perfomance.Genre, @Model.Perfomance.PerfomanceType</b></p>
-            <p>@Model.Perfomance.Description</p>
             @if (Model.IsPremiere)
             {
                 <p><b>Premiere</b></p>
             }
+            <p>@Model.Perfomance.Description</p>
         </div>
     </div>
 </div>
