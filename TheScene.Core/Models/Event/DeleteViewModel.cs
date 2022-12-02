@@ -4,17 +4,13 @@ namespace TheScene.Core.Models.Event
 {
     public class DeleteViewModel
     {
-        public string Title { get; set; }
+        public string Title { get; set; } = null!;
 
-        public string Location { get; set; }
+        public string Location { get; set; } = null!;
 
         public string? Image { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
-
-        [Display(Name = "Price per ticket")]
-        public decimal PricePerTicket { get; set; }
-
-        public bool IsPremiere { get; set; }
     }
 }

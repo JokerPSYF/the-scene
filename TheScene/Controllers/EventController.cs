@@ -64,7 +64,7 @@ namespace TheScene.Controllers
         {
             // TODO Check User id
 
-            var model = new AddEventModel()
+            var model = new EventModel()
             {
                 Perfomances = await commonService.AllPerfomances(),
                 Locations = await commonService.AllLocations()
@@ -74,7 +74,7 @@ namespace TheScene.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(AddEventModel model)
+        public async Task<IActionResult> Add(EventModel model)
         {
             // TODO Check User id
 
@@ -112,23 +112,24 @@ namespace TheScene.Controllers
 
             var Event = await eventService.DetailsById(id);
 
-            var model = new EditEventModel()
+            var model = new EventModel()
             {
                 Id = Event.Id,
                 PerfomanceId = Event.Perfomance.Id,
                 LocationId = Event.Perfomance.Id,
-                OccupiedSeats = Event.OccupiedSeats,
-                FreeSeats = Event.FreeSeats,
                 PricePerTicket = Event.PricePerTicket,
-                Date = Event.Date,
+                Date = new DateTime(Event.Date.Year, Event.Date.Month, Event.Date.Day, Event.Date.Hour, Event.Date.Minute, 0),
                 IsPremiere = Event.IsPremiere
             };
+
+            model.Perfomances = await commonService.AllPerfomances();
+            model.Locations = await commonService.AllLocations();
 
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, EditEventModel model)
+        public async Task<IActionResult> Edit(int id, EventModel model)
         {
             //if (id != model.Id)
             //{
@@ -163,9 +164,7 @@ namespace TheScene.Controllers
                 Title = Event.Perfomance.Title,
                 Location = Event.LocationName,
                 Image = Event.Perfomance.ImageURL,
-                Date = Event.Date,
-                PricePerTicket = Event.PricePerTicket,
-                IsPremiere = Event.IsPremiere
+                Date = Event.Date
             };
 
             return View(model);

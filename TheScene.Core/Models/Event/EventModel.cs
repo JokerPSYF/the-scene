@@ -7,7 +7,7 @@ using static TheScene.Infrastructure.Data.Constants.DataConstants;
 
 namespace TheScene.Core.Models.Event
 {
-    public class AddEventModel
+    public class EventModel
     {
         public int Id { get; set; }
 
@@ -19,12 +19,16 @@ namespace TheScene.Core.Models.Event
         [Display(Name = "Location")]
         public int LocationId { get; set; }
 
-        [Range(maximum: EventConstants.MaxPrice, minimum: EventConstants.MinPrice, ErrorMessage = EventConstants.RangerErrorMessage)]
+        [Range(
+            maximum: EventConstants.MaxPrice,
+            minimum: EventConstants.MinPrice,
+            ErrorMessage = EventConstants.RangerErrorMessage)]
         [Display(Name = "Price per ticket")]
         [Column(TypeName = "money")]
         [Precision(18, 2)]
         public decimal PricePerTicket { get; set; }
 
+        [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 

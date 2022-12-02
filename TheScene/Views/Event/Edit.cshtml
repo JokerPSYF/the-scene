@@ -1,6 +1,24 @@
-﻿@{
+﻿@model EventModel
+
+@{
     ViewBag.Title = "Edit Event";
 }
 
-<h1 class="text-center">@ViewBag.Title</h1>
+<h2 class="text-center">@ViewBag.Title</h2>
 <hr />
+
+<partial name="_EventFormPartial" model="@Model" />
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).ready(function () {
+
+            $("#textTodate").click(function (e) {
+                $("#textTodate").prop('type', 'date');
+            });
+
+        });
+
+    </script>
+}

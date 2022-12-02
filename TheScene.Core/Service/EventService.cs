@@ -103,7 +103,7 @@ namespace TheScene.Core.Service
             return result;
         }
 
-        public async Task<int> Create(AddEventModel model)
+        public async Task<int> Create(EventModel model)
         {
             var eventEntity = new Event()
             {
@@ -165,14 +165,12 @@ namespace TheScene.Core.Service
                 }).FirstAsync();
         }
 
-        public async Task Edit(int eventId, EditEventModel model)
+        public async Task Edit(int eventId, EventModel model)
         {
             var eventEntity = await repository.GetByIdAsync<Event>(eventId);
 
             eventEntity.PerfomanceId = model.PerfomanceId;
             eventEntity.LocationId = model.LocationId;
-            eventEntity.OccupiedSeats = model.OccupiedSeats; ;
-            eventEntity.FreeSeats = model.FreeSeats;
             eventEntity.PricePerTicket = model.PricePerTicket;
             eventEntity.Date = model.Date;
             eventEntity.IsPremiere = model.IsPremiere;

@@ -5,8 +5,18 @@
 <h2 class="text-center">@ViewBag.Title</h2>
 <hr />
 
-<partial name="_AddEventPartial" model="@Model" />
+<partial name="_EventFormPartial" model="@Model" />
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).ready(function () {
+
+            $("#textTodate").click(function (e) {
+                $("#textTodate").prop('type', 'date');
+            });
+
+        });
+
+    </script>
 }
