@@ -138,7 +138,7 @@ namespace TheScene.Core.Service
 
         public async Task<DetailEventModel> DetailsById(int eventId)
         {
-            return await repository.AllReadonly<Event>()
+            var result = await repository.AllReadonly<Event>()
                 .Where(e => e.IsActive && e.Id == eventId)
                 .Select(e => new DetailEventModel()
                 {
@@ -156,6 +156,7 @@ namespace TheScene.Core.Service
                         Description = e.Perfomance.Description
                     },
                     LocationName = e.Location.Name,
+                    LocationId = e.LocationId,
                     Address = e.Location.Address,
                     OccupiedSeats = e.OccupiedSeats,
                     FreeSeats = e.FreeSeats,
@@ -163,6 +164,7 @@ namespace TheScene.Core.Service
                     Date = e.Date,
                     IsPremiere = e.IsPremiere ?? false
                 }).FirstAsync();
+            return result;
         }
 
         public async Task Edit(int eventId, EventModel model)
@@ -193,6 +195,5 @@ namespace TheScene.Core.Service
         {
             return (await repository.GetByIdAsync<Event>(houseId)).Perfomance.PerfomanceTypeId;
         }
-
     }
 }

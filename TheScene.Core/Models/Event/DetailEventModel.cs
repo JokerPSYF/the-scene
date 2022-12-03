@@ -10,6 +10,8 @@ namespace TheScene.Core.Models.Event
 
         public string LocationName { get; set; } = null!;
 
+        public int LocationId { get; set; }
+
         public string Address { get; set; } = null!;
 
         public int? OccupiedSeats { get; set; } = 0;

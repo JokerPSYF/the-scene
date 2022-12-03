@@ -92,30 +92,30 @@ namespace TheScene.Controllers
             return RedirectToAction(nameof(Details), new { id });
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> Edit(int id)
-        //{
-        //    if (!(await perfomanceService.Exists(id)))
-        //    {
-        //        return RedirectToAction(nameof(All));
-        //    }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            if (!(await perfomanceService.Exists(id)))
+            {
+                return RedirectToAction(nameof(All));
+            }
 
 
-        //    var perfomance = await perfomanceService.DetailsById(id);
+            var perfomance = await perfomanceService.DetailsById(id);
 
-        //    var model = new AddPerfomanceModel()
-        //    {
-        //        Id = perfomance.Id,
-        //        Title = perfomance.Title,
-        //        Director = perfomance.Director,
-        //        GenreId = perfomance.Genre.
-        //    };
+            var model = new AddPerfomanceModel()
+            {
+                Id = perfomance.Id,
+                Title = perfomance.Title,
+                Director = perfomance.Director,
+               // GenreId = perfomance.
+            };
 
-        //    model.Perfomances = await commonService.AllPerfomances();
-        //    model.Locations = await commonService.AllLocations();
+            //model.Perfomances = await commonService.AllPerfomances();
+            //model.Locations = await commonService.AllLocations();
 
-        //    return View(model);
-        //}
+            return View(model);
+        }
 
         // POST: PerfomanceController/Edit/5
         [HttpPost]

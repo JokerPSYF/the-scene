@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TheScene.Core.Interface;
 using TheScene.Core.Models.Event;
+using TheScene.Infrastructure.Data.Entities;
 using TheScene.Models;
 
 namespace TheScene.Controllers
@@ -114,7 +115,7 @@ namespace TheScene.Controllers
             {
                 Id = Event.Id,
                 PerfomanceId = Event.Perfomance.Id,
-                LocationId = Event.Perfomance.Id,
+                LocationId = Event.LocationId,
                 PricePerTicket = Event.PricePerTicket,
                 Date = Event.Date,
                 IsPremiere = Event.IsPremiere
