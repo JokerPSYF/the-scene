@@ -11,14 +11,18 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
-    <script>
+    <script type="text/javascript">
         $(document).ready(function () {
-
-            $("#textTodate").click(function (e) {
-                $("#textTodate").prop('type', 'date');
+            $('#date').datepicker({
+                dateFormat: "dd/mm/yy",
+                showStatus: true,
+                showWeeks: true,
+                currentText: 'Now',
+                autoSize: true,
+                gotoCurrent: true,
+                showAnim: 'blind',
+                highlightWeek: true
             });
-
         });
-
     </script>
 }

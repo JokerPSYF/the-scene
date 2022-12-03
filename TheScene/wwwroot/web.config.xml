@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<system.web>
+	<globalization uiCulture="en" culture="en-GB"/>
+</system.web>

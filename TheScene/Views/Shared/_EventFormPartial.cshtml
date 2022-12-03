@@ -14,7 +14,8 @@
                     }
                 </select>
                 <span asp-validation-for="PerfomanceId" class="small text-danger"></span>
-                <button type="button" class="btn-primary" id="newPerfomance" onclick="AddPerfomance()">New Perfomance</button>
+                <input type="button" class="btn btn-primary" value="Add new perfomance" 
+                onclick="@("window.location.href='" + @Url.Action("Add", "Perfomance") + "'");" />
             </div>
 
             <div class="form-group">
@@ -35,10 +36,10 @@
                 <span asp-validation-for="PricePerTicket" class="small text-danger"></span>
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.Date)
-                @Html.TextBoxFor(model => model.Date, "{0:dd/MM/yyyy HH:mm}",
-                new { id="textTodate", @class = "form-control", type = "text" })
-                <span asp-validation-for="Date" class="small text-danger"></span>
+                <label asp-for="Date"></label>
+                @Html.TextBoxFor(model => model.Date,
+                new { id="date", @class = "form-control", type = "dateTime" })
+                <span asp-validation-for="Date" class="text-danger" style="font-weight:bold;"></span>
             </div>
             <div class="form-check">
                 <label asp-for="IsPremiere">Premiere</label>

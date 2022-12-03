@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TheScene.Core.Models.Common;
 using TheScene.Infrastructure.Data.Entities;
 using static TheScene.Infrastructure.Data.Constants.DataConstants;
 
@@ -6,7 +7,8 @@ namespace TheScene.Core.Models.PerfomanceModels
 {
     public class AddPerfomanceModel
     {
-        [Required]
+        public int Id { get; set; }
+
         [StringLength(
             PerfomanceConstants.MaxName,
             MinimumLength = PerfomanceConstants.MinName,
@@ -37,6 +39,6 @@ namespace TheScene.Core.Models.PerfomanceModels
         [StringLength(PerfomanceConstants.MaxImageURL)]
         public string? ImageURL { get; set; }
 
-        public IEnumerable<Genre> Genres { get; set; } = new List<Genre>();
+        public IEnumerable<NomenclatureDTO> Genres { get; set; } = new List<NomenclatureDTO>();
     }
 }

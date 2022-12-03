@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualBasic;
 using TheScene.Core.Interface;
 using TheScene.Core.Models.Event;
-using TheScene.Infrastructure.Data.Entities;
 using TheScene.Models;
 
 namespace TheScene.Controllers
@@ -98,7 +96,7 @@ namespace TheScene.Controllers
 
             int id = await eventService.Create(model);
 
-            return RedirectToAction(nameof(Details), new { id = id });
+            return RedirectToAction(nameof(Details), new { id });
         }
 
         [HttpGet]
@@ -118,7 +116,7 @@ namespace TheScene.Controllers
                 PerfomanceId = Event.Perfomance.Id,
                 LocationId = Event.Perfomance.Id,
                 PricePerTicket = Event.PricePerTicket,
-                Date = new DateTime(Event.Date.Year, Event.Date.Month, Event.Date.Day, Event.Date.Hour, Event.Date.Minute, 0),
+                Date = Event.Date,
                 IsPremiere = Event.IsPremiere
             };
 
@@ -186,6 +184,12 @@ namespace TheScene.Controllers
             await eventService.Delete(id);
 
             return RedirectToAction(nameof(All));
+        }
+
+        public void AddPerfomance()
+        {
+            Console.WriteLine("hi");
+            RedirectToAction("Create", "Perfomance");
         }
     }
 }

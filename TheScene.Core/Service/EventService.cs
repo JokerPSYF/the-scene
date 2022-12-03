@@ -193,5 +193,6 @@ namespace TheScene.Core.Service
         {
             return (await repository.GetByIdAsync<Event>(houseId)).Perfomance.PerfomanceTypeId;
         }
+
     }
 }

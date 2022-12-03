@@ -13,6 +13,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IGuard, Guard>();
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<ICommonService, CommonService>();
+            services.AddScoped<IPerfomanceService, PerfomanceService>();
 
             return services;
         }
