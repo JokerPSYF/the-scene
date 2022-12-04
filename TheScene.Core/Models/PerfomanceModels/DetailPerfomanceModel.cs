@@ -6,15 +6,19 @@
 
         public string Title { get; set; } = null!;
 
-        public string? Director { get; set; }
+        public string? Director { get; set; } //CHECK
+
+        public int GenreId { get; set; }
 
         public string Genre { get; set; } = null!;
 
-        public string? Actors { get; set; }
+        public string? Actors { get; set; } // CHECK
+
+        public int PerfomanceTypeId { get; set; }
 
         public string PerfomanceType { get; set; } = null!;
 
-        public int? Year { get; set; }
+        public int? Year { get; set; } //CHECK
 
         public string? ImageURL { get; set; }
 

@@ -15,7 +15,8 @@
         </div>
         <div class="card col-12 border-0" style="background-color: #f29705 !important; font-size: 20px;">
             <p style="font-size:25px !important;">Title: <u>@Model.Perfomance.Title</u></p>
-            <p>Place: <b>@Model.LocationName, @Model.LocationName</b> Date: <b>@Model.Date</b></p>
+            <p>Place: <b>@Model.LocationName, @Model.Address</b></p>
+            <p>Date: <b>@Model.Date</b></p>
             <p>
                 Price:
                 <b>@String.Format("{0:f2}", Model.PricePerTicket) BGN</b>
@@ -24,6 +25,18 @@
             @if (Model.IsPremiere)
             {
                 <p><b>Premiere</b></p>
+            }
+            @if (!string.IsNullOrEmpty(Model.Perfomance.Director))
+            {
+                <p>Director: @Model.Perfomance.Director</p>
+            }
+            @if (!string.IsNullOrEmpty(Model.Perfomance.Actors))
+            {
+                <p>Actors: @Model.Perfomance.Actors</p>
+            }
+            @if (Model.Perfomance.Year.HasValue)
+            {
+                <p><b>@Model.Perfomance.Year</b></p>
             }
             <p>@Model.Perfomance.Description</p>
         </div>

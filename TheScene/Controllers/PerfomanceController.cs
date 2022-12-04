@@ -103,33 +103,56 @@ namespace TheScene.Controllers
 
             var perfomance = await perfomanceService.DetailsById(id);
 
-            var model = new AddPerfomanceModel()
+            var model = new EditPerfomanceModel()
             {
                 Id = perfomance.Id,
                 Title = perfomance.Title,
                 Director = perfomance.Director,
-               // GenreId = perfomance.
+                GenreId = perfomance.GenreId,
+                PerfomanceTypeId = perfomance.PerfomanceTypeId,
+                Description = perfomance.Description,
+                Year = perfomance.Year,
+                ImageURL = perfomance.ImageURL
             };
 
-            //model.Perfomances = await commonService.AllPerfomances();
-            //model.Locations = await commonService.AllLocations();
+            model.Genres = await commonService.AllGenres();
 
             return View(model);
         }
 
-        // POST: PerfomanceController/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(int id, EditPerfomanceModel model)
         {
-            try
+            //if (id != model.Id)
+            //{
+            //    return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
+            //}
+
+            if (!(await perfomanceService.Exists(model.Id)))
             {
-                return RedirectToAction(nameof(All));
+                ModelState.AddModelError("", "Perfomance does not exist");
+                model.Genres = await commonService.AllGenres();
+
+                return View(model);
             }
-            catch
+
+            if (!(await commonService.GenreExists(model.GenreId)))
             {
-                return View();
+                ModelState.AddModelError(nameof(model.GenreId), "Genre does not exist");
+                model.Genres = await commonService.AllGenres();
+                return View(model);
             }
+
+            if (!ModelState.IsValid)
+            {
+                model.Genres = await commonService.AllGenres();
+
+                return View(model);
+            }
+
+            await perfomanceService.Edit(model.Id, model);
+
+            return RedirectToAction(nameof(Details), new { id = model.Id, information = model.GetInformation() });
         }
 
         // GET: PerfomanceController/Delete/5

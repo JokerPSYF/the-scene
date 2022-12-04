@@ -155,11 +155,9 @@ namespace TheScene.Core.Service
                         ImageURL = e.Perfomance.ImageURL,
                         Description = e.Perfomance.Description
                     },
+                    LocationId = e.Location.Id,
                     LocationName = e.Location.Name,
-                    LocationId = e.LocationId,
                     Address = e.Location.Address,
-                    OccupiedSeats = e.OccupiedSeats,
-                    FreeSeats = e.FreeSeats,
                     PricePerTicket = e.PricePerTicket,
                     Date = e.Date,
                     IsPremiere = e.IsPremiere ?? false
