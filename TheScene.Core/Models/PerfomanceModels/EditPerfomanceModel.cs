@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TheScene.Core.Models.Common;
 using static TheScene.Infrastructure.Data.Constants.DataConstants;
 
 namespace TheScene.Core.Models.PerfomanceModels
@@ -33,5 +34,7 @@ namespace TheScene.Core.Models.PerfomanceModels
 
         [StringLength(PerfomanceConstants.MaxImageURL)]
         public string? ImageURL { get; set; }
+
+        public IEnumerable<NomenclatureDTO> Genres { get; set; } = new List<NomenclatureDTO>();
     }
 }

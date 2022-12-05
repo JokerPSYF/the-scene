@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TheScene.Core.Interface;
 using TheScene.Core.Models.Event;
-using TheScene.Infrastructure.Data.Entities;
 using TheScene.Models;
 
 namespace TheScene.Controllers
@@ -69,7 +68,7 @@ namespace TheScene.Controllers
                 Locations = await commonService.AllLocations()
             };
 
-            return View(model); 
+            return View(model);
         }
 
         [HttpPost]
@@ -146,7 +145,7 @@ namespace TheScene.Controllers
 
             await eventService.Edit(model.Id, model);
 
-            return RedirectToAction(nameof(Details), new {id = model.Id});
+            return RedirectToAction(nameof(Details), new { id = model.Id });
         }
 
         [HttpGet]
@@ -158,7 +157,7 @@ namespace TheScene.Controllers
             }
 
             var Event = await eventService.DetailsById(id);
-            var model = new DeleteViewModel()
+            var model = new DeleteEventModel()
             {
                 Title = Event.Perfomance.Title,
                 Location = Event.LocationName,
@@ -170,7 +169,7 @@ namespace TheScene.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(int id, DeleteViewModel model)
+        public async Task<IActionResult> Delete(int id, DeleteEventModel model)
         {
             if (!(await eventService.Exists(id)))
             {
@@ -185,12 +184,6 @@ namespace TheScene.Controllers
             await eventService.Delete(id);
 
             return RedirectToAction(nameof(All));
-        }
-
-        public void AddPerfomance()
-        {
-            Console.WriteLine("hi");
-            RedirectToAction("Create", "Perfomance");
         }
     }
 }

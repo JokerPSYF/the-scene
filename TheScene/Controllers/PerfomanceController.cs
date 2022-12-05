@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using TheScene.Core.Interface;
 using TheScene.Core.Models.Event;
 using TheScene.Core.Models.PerfomanceModels;
-using TheScene.Core.Service;
 using TheScene.Models;
 
 namespace TheScene.Controllers
@@ -152,28 +151,48 @@ namespace TheScene.Controllers
 
             await perfomanceService.Edit(model.Id, model);
 
-            return RedirectToAction(nameof(Details), new { id = model.Id, information = model.GetInformation() });
+            return RedirectToAction(nameof(Details), new { id = model.Id });
         }
 
-        // GET: PerfomanceController/Delete/5
-        public ActionResult Delete(int id)
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
-        }
-
-        // POST: PerfomanceController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
+            if (!(await perfomanceService.Exists(id)))
             {
                 return RedirectToAction(nameof(All));
             }
-            catch
+
+            var perf = await perfomanceService.DetailsById(id);
+            var model = new DeletePerfomanceModel()
             {
-                return View();
+                Title = perf.Title,
+                ImageURL = perf.ImageURL,
+                Director = perf.Director,
+                Genre = perf.Genre,
+                Actors = perf.Actors,
+                PerfomanceType = perf.PerfomanceType,
+                Year = perf.Year
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id, DeleteEventModel model)
+        {
+            if (!(await perfomanceService.Exists(id)))
+            {
+                return RedirectToAction(nameof(All));
             }
+
+            //if ((await houseService.HasAgentWithId(id, User.Id())) == false)
+            //{
+            //    return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
+            //}
+
+            await perfomanceService.Delete(id);
+
+            return RedirectToAction(nameof(All));
         }
     }
 }
