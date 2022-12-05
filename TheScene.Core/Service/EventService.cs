@@ -20,12 +20,12 @@ namespace TheScene.Core.Service
 
         public async Task<QueryModel<AllEventModel>> All(
             string? genre = null, string? perfomanceType = null,
-            string? searchTerm = null, EventSorting sorting = EventSorting.Newest,
+            string? searchTerm = null, EventSorting sorting = EventSorting.Soonest,
             int currentPage = 1, int eventPerPage = 5)
         {
             var result = new QueryModel<AllEventModel>();
             var events = repository.AllReadonly<Event>()
-                .Where(e => e.IsActive && e.Date >= DateTime.Today);
+             .Where(e => e.IsActive && e.Date >= DateTime.Today);
 
             if (!string.IsNullOrEmpty(genre))
                 events = events.Where(e => e.Perfomance.Genre.Name == genre);
@@ -69,14 +69,11 @@ namespace TheScene.Core.Service
 
             switch (sorting)
             {
-                case EventSorting.Newest:
-                    events = events.OrderBy(e => e.Date);
-                    break;
-                case EventSorting.Oldest:
+                case EventSorting.Soonest:
                     events = events.OrderBy(e => e.Date);
                     break;
                 case EventSorting.PremiereFirst:
-                    events = events.OrderBy(e => e.IsPremiere);
+                    events = events.OrderByDescending(e => e.IsPremiere);
                     break;
                 default:
                     events = events.OrderBy(e => e.Date);

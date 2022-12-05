@@ -22,7 +22,7 @@ namespace TheScene.Core.Service
             string? searchTerm = null,
             PerfomanceSotring sorting = PerfomanceSotring.Title,
             int currentPage = 1,
-            int eventPerPage = 5)
+            int perfomancePerPage = 5)
         {
             var result = new QueryModel<AllPerfomanceModel>();
 
@@ -33,6 +33,12 @@ namespace TheScene.Core.Service
             {
                 perfomances = perfomances
                     .Where(p => p.Genre.Name == genre);
+            }
+
+            if (!string.IsNullOrEmpty(perfomanceType))
+            {
+                perfomances = perfomances
+                    .Where(p => p.PerfomanceType.Name == perfomanceType);
             }
 
             if (!string.IsNullOrEmpty(searchTerm))
@@ -68,8 +74,8 @@ namespace TheScene.Core.Service
             }
 
             result.Collection = await perfomances
-                .Skip((currentPage - 1) * eventPerPage)
-                .Take(eventPerPage)
+                .Skip((currentPage - 1) * perfomancePerPage)
+                .Take(perfomancePerPage)
                 .Select(p => new AllPerfomanceModel()
                 {
                     Id = p.Id,

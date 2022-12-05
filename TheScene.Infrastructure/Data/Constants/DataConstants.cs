@@ -153,12 +153,12 @@
             /// <summary>
             /// Price maximum lentgth constant
             /// </summary>
-            public const double MaxPrice = 1000000;
+            public const decimal MaxPrice = 1000000m;
 
             /// <summary>
             /// Price minimum lentgth constant
             /// </summary>
-            public const double MinPrice = 0;
+            public const decimal MinPrice = 0m;
 
             public const string RangerErrorMessage = "The range of {0} has to be between {2} and {1}";
         }

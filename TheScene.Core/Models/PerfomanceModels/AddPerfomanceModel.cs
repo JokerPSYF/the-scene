@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using TheScene.Core.Models.Common;
-using TheScene.Infrastructure.Data.Entities;
 using static TheScene.Infrastructure.Data.Constants.DataConstants;
 
 namespace TheScene.Core.Models.PerfomanceModels
@@ -18,6 +17,7 @@ namespace TheScene.Core.Models.PerfomanceModels
         [StringLength(PerfomanceConstants.MaxDirector, MinimumLength = PerfomanceConstants.MinDirector, ErrorMessage = LengthErrorMessage)]
         public string? Director { get; set; }
 
+        [Display(Name = "Genre")]
         public int GenreId { get; set; }
 
         [StringLength(
@@ -26,6 +26,7 @@ namespace TheScene.Core.Models.PerfomanceModels
             ErrorMessage = LengthErrorMessage)]
         public string? Actors { get; set; }
 
+        [Display(Name = "Perfomance")]
         public int PerfomanceTypeId { get; set; }
 
         [StringLength(PerfomanceConstants.MaxDescription, ErrorMessage = LengthErrorMessage)]
@@ -36,9 +37,11 @@ namespace TheScene.Core.Models.PerfomanceModels
                ErrorMessage = LengthErrorMessage)]
         public int? Year { get; set; }
 
+        [Display(Name = "Image")]
         [StringLength(PerfomanceConstants.MaxImageURL)]
         public string? ImageURL { get; set; }
 
         public IEnumerable<NomenclatureDTO> Genres { get; set; } = new List<NomenclatureDTO>();
+        public IEnumerable<NomenclatureDTO> PerfomanceTypes { get; set; } = new List<NomenclatureDTO>();
     }
 }

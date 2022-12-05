@@ -2,8 +2,7 @@
 {
     public enum EventSorting
     {
-        Newest = 0,
-        Oldest = 1,
-        PremiereFirst = 2
+        Soonest = 0,
+        PremiereFirst = 1
     }
 }

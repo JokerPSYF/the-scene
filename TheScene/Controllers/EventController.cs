@@ -44,6 +44,11 @@ namespace TheScene.Controllers
             return View(query);
         }
 
+        /// <summary>
+        /// Show details of an event
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
@@ -57,6 +62,10 @@ namespace TheScene.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// GET Add new event
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> Add()
         {
@@ -71,6 +80,11 @@ namespace TheScene.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// POST Add new event
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Add(EventModel model)
         {
@@ -99,6 +113,11 @@ namespace TheScene.Controllers
             return RedirectToAction(nameof(Details), new { id });
         }
 
+        /// <summary>
+        /// GET Edit evet
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -126,6 +145,12 @@ namespace TheScene.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// POST edit event
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="model">Event model</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Edit(int id, EventModel model)
         {
@@ -148,6 +173,11 @@ namespace TheScene.Controllers
             return RedirectToAction(nameof(Details), new { id = model.Id });
         }
 
+        /// <summary>
+        /// GET delete event
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
@@ -168,6 +198,12 @@ namespace TheScene.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// POST Delete event
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Delete(int id, DeleteEventModel model)
         {

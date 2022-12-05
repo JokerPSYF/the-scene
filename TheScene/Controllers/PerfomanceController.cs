@@ -64,7 +64,8 @@ namespace TheScene.Controllers
 
             var model = new AddPerfomanceModel()
             {
-                Genres = await commonService.AllGenres()
+                Genres = await commonService.AllGenres(),
+                PerfomanceTypes = await commonService.AllPerfomancesTypes()
             };
 
             return View(model);

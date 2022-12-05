@@ -1,7 +1,7 @@
-﻿@model AllEventsQueryModel
+﻿@model AllPerfomanceQueryModel
 
 @{
-    ViewBag.Title = "All Events";
+    ViewBag.Title = "All Perfomances";
 }
 
 <h1 class="text-center">@ViewBag.Title</h1>
@@ -49,27 +49,26 @@
             <div class="form-group">
                 <label asp-for="Sorting"></label>
                 <select asp-for="Sorting" class="form-control">
-                    <option value="0">Soonest</option>
-                    <option value="1">PremiereFirst</option>
+                    <option value="0">Title</option>
+                    <option value="1">PerfomanceType</option>
+                    <option value="1">Genre</option>
                 </select>
             </div>
         </div>
-
-  
     </div>
 </form>
 
 <hr />
 
-@if (!Model.Events.Any())
+@if (!Model.Perfomances.Any())
 {
-    <h2 class="text-center">No Events found by the given criteria!</h2>
+    <h2 class="text-center">No Perfomances found by the given criteria!</h2>
 }
 
 <div class="row">
-    @foreach (var ev in Model.Events)
+    @foreach (var ev in Model.Perfomances)
     {
-        <partial name="_EventPartial" model="@ev" />
+        <partial name="_PerfomancePartial" model="@ev" />
     }
 </div>
 
@@ -80,14 +79,14 @@
         previousPage = 1;
     }
 
-    var maxPage = Math.Ceiling((double)Model.TotalEventsCount /
-        AllEventsQueryModel.EventsPerPage);
+    var maxPage = Math.Ceiling((double)Model.TotalPerfomanceCount /
+        AllPerfomanceQueryModel.PerfomancePerPage);
 }
 
 <div class="row mb-5">
     <div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-start">
         <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
-           asp-controller="Event"
+           asp-controller="Perfomance"
            asp-action="All"
            asp-route-currentPage="@previousPage"
            asp-route-genre="@Model.Genre"
@@ -98,13 +97,13 @@
 
     @{
         var shouldButtonBeDisabled = Model.CurrentPage == maxPage ||
-        !Model.Events.Any();
+        !Model.Perfomances.Any();
     }
 
     <div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-end">
         <a class="btn btn-primary
            @(shouldButtonBeDisabled ? "disabled" : string.Empty)"
-           asp-controller="Event"
+           asp-controller="Perfomance"
            asp-action="All"
            asp-route-currentPage="@(Model.CurrentPage + 1)"
            asp-route-genre="@Model.Genre"
