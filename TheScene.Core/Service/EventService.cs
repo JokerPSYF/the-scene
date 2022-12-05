@@ -103,7 +103,7 @@ namespace TheScene.Core.Service
             return result;
         }
 
-        public async Task<int> Create(AddEventModel model)
+        public async Task<int> Create(EventModel model)
         {
             var eventEntity = new Event()
             {
@@ -138,7 +138,7 @@ namespace TheScene.Core.Service
 
         public async Task<DetailEventModel> DetailsById(int eventId)
         {
-            return await repository.AllReadonly<Event>()
+            var result = await repository.AllReadonly<Event>()
                 .Where(e => e.IsActive && e.Id == eventId)
                 .Select(e => new DetailEventModel()
                 {
@@ -155,24 +155,22 @@ namespace TheScene.Core.Service
                         ImageURL = e.Perfomance.ImageURL,
                         Description = e.Perfomance.Description
                     },
+                    LocationId = e.Location.Id,
                     LocationName = e.Location.Name,
                     Address = e.Location.Address,
-                    OccupiedSeats = e.OccupiedSeats,
-                    FreeSeats = e.FreeSeats,
                     PricePerTicket = e.PricePerTicket,
                     Date = e.Date,
                     IsPremiere = e.IsPremiere ?? false
                 }).FirstAsync();
+            return result;
         }
 
-        public async Task Edit(int eventId, EditEventModel model)
+        public async Task Edit(int eventId, EventModel model)
         {
             var eventEntity = await repository.GetByIdAsync<Event>(eventId);
 
             eventEntity.PerfomanceId = model.PerfomanceId;
             eventEntity.LocationId = model.LocationId;
-            eventEntity.OccupiedSeats = model.OccupiedSeats; ;
-            eventEntity.FreeSeats = model.FreeSeats;
             eventEntity.PricePerTicket = model.PricePerTicket;
             eventEntity.Date = model.Date;
             eventEntity.IsPremiere = model.IsPremiere;

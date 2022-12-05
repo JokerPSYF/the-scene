@@ -1,62 +1,158 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TheScene.Core.Interface;
+using TheScene.Core.Models.Event;
+using TheScene.Core.Models.PerfomanceModels;
+using TheScene.Core.Service;
+using TheScene.Models;
 
 namespace TheScene.Controllers
 {
+    [Authorize]
     public class PerfomanceController : Controller
     {
-        // GET: PerfomanceController
-        public ActionResult All()
+        private readonly IPerfomanceService perfomanceService;
+        private readonly ICommonService commonService;
+
+        public PerfomanceController(IPerfomanceService _perfomanceService,
+            ICommonService _commonService)
         {
-            return View();
+            this.perfomanceService = _perfomanceService;
+            this.commonService = _commonService;
         }
 
-        // GET: PerfomanceController/Details/5
-        public ActionResult Details(int id)
+        /// <summary>
+        /// Return All Events
+        /// </summary>
+        /// <param name="query">AllEventsQueryModel</param>
+        /// <returns>Events</returns>
+        [HttpGet]
+        public async Task<IActionResult> All([FromQuery] AllPerfomanceQueryModel query)
         {
-            return View();
+            var result = await perfomanceService.All(
+                query.Genre,
+                query.PerfomanceType,
+                query.SearchTerm,
+                query.Sorting,
+                query.CurrentPage,
+                AllPerfomanceQueryModel.PerfomancePerPage);
+
+            query.TotalPerfomanceCount = result.TotalCount;
+            query.Genres = await commonService.AllGenresNames();
+            query.PerfomanceTypes = await commonService.AllPerfomanceTypesNames();
+            query.Perfomances = result.Collection;
+
+            return View(query);
         }
 
-        // GET: PerfomanceController/Create
-        public ActionResult Add()
+        [AllowAnonymous]
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
-        }
-
-        // POST: PerfomanceController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Add(IFormCollection collection)
-        {
-            try
+            if (!(await perfomanceService.Exists(id)))
             {
                 return RedirectToAction(nameof(All));
             }
-            catch
+
+            var model = await perfomanceService.DetailsById(id);
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Add()
+        {
+            // TODO Check User id
+
+            var model = new AddPerfomanceModel()
             {
-                return View();
-            }
+                Genres = await commonService.AllGenres()
+            };
+
+            return View(model);
         }
 
-        // GET: PerfomanceController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: PerfomanceController/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Add(AddPerfomanceModel model)
         {
-            try
+            // TODO Check User id        
+
+            if (!(await commonService.GenreExists(model.GenreId)))
+            {
+                ModelState.AddModelError(nameof(model.GenreId), "Genre does not exists");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                model.Genres = await commonService.AllGenres();
+                return View(model);
+            }
+
+            int id = await perfomanceService.Create(model);
+
+            return RedirectToAction(nameof(Details), new { id });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            if (!(await perfomanceService.Exists(id)))
             {
                 return RedirectToAction(nameof(All));
             }
-            catch
+
+
+            var perfomance = await perfomanceService.DetailsById(id);
+
+            var model = new EditPerfomanceModel()
             {
-                return View();
+                Id = perfomance.Id,
+                Title = perfomance.Title,
+                Director = perfomance.Director,
+                GenreId = perfomance.GenreId,
+                PerfomanceTypeId = perfomance.PerfomanceTypeId,
+                Description = perfomance.Description,
+                Year = perfomance.Year,
+                ImageURL = perfomance.ImageURL
+            };
+
+            model.Genres = await commonService.AllGenres();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, EditPerfomanceModel model)
+        {
+            //if (id != model.Id)
+            //{
+            //    return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
+            //}
+
+            if (!(await perfomanceService.Exists(model.Id)))
+            {
+                ModelState.AddModelError("", "Perfomance does not exist");
+                model.Genres = await commonService.AllGenres();
+
+                return View(model);
             }
+
+            if (!(await commonService.GenreExists(model.GenreId)))
+            {
+                ModelState.AddModelError(nameof(model.GenreId), "Genre does not exist");
+                model.Genres = await commonService.AllGenres();
+                return View(model);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                model.Genres = await commonService.AllGenres();
+
+                return View(model);
+            }
+
+            await perfomanceService.Edit(model.Id, model);
+
+            return RedirectToAction(nameof(Details), new { id = model.Id, information = model.GetInformation() });
         }
 
         // GET: PerfomanceController/Delete/5

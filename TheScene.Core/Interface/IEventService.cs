@@ -10,13 +10,13 @@ namespace TheScene.Core.Interface
             string? searchTerm = null, EventSorting sorting = EventSorting.Newest,
             int currentPage = 1, int eventPerPage = 5);
 
-        public Task<int> Create(AddEventModel model);
+        public Task<int> Create(EventModel model);
 
         public Task Delete(int eventId);
 
         public Task<DetailEventModel> DetailsById(int eventId);
 
-        public Task Edit(int eventId, EditEventModel model);
+        public Task Edit(int eventId, EventModel model);
 
         public Task<bool> Exists(int eventId);
 

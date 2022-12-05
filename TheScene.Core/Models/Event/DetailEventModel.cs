@@ -8,13 +8,11 @@ namespace TheScene.Core.Models.Event
 
         public DetailPerfomanceModel Perfomance { get; set; } = null!;
 
+        public int LocationId { get; set; }
+
         public string LocationName { get; set; } = null!;
 
         public string Address { get; set; } = null!;
-
-        public int? OccupiedSeats { get; set; } = 0;
-
-        public int? FreeSeats { get; set; }
 
         public decimal PricePerTicket { get; set; }
 
