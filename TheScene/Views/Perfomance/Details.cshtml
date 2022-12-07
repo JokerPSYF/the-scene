@@ -1,5 +1,38 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model DetailPerfomanceModel
+
 @{
+    ViewBag.Title = $"Event {Model.Title}";
 }
+
+<h1 class="text-center">@ViewBag.Title</h1>
+<hr />
+
+<div class="container" style="display:inline;">
+    <div class="row">
+        <div class="col-12 text-center">
+            <img class="card-img-top" style="max-width: 100%; height:auto; display:block !important;"
+                 src="@Model.ImageURL" alt="Perfomance Image">
+        </div>
+        <div class="card col-12 border-0" style="background-color: #9467cc !important; font-size: 20px;">
+            <p style="font-size:25px !important;">Title: <u>@Model.Title</u></p>
+            @if (!string.IsNullOrEmpty(Model.Director))
+            {
+                <p>Director: <b>@Model.Director</b></p>
+            }
+            <p>Genre: <b>@Model.Genre, @Model.PerfomanceType</b></p>
+           
+            @if (!string.IsNullOrEmpty(Model.Actors))
+            {
+                <p>Actors: <b>@Model.Actors</b></p>
+            }
+            @if (Model.Year.HasValue)
+            {
+                <p>Year: @Model.Year</p>
+            }
+            @if (!string.IsNullOrEmpty(Model.Description))
+            {
+                <p>Description: @Model.Description</p>
+            }
+        </div>
+    </div>
+</div>

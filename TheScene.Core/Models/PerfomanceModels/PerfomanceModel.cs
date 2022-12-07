@@ -4,7 +4,7 @@ using static TheScene.Infrastructure.Data.Constants.DataConstants;
 
 namespace TheScene.Core.Models.PerfomanceModels
 {
-    public class AddPerfomanceModel
+    public class PerfomanceModel
     {
         public int Id { get; set; }
 

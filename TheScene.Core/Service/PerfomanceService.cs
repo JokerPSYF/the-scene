@@ -59,17 +59,17 @@ namespace TheScene.Core.Service
             switch (sorting)
             {
                 case PerfomanceSotring.PerfomanceType:
-                    perfomances
-                        .OrderBy(p => p.PerfomanceType.Name);
+                    perfomances = perfomances
+                         .OrderBy(p => p.PerfomanceType.Name);
                     break;
                 case PerfomanceSotring.Genre:
-                    perfomances
+                    perfomances = perfomances
                         .OrderBy(p => p.Genre.Name);
                     break;
                 case PerfomanceSotring.Title:
                 default:
-                    perfomances
-                        .OrderBy(p => p.Title);
+                    perfomances = perfomances
+                         .OrderBy(p => p.Title);
                     break;
             }
 
@@ -94,7 +94,7 @@ namespace TheScene.Core.Service
             return result;
         }
 
-        public async Task<int> Create(AddPerfomanceModel model)
+        public async Task<int> Create(PerfomanceModel model)
         {
             var perfomance = new Perfomance()
             {
@@ -142,7 +142,7 @@ namespace TheScene.Core.Service
                 .FirstAsync();
         }
 
-        public async Task Edit(int eventId, EditPerfomanceModel model)
+        public async Task Edit(int eventId, PerfomanceModel model)
         {
             var perfomance = await repository.GetByIdAsync<Perfomance>(eventId);
 

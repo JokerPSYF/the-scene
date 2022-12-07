@@ -1,5 +1,40 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model DeletePerfomanceModel
+
 @{
+    ViewBag.Title = $"Delete {Model.Title}";
 }
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<form asp-action="Delete">
+    <div class="container" style="display:inline;">
+        <div class="row">
+            <div class="col-6 text-center">
+                <img class="card-img-top" style="max-width: 100%; height:auto; display:block !important;"
+                     src="@Model.ImageURL" alt="Perfomance Image">
+            </div>
+            <div class="card col-6 border-0" style="background-color: #9467cc !important; font-size: 20px;">
+                <p style="font-size:25px !important;">Title: <u>@Model.Title</u></p>
+                @if (!string.IsNullOrEmpty(Model.Director))
+                {
+                    <p>Director: <b>@Model.Director</b></p>
+                }
+                <p>Genre: <b>@Model.Genre</b></p>
+                @if (!string.IsNullOrEmpty(Model.Actors))
+                {
+                    <p>Actors: <b>@Model.Actors</b></p>
+                }
+                <p>PerfomanceType: <b>@Model.PerfomanceType</b></p>
+                @if (Model.Year.HasValue)
+                {
+                    <p>Year: <b>@Model.Year</b></p>
+                }
+                <p><b>Are you sure you want to delete this?</b></p>
+                <div class="form-group">
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

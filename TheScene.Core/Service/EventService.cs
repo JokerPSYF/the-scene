@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using System.Globalization;
 using TheScene.Core.Interface;
 using TheScene.Core.Models.Common;
 using TheScene.Core.Models.Event;
@@ -24,8 +23,8 @@ namespace TheScene.Core.Service
             int currentPage = 1, int eventPerPage = 5)
         {
             var result = new QueryModel<AllEventModel>();
-            var events = repository.AllReadonly<Event>()
-             .Where(e => e.IsActive && e.Date >= DateTime.Today);
+            var events = repository.AllReadonly<Event>();
+            //.Where(e => e.IsActive && e.Date >= DateTime.Today);
 
             if (!string.IsNullOrEmpty(genre))
                 events = events.Where(e => e.Perfomance.Genre.Name == genre);
@@ -35,25 +34,17 @@ namespace TheScene.Core.Service
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                bool IsDate = DateTime.TryParseExact(
-                    searchTerm, "dd/MM/yyyy",
-                    CultureInfo.InvariantCulture, DateTimeStyles.None,
-                    out DateTime date);
-
                 bool IsYearOfPerfomance = int.TryParse(searchTerm, out int year);
-
-                if (IsDate)
-                {
-                    events = events
-                        .Where(e => e.Date == date);
-                }
-                else if (IsYearOfPerfomance)
+                if (IsYearOfPerfomance)
                 {
                     events = events
                         .Where(e => e.Perfomance.Year == year);
                 }
                 else
                 {
+                    var re = events
+                       .Where(ev => ev.Date.ToString().Contains(searchTerm)).ToList();
+
                     searchTerm = $"%{searchTerm.ToLower()}%";
 
                     events = events
@@ -62,10 +53,13 @@ namespace TheScene.Core.Service
                             EF.Functions.Like(e.Location.Name.ToLower(), searchTerm) ||
                             EF.Functions.Like(e.Perfomance.Director!.ToLower(), searchTerm) ||
                             EF.Functions.Like(e.Perfomance.Genre.Name.ToLower(), searchTerm) ||
+                            EF.Functions.Like(e.Perfomance.Description!.ToLower(), searchTerm) ||
                             EF.Functions.Like(e.Perfomance.Actors!.ToLower(), searchTerm));
                 }
 
             }
+
+
 
             switch (sorting)
             {

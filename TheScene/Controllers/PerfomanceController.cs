@@ -62,7 +62,7 @@ namespace TheScene.Controllers
         {
             // TODO Check User id
 
-            var model = new AddPerfomanceModel()
+            var model = new PerfomanceModel()
             {
                 Genres = await commonService.AllGenres(),
                 PerfomanceTypes = await commonService.AllPerfomancesTypes()
@@ -72,7 +72,7 @@ namespace TheScene.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(AddPerfomanceModel model)
+        public async Task<IActionResult> Add(PerfomanceModel model)
         {
             // TODO Check User id        
 
@@ -103,7 +103,7 @@ namespace TheScene.Controllers
 
             var perfomance = await perfomanceService.DetailsById(id);
 
-            var model = new EditPerfomanceModel()
+            var model = new PerfomanceModel()
             {
                 Id = perfomance.Id,
                 Title = perfomance.Title,
@@ -116,12 +116,13 @@ namespace TheScene.Controllers
             };
 
             model.Genres = await commonService.AllGenres();
+            model.PerfomanceTypes = await commonService.AllPerfomancesTypes();
 
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, EditPerfomanceModel model)
+        public async Task<IActionResult> Edit(int id, PerfomanceModel model)
         {
             //if (id != model.Id)
             //{
@@ -132,7 +133,7 @@ namespace TheScene.Controllers
             {
                 ModelState.AddModelError("", "Perfomance does not exist");
                 model.Genres = await commonService.AllGenres();
-
+                model.PerfomanceTypes = await commonService.AllPerfomancesTypes();
                 return View(model);
             }
 
@@ -140,13 +141,22 @@ namespace TheScene.Controllers
             {
                 ModelState.AddModelError(nameof(model.GenreId), "Genre does not exist");
                 model.Genres = await commonService.AllGenres();
+                model.PerfomanceTypes = await commonService.AllPerfomancesTypes();
+                return View(model);
+            }
+
+            if (!(await commonService.PerfomanceTypesExists(model.PerfomanceTypeId)))
+            {
+                ModelState.AddModelError(nameof(model.PerfomanceTypeId), "Perfomance type does not exist");
+                model.Genres = await commonService.AllGenres();
+                model.PerfomanceTypes = await commonService.AllPerfomancesTypes();
                 return View(model);
             }
 
             if (!ModelState.IsValid)
             {
                 model.Genres = await commonService.AllGenres();
-
+                model.PerfomanceTypes = await commonService.AllPerfomancesTypes();
                 return View(model);
             }
 
