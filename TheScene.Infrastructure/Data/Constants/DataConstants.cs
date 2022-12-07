@@ -9,6 +9,8 @@
         /// This is a default error message
         /// </summary>
         public const string LengthErrorMessage = "The length of {0} has to be between {2} and {1}";
+        public const string RangerErrorMessage = "The range of {0} has to be between {2} and {1}";
+
 
         /// <summary>
         /// Data Constants for 'Genre' entity
@@ -133,6 +135,16 @@
             /// Address minimum lentgth constant
             /// </summary>
             public const int MinAddress = 500;
+
+            /// <summary>
+            /// Seat maximum range constant
+            /// </summary>
+            public const int MaxSeats = 1000000;
+
+            /// <summary>
+            /// Seat minimum range constant
+            /// </summary>
+            public const int MinSeats = 1;
         }
 
         /// <summary>
@@ -153,14 +165,13 @@
             /// <summary>
             /// Price maximum lentgth constant
             /// </summary>
-            public const double MaxPrice = 1000000;
+            public const decimal MaxPrice = 1000000m;
 
             /// <summary>
             /// Price minimum lentgth constant
             /// </summary>
-            public const double MinPrice = 0;
+            public const decimal MinPrice = 0m;
 
-            public const string RangerErrorMessage = "The range of {0} has to be between {2} and {1}";
         }
     }
 }

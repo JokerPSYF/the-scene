@@ -1,13 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
-using TheScene.Core.Models.Event;
 using TheScene.Core.Models.PerfomanceModels;
 
 namespace TheScene.Models
 {
     public class AllPerfomanceQueryModel
     {
-        public const int PerfomancePerPage = 3;
+        public const int PerfomancePerPage = 10;
 
         public string? Genre { get; set; }
 

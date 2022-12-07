@@ -1,7 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using TheScene.Core.Models.Common;
 using static TheScene.Infrastructure.Data.Constants.DataConstants;
 
@@ -20,12 +18,12 @@ namespace TheScene.Core.Models.Event
         public int LocationId { get; set; }
 
         [Range(
-            maximum: EventConstants.MaxPrice,
-            minimum: EventConstants.MinPrice,
-            ErrorMessage = EventConstants.RangerErrorMessage)]
+            maximum: (double)EventConstants.MaxPrice,
+            minimum: (double)EventConstants.MinPrice,
+            ErrorMessage = RangerErrorMessage)]
         [Display(Name = "Price per ticket")]
-        [Column(TypeName = "money")]
         [Precision(18, 2)]
+        [DataType(DataType.Currency)]
         public decimal PricePerTicket { get; set; }
 
         [DataType(DataType.DateTime)]

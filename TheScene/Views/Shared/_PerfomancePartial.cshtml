@@ -1,0 +1,26 @@
+﻿@model AllPerfomanceModel
+
+<div class="col-md-4">
+    <div class="card mb-3" style="height:500px !important; background-color: #9467cc;">
+        <img class="card-img-top" src="@Model.ImageUrl" alt="Perfomance Image" style="height:300px !important;">
+        <div class="card-body text-center">
+            <h4>@Model.Title</h4>
+            <h6>Director: <b>@Model.Director</b></h6>
+            <h6>Genre: <b>@Model.Genre, @Model.PefomanceType</b></h6>         
+            @if (Model.Year.HasValue)
+            {
+                <h6>@Model.Year</h6>
+            }
+            <br />
+            <a asp-controller="Perfomance" asp-action="Details" asp-route-id="@Model.Id"
+               class="btn btn-success">Details</a>
+            @if (this.User.Identity!.IsAuthenticated)
+            {
+                <a asp-controller="Perfomance" asp-action="Edit" asp-route-id="@Model.Id"
+               class="btn btn-warning">Edit</a>
+                <a asp-controller="Perfomance" asp-action="Delete" asp-route-id="@Model.Id"
+               class="btn btn-danger">Delete</a>
+            }
+        </div>
+    </div>
+</div>

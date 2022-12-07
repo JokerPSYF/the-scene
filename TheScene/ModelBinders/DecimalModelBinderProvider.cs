@@ -11,7 +11,10 @@ namespace TheScene.ModelBinders
                 throw new ArgumentNullException(nameof(context));
             }
 
-            if (context.Metadata.ModelType == typeof(Decimal) || context.Metadata.ModelType == typeof(Decimal?))
+            if (context.Metadata.ModelType == typeof(Decimal)
+             || context.Metadata.ModelType == typeof(Decimal?)
+             || context.Metadata.ModelType == typeof(Double)
+             || context.Metadata.ModelType == typeof(Double?))
             {
                 return new DecimalModelBinder();
             }

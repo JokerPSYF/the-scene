@@ -1,5 +1,7 @@
-﻿@{
-    ViewBag.Title = "Add Perfomance";
+﻿@model PerfomanceModel
+
+@{
+    ViewBag.Title = $"Edit {Model.Title}";
 }
 
 <h2 class="text-center">@ViewBag.Title</h2>
@@ -8,5 +10,5 @@
 <partial name="_PerfomanceFormPartial" model="@Model" />
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+    <partial name="_ValidationScriptsPartial" />   
 }

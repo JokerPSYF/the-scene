@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TheScene.Core.Interface;
 using TheScene.Core.Models.Event;
-using TheScene.Infrastructure.Data.Entities;
 using TheScene.Models;
 
 namespace TheScene.Controllers
@@ -45,6 +44,11 @@ namespace TheScene.Controllers
             return View(query);
         }
 
+        /// <summary>
+        /// Show details of an event
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
@@ -58,6 +62,10 @@ namespace TheScene.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// GET Add new event
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> Add()
         {
@@ -69,9 +77,14 @@ namespace TheScene.Controllers
                 Locations = await commonService.AllLocations()
             };
 
-            return View(model); 
+            return View(model);
         }
 
+        /// <summary>
+        /// POST Add new event
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Add(EventModel model)
         {
@@ -100,6 +113,11 @@ namespace TheScene.Controllers
             return RedirectToAction(nameof(Details), new { id });
         }
 
+        /// <summary>
+        /// GET Edit evet
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -127,6 +145,12 @@ namespace TheScene.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// POST edit event
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="model">Event model</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Edit(int id, EventModel model)
         {
@@ -146,9 +170,14 @@ namespace TheScene.Controllers
 
             await eventService.Edit(model.Id, model);
 
-            return RedirectToAction(nameof(Details), new {id = model.Id});
+            return RedirectToAction(nameof(Details), new { id = model.Id });
         }
 
+        /// <summary>
+        /// GET delete event
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
@@ -158,7 +187,7 @@ namespace TheScene.Controllers
             }
 
             var Event = await eventService.DetailsById(id);
-            var model = new DeleteViewModel()
+            var model = new DeleteEventModel()
             {
                 Title = Event.Perfomance.Title,
                 Location = Event.LocationName,
@@ -169,8 +198,14 @@ namespace TheScene.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// POST Delete event
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> Delete(int id, DeleteViewModel model)
+        public async Task<IActionResult> Delete(int id, DeleteEventModel model)
         {
             if (!(await eventService.Exists(id)))
             {
@@ -185,12 +220,6 @@ namespace TheScene.Controllers
             await eventService.Delete(id);
 
             return RedirectToAction(nameof(All));
-        }
-
-        public void AddPerfomance()
-        {
-            Console.WriteLine("hi");
-            RedirectToAction("Create", "Perfomance");
         }
     }
 }

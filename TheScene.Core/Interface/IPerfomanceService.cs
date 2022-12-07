@@ -10,13 +10,13 @@ namespace TheScene.Core.Interface
            string? searchTerm = null, PerfomanceSotring sorting = PerfomanceSotring.Title,
            int currentPage = 1, int eventPerPage = 5);
 
-        public Task<int> Create(AddPerfomanceModel model);
+        public Task<int> Create(PerfomanceModel model);
 
         public Task Delete(int eventId);
 
         public Task<DetailPerfomanceModel> DetailsById(int eventId);
 
-        public Task Edit(int eventId, EditPerfomanceModel model);
+        public Task Edit(int eventId, PerfomanceModel model);
 
         public Task<bool> Exists(int eventId);
     }

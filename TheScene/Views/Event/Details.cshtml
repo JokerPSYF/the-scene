@@ -13,7 +13,7 @@
             <img class="card-img-top" style="max-width: 100%; height:auto; display:block !important;"
                  src="@Model.Perfomance.ImageURL" alt="Perfomance Image">
         </div>
-        <div class="card col-12 border-0" style="background-color: #f29705 !important; font-size: 20px;">
+        <div class="card col-12 border-0" style="background-color: #9467cc !important; font-size: 20px;">
             <p style="font-size:25px !important;">Title: <u>@Model.Perfomance.Title</u></p>
             <p>Place: <b>@Model.LocationName, @Model.Address</b></p>
             <p>Date: <b>@Model.Date</b></p>
@@ -38,7 +38,10 @@
             {
                 <p><b>@Model.Perfomance.Year</b></p>
             }
-            <p>@Model.Perfomance.Description</p>
+            @if (!string.IsNullOrEmpty(Model.Perfomance.Description))
+            {
+                <p>@Model.Perfomance.Description</p>
+            }
         </div>
     </div>
 </div>

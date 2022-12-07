@@ -1,27 +1,27 @@
 html {
-    background-color: #f29705 !important;
+    background-color: #6da14d !important;
     font-size: 14px;
 }
 
 @media (min-width: 768px) {
     html {
-        background-color: #f29705;
+        background-color: #6da14d;
         font-size: 16px;
     }
 }
 
 html {
-    background-color: #f29705;
+    background-color: #6da14d;
     position: relative;
     min-height: 100%;
 }
 
 body {
-    background-color: #f29705 !important;
+    background-color: #6da14d !important;
     margin-bottom: 60px;
 }
 
 header {
-    background-color: #f29705;
+    background-color: #a4d38a;
     color: #000;
 }

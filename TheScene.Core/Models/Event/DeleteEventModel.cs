@@ -2,7 +2,7 @@
 
 namespace TheScene.Core.Models.Event
 {
-    public class DeleteViewModel
+    public class DeleteEventModel
     {
         public string Title { get; set; } = null!;
 
