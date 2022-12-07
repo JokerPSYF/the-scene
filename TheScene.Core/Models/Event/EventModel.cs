@@ -20,7 +20,7 @@ namespace TheScene.Core.Models.Event
         [Range(
             maximum: (double)EventConstants.MaxPrice,
             minimum: (double)EventConstants.MinPrice,
-            ErrorMessage = EventConstants.RangerErrorMessage)]
+            ErrorMessage = RangerErrorMessage)]
         [Display(Name = "Price per ticket")]
         [Precision(18, 2)]
         [DataType(DataType.Currency)]

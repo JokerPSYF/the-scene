@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TheScene.Core.Interface;
 using TheScene.Core.Models.Common;
+using TheScene.Core.Models.Location;
 using TheScene.Infrastructure.Data.Common;
 using TheScene.Infrastructure.Data.Entities;
 
@@ -72,6 +73,22 @@ namespace TheScene.Core.Service
             return await repository.AllReadonly<Location>()
                 .AnyAsync(l => l.Id == locationbId);
         }
+
+        public async Task<int> CreateLocation(LacationModel model)
+        {
+            var locationEntity = new Location()
+            {
+                Name = model.Name,
+                Address = model.Address,
+                Seats = model.Seats,
+                PlaceTypeId = model.PlaceTypeId
+            };
+
+            await repository.AddAsync(locationEntity);
+            await repository.SaveChangesAsync();
+
+            return locationEntity.Id;
+        }
         #endregion
 
         #region Perfomance
@@ -127,6 +144,34 @@ namespace TheScene.Core.Service
         {
             return await repository.AllReadonly<PerfomanceType>()
                 .AnyAsync(pt => pt.Id == perfomanceTypeId);
+        }
+        #endregion
+
+        #region Place type
+        public async Task<IEnumerable<NomenclatureDTO>> AllPlaceTypes()
+        {
+            return await repository.AllReadonly<PlaceType>()
+                .OrderBy(l => l.Name)
+                .Select(l => new NomenclatureDTO()
+                {
+                    Id = l.Id,
+                    DisplayName = l.Name
+                })
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<string>> AllPlaceTypesNames()
+        {
+            return await repository.AllReadonly<PlaceType>()
+                .Select(l => l.Name)
+                .Distinct()
+                .ToListAsync();
+        }
+
+        public async Task<bool> PlaceTypeExists(int placeTypeId)
+        {
+            return await repository.AllReadonly<PlaceType>()
+                .AnyAsync(l => l.Id == placeTypeId);
         }
         #endregion
     }

@@ -35,5 +35,13 @@ namespace TheScene.Core.Interface
 
         public Task<bool> PerfomanceTypesExists(int perfomanceTypeId);
         #endregion
+
+        #region Place Type
+        public Task<IEnumerable<NomenclatureDTO>> AllPlaceTypes();
+
+        public Task<IEnumerable<string>> AllPlaceTypesNames();
+
+        public async Task<bool> PlaceTypeExists(int placeTypeId);
+        #endregion
     }
 }
