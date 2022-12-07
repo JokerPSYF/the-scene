@@ -14,8 +14,4 @@
     <ProjectReference Include="..\TheScene.Infrastructure\TheScene.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\NewFolder\" />
-  </ItemGroup>
-
 </Project>
