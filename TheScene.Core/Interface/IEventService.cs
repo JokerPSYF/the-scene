@@ -7,7 +7,7 @@ namespace TheScene.Core.Interface
     {
         public Task<QueryModel<AllEventModel>> All(
             string? genre = null, string? perfomanceType = null,
-            string? searchTerm = null, EventSorting sorting = EventSorting.Newest,
+            string? searchTerm = null, EventSorting sorting = EventSorting.Soonest,
             int currentPage = 1, int eventPerPage = 5);
 
         public Task<int> Create(EventModel model);

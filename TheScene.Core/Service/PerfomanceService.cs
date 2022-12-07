@@ -22,7 +22,7 @@ namespace TheScene.Core.Service
             string? searchTerm = null,
             PerfomanceSotring sorting = PerfomanceSotring.Title,
             int currentPage = 1,
-            int eventPerPage = 5)
+            int perfomancePerPage = 5)
         {
             var result = new QueryModel<AllPerfomanceModel>();
 
@@ -33,6 +33,12 @@ namespace TheScene.Core.Service
             {
                 perfomances = perfomances
                     .Where(p => p.Genre.Name == genre);
+            }
+
+            if (!string.IsNullOrEmpty(perfomanceType))
+            {
+                perfomances = perfomances
+                    .Where(p => p.PerfomanceType.Name == perfomanceType);
             }
 
             if (!string.IsNullOrEmpty(searchTerm))
@@ -53,23 +59,23 @@ namespace TheScene.Core.Service
             switch (sorting)
             {
                 case PerfomanceSotring.PerfomanceType:
-                    perfomances
-                        .OrderBy(p => p.PerfomanceType.Name);
+                    perfomances = perfomances
+                         .OrderBy(p => p.PerfomanceType.Name);
                     break;
                 case PerfomanceSotring.Genre:
-                    perfomances
+                    perfomances = perfomances
                         .OrderBy(p => p.Genre.Name);
                     break;
                 case PerfomanceSotring.Title:
                 default:
-                    perfomances
-                        .OrderBy(p => p.Title);
+                    perfomances = perfomances
+                         .OrderBy(p => p.Title);
                     break;
             }
 
             result.Collection = await perfomances
-                .Skip((currentPage - 1) * eventPerPage)
-                .Take(eventPerPage)
+                .Skip((currentPage - 1) * perfomancePerPage)
+                .Take(perfomancePerPage)
                 .Select(p => new AllPerfomanceModel()
                 {
                     Id = p.Id,
@@ -88,7 +94,7 @@ namespace TheScene.Core.Service
             return result;
         }
 
-        public async Task<int> Create(AddPerfomanceModel model)
+        public async Task<int> Create(PerfomanceModel model)
         {
             var perfomance = new Perfomance()
             {
@@ -136,7 +142,7 @@ namespace TheScene.Core.Service
                 .FirstAsync();
         }
 
-        public async Task Edit(int eventId, EditPerfomanceModel model)
+        public async Task Edit(int eventId, PerfomanceModel model)
         {
             var perfomance = await repository.GetByIdAsync<Perfomance>(eventId);
 

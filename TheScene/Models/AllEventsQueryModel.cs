@@ -5,7 +5,7 @@ namespace TheScene.Models
 {
     public class AllEventsQueryModel
     {
-        public const int EventsPerPage = 3;
+        public const int EventsPerPage = 5;
 
         public string? Genre { get; set; }
 

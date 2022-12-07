@@ -1,0 +1,63 @@
+﻿@model PerfomanceModel
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form method="post">
+            <input type="hidden" asp-for="@Model.Id" />
+
+            <div class="form-group">
+                <label asp-for="Title"></label>
+                <input asp-for="Title" class="form-control" placeholder="Title">
+                <span asp-validation-for="Title" class="small text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Director"></label>
+                <input asp-for="Director" class="form-control" placeholder="Director">
+                <span asp-validation-for="Director" class="small text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ImageURL"></label>
+                <input asp-for="ImageURL" class="form-control" placeholder="Image">
+                <span asp-validation-for="ImageURL" class="small text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="GenreId"></label>
+                <select asp-for="GenreId" class="form-control">
+                    @foreach (var perfomance in Model.Genres)
+                    {
+                        <option value="@perfomance.Id">@perfomance.DisplayName</option>
+                    }
+                </select>
+                <span asp-validation-for="GenreId" class="small text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PerfomanceTypeId"></label>
+                <select asp-for="PerfomanceTypeId" class="form-control">
+                    @foreach (var perfomance in Model.PerfomanceTypes)
+                    {
+                        <option value="@perfomance.Id">@perfomance.DisplayName</option>
+                    }
+                </select>
+                <span asp-validation-for="PerfomanceTypeId" class="small text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+                <span asp-validation-for="Description" class="text-danger" style="font-weight:bold;"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Year"></label>
+                <input asp-for="Year" class="form-control" placeholder="Year">
+                <span asp-validation-for="Year" class="small text-danger"></span>
+            </div>
+            <div class="text-center">
+                <input class="btn btn-primary mt-3" type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+</div>
