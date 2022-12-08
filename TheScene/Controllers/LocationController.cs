@@ -30,7 +30,7 @@ namespace TheScene.Controllers
                 query.PlaceType,
                 query.SearchTerm,
                 query.CurrentPage,
-                AllEventsQueryModel.EventsPerPage);
+                AllLocationQueryModel.LocationsPerPage);
 
             query.TotalLocationCount = result.TotalCount;
             query.PlaceTypes = await commonService.AllPlaceTypesNames();
@@ -92,7 +92,7 @@ namespace TheScene.Controllers
 
             int id = await locationService.CreateLocation(model);
 
-            return RedirectToAction(nameof(Details), new { id });
+            return RedirectToAction(nameof(All), new { id });
         }
 
         /// <summary>
@@ -132,11 +132,15 @@ namespace TheScene.Controllers
             if (!(await commonService.LocationExists(model.Id)))
             {
                 ModelState.AddModelError("", "location does not exist");
+                model.PlaceTypes = await commonService.AllPlaceTypes();
                 return View(model);
             }
 
             if (!ModelState.IsValid)
+            {
+                model.PlaceTypes = await commonService.AllPlaceTypes();
                 return View(model);
+            }
 
             await locationService.LocationEdit(model.Id, model);
 

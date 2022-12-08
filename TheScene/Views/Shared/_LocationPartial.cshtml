@@ -1,0 +1,21 @@
+﻿@model LocationModel
+
+<div class="col-md-4">
+    <div class="card mb-3" style="background-color: #9467cc;">
+        <div class="card-body text-center">
+            <h6>Location: <b>@Model.Name, @Model.Address</b></h6>
+            <h6>Type: <b>@Model.PlaceTypeName</b></h6>
+            <h6>Seats: <b>@Model.Seats</b></h6>
+            <br />
+            @if (this.User.Identity!.IsAuthenticated)
+            {
+                <a asp-controller="Location" asp-action="Details" asp-route-id="@Model.Id"
+               class="btn btn-success">Details</a>
+                <a asp-controller="Location" asp-action="Edit" asp-route-id="@Model.Id"
+               class="btn btn-warning">Edit</a>
+                <a asp-controller="Location" asp-action="Delete" asp-route-id="@Model.Id"
+               class="btn btn-danger">Delete</a>
+            }
+        </div>
+    </div>
+</div>

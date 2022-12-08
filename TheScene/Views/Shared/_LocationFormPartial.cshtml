@@ -1,0 +1,39 @@
+﻿@model LocationModel
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form method="post">
+            <input type="hidden" asp-for="@Model.Id" />         
+
+            <div class="form-group">
+                <label asp-for="PlaceTypeId"></label>
+                <select asp-for="PlaceTypeId" class="form-control">
+                    @foreach (var placeTypes in Model.PlaceTypes)
+                    {
+                        <option value="@placeTypes.Id">@placeTypes.DisplayName</option>
+                    }
+                </select>
+                <span asp-validation-for="PlaceTypeId" class="small text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" placeholder="Name">
+                <span asp-validation-for="Name" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address"></label>
+                <input asp-for="Address" class="form-control" placeholder="Address">
+                <span asp-validation-for="Address" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Seats"></label>
+                <input asp-for="Seats" class="form-control" placeholder="Seats">
+                <span asp-validation-for="Seats" class="small text-danger"></span>
+            </div>
+            <div class="text-center">
+                <input class="btn btn-primary mt-3" type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+</div>

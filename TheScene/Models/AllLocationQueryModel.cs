@@ -5,7 +5,7 @@ namespace TheScene.Models
 {
     public class AllLocationQueryModel
     {
-        public const int LocationsPerPage = 10;
+        public const int LocationsPerPage = 5;
 
         [Display(Name = "Search")]
         public string? SearchTerm { get; set; }
@@ -14,6 +14,7 @@ namespace TheScene.Models
 
         public int TotalLocationCount { get; set; }
 
+        [Display(Name = "Place Type")]
         public string? PlaceType { get; set; }
 
         public IEnumerable<string> PlaceTypes { get; set; } = Enumerable.Empty<string>();

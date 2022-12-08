@@ -1,0 +1,22 @@
+﻿@model LocationModel
+
+@{
+    ViewBag.Title = $"{Model.Name} Details";
+}
+
+<h1 class="text-center">@ViewBag.Title</h1>
+<hr />
+
+<div class="container" style="display:inline;">
+    <div class="container text-center">
+        <div class="card border-0" style="background-color: #6da14d !important; font-size: 20px;">
+            <p style="font-size:25px !important;">Location: <u>@Model.Name, @Model.Address</u></p>
+            <p>PlaceType: <b>@Model.PlaceTypeName</b></p>
+            @if (Model.Seats.HasValue)
+            {
+                <p>Seats: <b>@Model.Seats</b></p>
+            }
+        </div>
+
+    </div>
+</div>

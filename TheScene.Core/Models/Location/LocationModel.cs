@@ -24,9 +24,11 @@ namespace TheScene.Core.Models.Location
             ErrorMessage = RangerErrorMessage)]
         public int? Seats { get; set; }
 
+        [Display(Name = "Place Type")]
         public int PlaceTypeId { get; set; }
 
-        public string PlaceTypeName { get; set; }
+        [Display(Name = "Place Type")]
+        public string? PlaceTypeName { get; set; }
 
         public IEnumerable<NomenclatureDTO> PlaceTypes { get; set; } = new List<NomenclatureDTO>();
     }
