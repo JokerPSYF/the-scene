@@ -1,4 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <system.web>
-	<globalization uiCulture="en" culture="en-GB"/>
+	<globalization enableClientBasedCulture="true"
+  culture="auto:en-GB"
+  uiCulture="auto:en"/>
 </system.web>
