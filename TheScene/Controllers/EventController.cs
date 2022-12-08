@@ -212,7 +212,7 @@ namespace TheScene.Controllers
                 return RedirectToAction(nameof(All));
             }
 
-            //if ((await houseService.HasAgentWithId(id, User.Id())) == false)
+            //if ((await adminService.HasAgentWithId(id, User.Id())) == false)
             //{
             //    return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
             //}

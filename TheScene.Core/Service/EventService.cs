@@ -42,9 +42,6 @@ namespace TheScene.Core.Service
                 }
                 else
                 {
-                    var re = events
-                       .Where(ev => ev.Date.ToString().Contains(searchTerm)).ToList();
-
                     searchTerm = $"%{searchTerm.ToLower()}%";
 
                     events = events

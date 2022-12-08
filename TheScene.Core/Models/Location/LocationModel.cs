@@ -1,10 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TheScene.Core.Models.Common;
 using static TheScene.Infrastructure.Data.Constants.DataConstants;
 
 namespace TheScene.Core.Models.Location
 {
-    public class LacationModel
+    public class LocationModel
     {
+        public int Id { get; set; }
+
         [StringLength(LocationConstants.MaxName,
          MinimumLength = LocationConstants.MinName,
          ErrorMessage = LengthErrorMessage)]
@@ -19,8 +22,12 @@ namespace TheScene.Core.Models.Location
             maximum: LocationConstants.MaxSeats,
             minimum: LocationConstants.MinSeats,
             ErrorMessage = RangerErrorMessage)]
-        public int Seats { get; set; }
+        public int? Seats { get; set; }
 
         public int PlaceTypeId { get; set; }
+
+        public string PlaceTypeName { get; set; }
+
+        public IEnumerable<NomenclatureDTO> PlaceTypes { get; set; } = new List<NomenclatureDTO>();
     }
 }

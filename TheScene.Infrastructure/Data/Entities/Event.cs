@@ -22,15 +22,15 @@ namespace TheScene.Infrastructure.Data.Entities
 
         public virtual Location Location { get; set; } = null!;
 
-        [Range(EventConstants.MinSeats, EventConstants.MaxSeats, ErrorMessage = EventConstants.RangerErrorMessage)]
+        [Range(EventConstants.MinSeats, EventConstants.MaxSeats, ErrorMessage = RangerErrorMessage)]
         public int? OccupiedSeats { get; set; } = 0;
 
-        [Range(EventConstants.MinSeats, EventConstants.MaxSeats, ErrorMessage = EventConstants.RangerErrorMessage)]
+        [Range(EventConstants.MinSeats, EventConstants.MaxSeats, ErrorMessage = RangerErrorMessage)]
         public int? FreeSeats { get; set; }
 
         [Required]
         [Column(TypeName = "money")]
-        [Precision(18,2)]
+        [Precision(18, 2)]
         public decimal PricePerTicket { get; set; }
 
         [Required]
