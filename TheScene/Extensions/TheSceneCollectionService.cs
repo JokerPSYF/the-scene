@@ -14,6 +14,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<ICommonService, CommonService>();
             services.AddScoped<IPerfomanceService, PerfomanceService>();
+            services.AddScoped<ILocationService, LocationService>();
 
             return services;
         }

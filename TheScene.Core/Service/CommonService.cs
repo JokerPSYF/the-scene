@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TheScene.Core.Interface;
 using TheScene.Core.Models.Common;
-using TheScene.Core.Models.Location;
 using TheScene.Infrastructure.Data.Common;
 using TheScene.Infrastructure.Data.Entities;
 
@@ -72,22 +71,6 @@ namespace TheScene.Core.Service
         {
             return await repository.AllReadonly<Location>()
                 .AnyAsync(l => l.Id == locationbId);
-        }
-
-        public async Task<int> CreateLocation(LacationModel model)
-        {
-            var locationEntity = new Location()
-            {
-                Name = model.Name,
-                Address = model.Address,
-                Seats = model.Seats,
-                PlaceTypeId = model.PlaceTypeId
-            };
-
-            await repository.AddAsync(locationEntity);
-            await repository.SaveChangesAsync();
-
-            return locationEntity.Id;
         }
         #endregion
 

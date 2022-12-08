@@ -41,7 +41,7 @@ namespace TheScene.Core.Interface
 
         public Task<IEnumerable<string>> AllPlaceTypesNames();
 
-        public async Task<bool> PlaceTypeExists(int placeTypeId);
+        public Task<bool> PlaceTypeExists(int placeTypeId);
         #endregion
     }
 }

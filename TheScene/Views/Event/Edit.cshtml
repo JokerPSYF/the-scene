@@ -11,18 +11,37 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
-    <script type="text/javascript">
+    <script src="~/Scripts/globalize.js" type="text/javascript">
+    </script>
+    <script src="~/Scripts/globalize.culture.de-DE.js" type="text/javascript">
+    </script>
+    <script src="~/Scripts/globalize.culture.en-US.js" type="text/javascript">
+    </script>
+
+    <script>
+        $.validator.methods.number = function (value, element) {
+            return this.optional(element) ||
+                !isNaN(Globalize.parseFloat(value));
+        }
+
+        $.validator.methods.date = function (value, element) {
+            return this.optional(element) ||
+                Globalize.parseDate(value);
+        }
+
         $(document).ready(function () {
-            $('#date').datepicker({
-                dateFormat: "dd/mm/yy",
-                showStatus: true,
-                showWeeks: true,
-                currentText: 'Now',
-                autoSize: true,
-                gotoCurrent: true,
-                showAnim: 'blind',
-                highlightWeek: true
-            });
+            Globalize.culture('@System.Threading.Thread.CurrentThread.CurrentCulture');
+        });
+    </script>
+
+    <script>
+        jQuery.extend(jQuery.validator.methods, {
+            range: function (value, element, param) {
+                //Use the Globalization plugin to parse the value
+                var val = Globalize.parseFloat(value);
+                return this.optional(element) || (
+                    val >= param[0] && val <= param[1]);
+            }
         });
     </script>
 }
