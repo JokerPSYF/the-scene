@@ -82,7 +82,8 @@ namespace TheScene.Core.Service
                     LocationName = e.Location.Name,
                     PricePerTicket = e.PricePerTicket,
                     Date = e.Date,
-                    IsPremiere = e.IsPremiere ?? false
+                    IsPremiere = e.IsPremiere ?? false,
+                    Year = e.Perfomance.Year
                 })
                 .ToListAsync();
 

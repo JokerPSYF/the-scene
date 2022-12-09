@@ -21,6 +21,8 @@ namespace TheScene.Core.Models.Event
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
+        public int? Year { get; set; }
+
         [Display(Name = "Premiere")]
         public bool IsPremiere { get; set; }
     }
