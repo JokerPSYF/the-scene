@@ -64,9 +64,18 @@ namespace TheScene
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.MapControllerRoute(
+            app.UseEndpoints(endpoints =>
+            {
+                app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Event}/{action=All}/{id?}");
+
+                endpoints.MapControllerRoute(
+                  name: "areas",
+                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                );
+            });
+
             app.MapRazorPages();
 
             app.Run();
