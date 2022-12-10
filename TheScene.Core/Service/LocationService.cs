@@ -16,6 +16,14 @@ namespace TheScene.Core.Service
             this.repository = repository;
         }
 
+        /// <summary>
+        /// All location by the given criteria
+        /// </summary>
+        /// <param name="placeType">place type name</param>
+        /// <param name="searchTerm">search filter</param>
+        /// <param name="currentPage">current page (int)</param>
+        /// <param name="locationPerPage">how many locations pee page</param>
+        /// <returns>QueryModel of LocationModel</returns>
         public async Task<QueryModel<LocationModel>> AllLocationsInfo(
             string? placeType = null, string? searchTerm = null,
             int currentPage = 1, int locationPerPage = 10)
@@ -63,6 +71,11 @@ namespace TheScene.Core.Service
 
         }
 
+        /// <summary>
+        /// Create new location
+        /// </summary>
+        /// <param name="model">LocationModel</param>
+        /// <returns>location id</returns>
         public async Task<int> CreateLocation(LocationModel model)
         {
             var locationEntity = new Location()
@@ -79,6 +92,11 @@ namespace TheScene.Core.Service
             return locationEntity.Id;
         }
 
+        /// <summary>
+        /// location detail
+        /// </summary>
+        /// <param name="id">location id</param>
+        /// <returns>LocationModel</returns>
         public async Task<LocationModel> LocationDetailsById(int id)
         {
             var result = await repository.AllReadonly<Location>()
@@ -96,6 +114,11 @@ namespace TheScene.Core.Service
             return result;
         }
 
+        /// <summary>
+        /// Edit location
+        /// </summary>
+        /// <param name="id">location id</param>
+        /// <param name="model">location model</param>
         public async Task LocationEdit(int id, LocationModel model)
         {
             var locEntity = await repository.GetByIdAsync<Location>(id);
@@ -108,6 +131,10 @@ namespace TheScene.Core.Service
             await repository.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// delete location
+        /// </summary>
+        /// <param name="id">location id</param>
         public async Task LocationDelete(int id)
         {
             var locationEntity = await repository.GetByIdAsync<Location>(id);

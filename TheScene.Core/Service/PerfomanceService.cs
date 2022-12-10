@@ -16,6 +16,16 @@ namespace TheScene.Core.Service
             this.repository = repository;
         }
 
+        /// <summary>
+        /// All Perfomances by the given criteria
+        /// </summary>
+        /// <param name="genre">genre name</param>
+        /// <param name="perfomanceType">perfomance type name</param>
+        /// <param name="searchTerm">search filter</param>
+        /// <param name="sorting">PerfomanceSorting sort</param>
+        /// <param name="currentPage">current page (int)</param>
+        /// <param name="perfomancePerPage">how many perfomance can you have per page</param>
+        /// <returns>QueryModel of AllPerfomanceModel</returns>
         public async Task<QueryModel<AllPerfomanceModel>> All(
             string? genre = null,
             string? perfomanceType = null,
@@ -94,6 +104,11 @@ namespace TheScene.Core.Service
             return result;
         }
 
+        /// <summary>
+        /// Create perfomance
+        /// </summary>
+        /// <param name="model">perfomance model</param>
+        /// <returns>perfomance id</returns>
         public async Task<int> Create(PerfomanceModel model)
         {
             var perfomance = new Perfomance()
@@ -113,18 +128,26 @@ namespace TheScene.Core.Service
             return perfomance.Id;
         }
 
-        public async Task Delete(int eventId)
+        /// <summary>
+        /// delete perfomance
+        /// </summary>
+        /// <param name="perfomanceId">perfomance id</param>
+        public async Task Delete(int perfomanceId)
         {
-            var perfomance = await repository.GetByIdAsync<Perfomance>(eventId);
+            var perfomance = await repository.GetByIdAsync<Perfomance>(perfomanceId);
             perfomance.IsActive = false;
 
             await repository.SaveChangesAsync();
         }
 
-        public async Task<DetailPerfomanceModel> DetailsById(int eventId)
+        /// <summary>
+        /// Perfomance details
+        /// </summary>
+        /// <param name="perfomanceId">perfomance id</param>
+        public async Task<DetailPerfomanceModel> DetailsById(int perfomanceId)
         {
             return await repository.AllReadonly<Perfomance>()
-                .Where(p => p.Id == eventId && p.IsActive)
+                .Where(p => p.Id == perfomanceId && p.IsActive)
                 .Select(p => new DetailPerfomanceModel()
                 {
                     Id = p.Id,
@@ -158,10 +181,15 @@ namespace TheScene.Core.Service
             await repository.SaveChangesAsync();
         }
 
-        public async Task<bool> Exists(int eventId)
+        /// <summary>
+        /// Check if perfomance exists
+        /// </summary>
+        /// <param name="perfomanceId">perfomance id</param>
+        /// <returns>bool</returns>
+        public async Task<bool> Exists(int perfomanceId)
         {
             return await repository.AllReadonly<Perfomance>()
-                .AnyAsync(p => p.IsActive && p.Id == eventId);
+                .AnyAsync(p => p.IsActive && p.Id == perfomanceId);
         }
     }
 }
