@@ -1,7 +1,7 @@
 ﻿@model DetailPerfomanceModel
 
 @{
-    ViewBag.Title = $"Event {Model.Title}";
+    ViewBag.Title = $"Perfomance {Model.Title}";
 }
 
 <h1 class="text-center">@ViewBag.Title</h1>
@@ -13,7 +13,7 @@
             <img class="card-img-top" style="max-width: 100%; height:auto; display:block !important;"
                  src="@Model.ImageURL" alt="Perfomance Image">
         </div>
-        <div class="card col-12 border-0" style="background-color: #9467cc !important; font-size: 20px;">
+        <div class="card col-12 border-0" style="background-color: #6da14d !important; font-size: 20px;">
             <p style="font-size:25px !important;">Title: <u>@Model.Title</u></p>
             @if (!string.IsNullOrEmpty(Model.Director))
             {

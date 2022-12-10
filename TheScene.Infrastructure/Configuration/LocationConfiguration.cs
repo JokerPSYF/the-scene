@@ -30,7 +30,7 @@ namespace TheScene.Infrastructure.Configuration
                     Name = "Military Hotel",
                     Address = "48 улица „Христо Ботев“, 8000 Burgas",
                     PlaceTypeId = 2,
-                    Seats = 300               
+                    Seats = 300
                 },
 
                 new Location()

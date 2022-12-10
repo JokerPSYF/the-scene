@@ -23,7 +23,7 @@ namespace TheScene.Core.Service
 
             var result = new QueryModel<LocationModel>();
             var locs = repository.AllReadonly<Location>()
-                .Where(l => l.IsActive);
+            .Where(l => l.IsActive);
 
 
             if (!string.IsNullOrEmpty(placeType))
