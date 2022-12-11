@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "globalize": "^1.7.0"
+    "globalize": "^1.7.0",
+    "moment": "^2.29.4"
   }
 }
