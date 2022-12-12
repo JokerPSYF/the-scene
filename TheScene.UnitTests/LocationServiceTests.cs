@@ -107,8 +107,8 @@ namespace TheScene.UnitTests
             await repo.SaveChangesAsync();
 
             Assert.That(loc, Is.Not.Null);
-            Assert.That(loc.Any(l => l.Name == "The Opera House"), Is.EqualTo(false));
-            Assert.That(loc.Any(l => l.Id == 7), Is.EqualTo(false));
+            Assert.That(loc.Any(l => l.Name == "The Opera House"), Is.EqualTo(true));
+            Assert.That(loc.Any(l => l.Id == 7 && l.IsActive), Is.EqualTo(false));
         }
 
 
