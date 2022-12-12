@@ -1,0 +1,45 @@
+﻿@using TheScene.Core.Models.Event
+@model DetailEventModel
+
+@{
+    ViewBag.Title = "Event Details";
+}
+
+<h1 class="text-center">@ViewBag.Title</h1>
+<hr />
+
+<div class="container" style="display:inline;">
+    <div class="row">
+        <div class="col-12 text-center">
+            <img class="card-img-top" style="max-width: 100%; height:auto; display:block !important;"
+                 src="@Model.Perfomance.ImageURL" alt="Perfomance Image">
+        </div>
+        <div class="card col-12 border-0" style="background-color: #6da14d !important; font-size: 20px;">
+            <p style="font-size:25px !important;">Title: <u>@Model.Perfomance.Title @Model.Perfomance.Year</u></p>          
+            <p>Place: <b>@Model.LocationName, @Model.Address</b></p>
+            <p>Date: <b>@Model.Date</b></p>
+            <p>
+                Price:
+                <b>@String.Format("{0:f2}", Model.PricePerTicket) BGN</b>
+            </p>
+            <p>Genre: <b>@Model.Perfomance.Genre, @Model.Perfomance.PerfomanceType</b></p>
+            @if (Model.IsPremiere)
+            {
+                <p><b>Premiere</b></p>
+            }
+            @if (!string.IsNullOrEmpty(Model.Perfomance.Director))
+            {
+                <p>Director: @Model.Perfomance.Director</p>
+            }
+            @if (!string.IsNullOrEmpty(Model.Perfomance.Actors))
+            {
+                <p>Actors: @Model.Perfomance.Actors</p>
+            }
+           
+            @if (!string.IsNullOrEmpty(Model.Perfomance.Description))
+            {
+                <p>@Model.Perfomance.Description</p>
+            }
+        </div>
+    </div>
+</div>
