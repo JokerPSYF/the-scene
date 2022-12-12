@@ -4,10 +4,10 @@ using TheScene.Core.Interface;
 using TheScene.Core.Models.Location;
 using TheScene.Models;
 
-namespace TheScene.Controllers
+namespace TheScene.Areas.Admin.Controllers
 {
     [Authorize]
-    public class LocationController : Controller
+    public class LocationController : BaseController
     {
         private readonly ICommonService commonService;
         private readonly ILocationService locationService;

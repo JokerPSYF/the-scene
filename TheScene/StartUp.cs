@@ -68,11 +68,11 @@ namespace TheScene
             {
                 app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Event}/{action=All}/{id?}");
+                pattern: "{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(
                   name: "areas",
-                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                  pattern: "{area:exists}/{controller=Event}/{action=All}/{id?}"
                 );
             });
 

@@ -6,8 +6,7 @@ using TheScene.Models;
 
 namespace TheScene.Areas.Admin.Controllers
 {
-    [Authorize]
-    public class EventController : Controller
+    public class EventController : BaseController
     {
         private readonly IEventService eventService;
         private readonly ICommonService commonService;
@@ -54,7 +53,7 @@ namespace TheScene.Areas.Admin.Controllers
         {
             if (!(await eventService.Exists(id)))
             {
-                return RedirectToAction(nameof(All));
+                return RedirectToAction("Index", "Home");
             }
 
             var model = await eventService.DetailsById(id);
@@ -123,7 +122,7 @@ namespace TheScene.Areas.Admin.Controllers
         {
             if (!(await eventService.Exists(id)))
             {
-                return RedirectToAction(nameof(All));
+                return RedirectToAction("Index", "Home");
             }
 
 
@@ -183,7 +182,7 @@ namespace TheScene.Areas.Admin.Controllers
         {
             if (!(await eventService.Exists(id)))
             {
-                return RedirectToAction(nameof(All));
+                return RedirectToAction("Index", "Home");
             }
 
             var Event = await eventService.DetailsById(id);
@@ -209,7 +208,7 @@ namespace TheScene.Areas.Admin.Controllers
         {
             if (!(await eventService.Exists(id)))
             {
-                return RedirectToAction(nameof(All));
+                return RedirectToAction("Index", "Home");
             }
 
             //if ((await adminService.HasAgentWithId(id, User.Id())) == false)
@@ -219,7 +218,7 @@ namespace TheScene.Areas.Admin.Controllers
 
             await eventService.Delete(id);
 
-            return RedirectToAction(nameof(All));
+            return RedirectToAction("Index", "Home");
         }
     }
 }

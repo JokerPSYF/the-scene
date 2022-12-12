@@ -5,10 +5,10 @@ using TheScene.Core.Models.Event;
 using TheScene.Core.Models.PerfomanceModels;
 using TheScene.Models;
 
-namespace TheScene.Controllers
+namespace TheScene.Areas.Admin.Controllers
 {
     [Authorize]
-    public class PerfomanceController : Controller
+    public class PerfomanceController : BaseController
     {
         private readonly IPerfomanceService perfomanceService;
         private readonly ICommonService commonService;
