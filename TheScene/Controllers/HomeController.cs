@@ -29,10 +29,10 @@ namespace TheScene.Controllers
         [HttpGet]
         public async Task<IActionResult> Index([FromQuery] EventsQueryModel query)
         {
-            if (this.User.IsInRole())
-            {
-                return RedirectToAction("All", "Event", new { area = "Admin" });
-            }
+            //if (this.User.IsInRole())
+            //{
+            //    return RedirectToAction("All", "Event", new { area = "Admin" });
+            //}
 
             var result = await eventService.All(
                 query.Genre,
