@@ -5,6 +5,9 @@ using TheScene.Models;
 
 namespace TheScene.Controllers
 {
+    /// <summary>
+    /// The only thing that the normal user will see
+    /// </summary>
     public class HomeController : Controller
     {
 
@@ -24,7 +27,35 @@ namespace TheScene.Controllers
         /// <param name="query">AllEventsQueryModel</param>
         /// <returns>Events</returns>
         [HttpGet]
-        public async Task<IActionResult> Index([FromQuery] AllEventsQueryModel query)
+        public async Task<IActionResult> Index([FromQuery] EventsQueryModel query)
+        {
+            if (this.User.IsInRole())
+            {
+                return RedirectToAction("All", "Event", new { area = "Admin" });
+            }
+
+            var result = await eventService.All(
+                query.Genre,
+                query.SearchTerm,
+                null,
+                query.Sorting,
+                query.CurrentPage,
+                EventsQueryModel.EventsPerPage);
+
+            query.TotalEventsCount = result.TotalCount;
+            query.Genres = await commonService.AllGenresNames();
+            query.Events = result.Collection;
+
+            return View(query);
+        }
+
+        /// <summary>
+        /// Return All Theatrical plays
+        /// </summary>
+        /// <param name="query">AllEventsQueryModel</param>
+        /// <returns>Events</returns>
+        [HttpGet]
+        public async Task<IActionResult> Theatre([FromQuery] EventsQueryModel query)
         {
             //if (this.User.IsInRole())
             //{
@@ -33,15 +64,126 @@ namespace TheScene.Controllers
 
             var result = await eventService.All(
                 query.Genre,
-                query.PerfomanceType,
+                "Theatrical play",
                 query.SearchTerm,
                 query.Sorting,
                 query.CurrentPage,
-                AllEventsQueryModel.EventsPerPage);
+                EventsQueryModel.EventsPerPage);
 
             query.TotalEventsCount = result.TotalCount;
             query.Genres = await commonService.AllGenresNames();
-            query.PerfomanceTypes = await commonService.AllPerfomanceTypesNames();
+            query.Events = result.Collection;
+
+            return View(query);
+        }
+
+        /// <summary>
+        /// Return All Movies
+        /// </summary>
+        /// <param name="query">AllEventsQueryModel</param>
+        /// <returns>Events</returns>
+        [HttpGet]
+        public async Task<IActionResult> Movie([FromQuery] EventsQueryModel query)
+        {
+            //if (this.User.IsInRole())
+            //{
+            //    return RedirectToAction("All", "Event", new { area = "Admin"});
+            //}
+
+            var result = await eventService.All(
+                query.Genre,
+                "Movie",
+                query.SearchTerm,
+                query.Sorting,
+                query.CurrentPage,
+                EventsQueryModel.EventsPerPage);
+
+            query.TotalEventsCount = result.TotalCount;
+            query.Genres = await commonService.AllGenresNames();
+            query.Events = result.Collection;
+
+            return View(query);
+        }
+
+        /// <summary>
+        /// Return All Opera's
+        /// </summary>
+        /// <param name="query">AllEventsQueryModel</param>
+        /// <returns>Events</returns>
+        [HttpGet]
+        public async Task<IActionResult> Opera([FromQuery] EventsQueryModel query)
+        {
+            //if (this.User.IsInRole())
+            //{
+            //    return RedirectToAction("All", "Event", new { area = "Admin"});
+            //}
+
+            var result = await eventService.All(
+                query.Genre,
+                "Opera",
+                query.SearchTerm,
+                query.Sorting,
+                query.CurrentPage,
+                EventsQueryModel.EventsPerPage);
+
+            query.TotalEventsCount = result.TotalCount;
+            query.Genres = await commonService.AllGenresNames();
+            query.Events = result.Collection;
+
+            return View(query);
+        }
+
+        /// <summary>
+        /// Return All Ballets
+        /// </summary>
+        /// <param name="query">AllEventsQueryModel</param>
+        /// <returns>Events</returns>
+        [HttpGet]
+        public async Task<IActionResult> Ballet([FromQuery] EventsQueryModel query)
+        {
+            //if (this.User.IsInRole())
+            //{
+            //    return RedirectToAction("All", "Event", new { area = "Admin"});
+            //}
+
+            var result = await eventService.All(
+                query.Genre,
+                "Ballet",
+                query.SearchTerm,
+                query.Sorting,
+                query.CurrentPage,
+                EventsQueryModel.EventsPerPage);
+
+            query.TotalEventsCount = result.TotalCount;
+            query.Genres = await commonService.AllGenresNames();
+            query.Events = result.Collection;
+
+            return View(query);
+        }
+
+        /// <summary>
+        /// Return All Opera's
+        /// </summary>
+        /// <param name="query">AllEventsQueryModel</param>
+        /// <returns>Events</returns>
+        [HttpGet]
+        public async Task<IActionResult> Concert([FromQuery] EventsQueryModel query)
+        {
+            //if (this.User.IsInRole())
+            //{
+            //    return RedirectToAction("All", "Event", new { area = "Admin"});
+            //}
+
+            var result = await eventService.All(
+                query.Genre,
+                "Concert",
+                query.SearchTerm,
+                query.Sorting,
+                query.CurrentPage,
+                EventsQueryModel.EventsPerPage);
+
+            query.TotalEventsCount = result.TotalCount;
+            query.Genres = await commonService.AllGenresNames();
             query.Events = result.Collection;
 
             return View(query);

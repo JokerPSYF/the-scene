@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TheScene.Areas.Admin.Models;
 using TheScene.Core.Interface;
 using TheScene.Core.Models.Event;
-using TheScene.Models;
 
 namespace TheScene.Areas.Admin.Controllers
 {
