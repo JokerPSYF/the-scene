@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TheScene.Infrastructure.Data;
 
@@ -11,13 +12,14 @@ using TheScene.Infrastructure.Data;
 namespace TheScene.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221214110411_identity")]
+    partial class identity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.12")
+                .HasAnnotation("ProductVersion", "6.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -86,10 +88,6 @@ namespace TheScene.Infrastructure.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -142,22 +140,20 @@ namespace TheScene.Infrastructure.Migrations
 
                     b.ToTable("AspNetUsers", (string)null);
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
-
                     b.HasData(
                         new
                         {
                             Id = "7a15400e-4991-4d66-87df-05a82c3bf851",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c4ffe764-ac41-4913-8712-2626c407dfb8",
+                            ConcurrencyStamp = "ed9878d3-f564-4c59-a4a5-dcef8f79d147",
                             Email = "TODOR@MAIL.COM",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "todor@mail.com",
                             NormalizedUserName = "Todor",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDH7/Gra/N2v61KyBMaFtR+buomdhTMPL13vLH0fqhM9tNYTb4rCvkzOICtowMu14Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHgzSuHy1kyv1XKeX2KW0DcrYS82eAXSO1maeDDdxNyQCs6FUOYHFstQ2CkplQapBw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "da3d4145-38ce-4360-b81c-d3a6adde1798",
+                            SecurityStamp = "f1e0f2fe-78d9-440d-8103-5f3406450844",
                             TwoFactorEnabled = false,
                             UserName = "TODOR"
                         });
@@ -749,28 +745,6 @@ namespace TheScene.Infrastructure.Migrations
                             Id = 4,
                             Name = "Stadium"
                         });
-                });
-
-            modelBuilder.Entity("TheScene.Infrastructure.Data.AppUser", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)")
-                        .HasComment("The first name of the user");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)")
-                        .HasComment("The first name of the user");
-
-                    b.HasDiscriminator().HasValue("AppUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

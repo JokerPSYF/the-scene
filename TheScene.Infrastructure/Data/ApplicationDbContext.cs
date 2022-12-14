@@ -25,6 +25,8 @@ namespace TheScene.Infrastructure.Data
             base.OnModelCreating(builder);
         }
 
+        public DbSet<AppUser> AppUsers { get; set; } = null!;
+
         public DbSet<Event> Events { get; set; } = null!;
 
         public DbSet<Genre> Genres { get; set; } = null!;

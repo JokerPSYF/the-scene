@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TheScene.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using TheScene.Infrastructure.Data;
 namespace TheScene.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221214170101_dbSet")]
+    partial class dbSet
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -149,15 +151,15 @@ namespace TheScene.Infrastructure.Migrations
                         {
                             Id = "7a15400e-4991-4d66-87df-05a82c3bf851",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c4ffe764-ac41-4913-8712-2626c407dfb8",
+                            ConcurrencyStamp = "95d3d71e-8a1d-4cc6-97bf-26d9fc3d2f72",
                             Email = "TODOR@MAIL.COM",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "todor@mail.com",
                             NormalizedUserName = "Todor",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDH7/Gra/N2v61KyBMaFtR+buomdhTMPL13vLH0fqhM9tNYTb4rCvkzOICtowMu14Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEP2LO8uXVuQ+53nJSvqC4PTIWXtRdnzxh2sWVQTWt/rW76vva/Ns03Kn2AdWu/3h9g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "da3d4145-38ce-4360-b81c-d3a6adde1798",
+                            SecurityStamp = "66326c05-cdc0-426c-9205-b15541fc8d37",
                             TwoFactorEnabled = false,
                             UserName = "TODOR"
                         });
