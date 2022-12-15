@@ -32,7 +32,7 @@ namespace TheScene.Core.Service
             string? searchTerm = null,
             PerfomanceSotring sorting = PerfomanceSotring.Title,
             int currentPage = 1,
-            int perfomancePerPage = 5)
+            int perfomancePerPage = 6)
         {
             var result = new QueryModel<AllPerfomanceModel>();
 

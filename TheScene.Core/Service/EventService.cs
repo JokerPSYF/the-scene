@@ -30,7 +30,7 @@ namespace TheScene.Core.Service
         public async Task<QueryModel<AllEventModel>> All(
             string? genre = null, string? perfomanceType = null,
             string? searchTerm = null, EventSorting sorting = EventSorting.Soonest,
-            int currentPage = 1, int eventPerPage = 5)
+            int currentPage = 1, int eventPerPage = 6)
         {
             var result = new QueryModel<AllEventModel>();
             var events = repository.AllReadonly<Event>()
@@ -197,26 +197,6 @@ namespace TheScene.Core.Service
         {
             return await repository.AllReadonly<Event>()
                 .AnyAsync(e => e.IsActive && e.Id == eventId);
-        }
-
-        /// <summary>
-        /// get genre id of the event
-        /// </summary>
-        /// <param name="eventId">event id</param>
-        /// <returns>genre id</returns>
-        public async Task<int> GetEventGenreId(int eventId)
-        {
-            return (await repository.GetByIdAsync<Event>(eventId)).Perfomance.GenreId;
-        }
-
-        /// <summary>
-        /// Get perfomance type id of the event
-        /// </summary>
-        /// <param name="eventId">event id</param>
-        /// <returns>perfomance type id</returns>
-        public async Task<int> GetEventPerfomanceTypeId(int eventId)
-        {
-            return (await repository.GetByIdAsync<Event>(eventId)).Perfomance.PerfomanceTypeId;
         }
     }
 }

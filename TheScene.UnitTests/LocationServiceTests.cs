@@ -34,12 +34,7 @@ namespace TheScene.UnitTests
         [Test]
         public async Task GetAllLocationsTest()
         {
-            string? placeType = null;
-            string? searchTerm = null;
-            int currentPage = 1;
-            int locationPerPage = 10;
-
-            var result = await locationService.AllLocationsInfo(placeType, searchTerm, currentPage, locationPerPage);
+            var result = await locationService.AllLocationsInfo();
 
             Assert.That(7, Is.EqualTo(result.TotalCount));
             Assert.That(result.Collection.Any(l => l.Id == 1), Is.True);

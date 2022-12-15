@@ -5,7 +5,7 @@ namespace TheScene.Models
 {
     public class AllPerfomanceQueryModel
     {
-        public const int PerfomancePerPage = 5;
+        public const int PerfomancePerPage = 6;
 
         public string? Genre { get; set; }
 

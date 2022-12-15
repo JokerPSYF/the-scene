@@ -8,7 +8,7 @@ namespace TheScene.Core.Interface
         public Task<QueryModel<AllEventModel>> All(
             string? genre = null, string? perfomanceType = null,
             string? searchTerm = null, EventSorting sorting = EventSorting.Soonest,
-            int currentPage = 1, int eventPerPage = 5);
+            int currentPage = 1, int eventPerPage = 6);
 
         public Task<int> Create(EventModel model);
 
@@ -19,9 +19,5 @@ namespace TheScene.Core.Interface
         public Task Edit(int eventId, EventModel model);
 
         public Task<bool> Exists(int eventId);
-
-        public Task<int> GetEventGenreId(int houseId);
-
-        public Task<int> GetEventPerfomanceTypeId(int houseId);
     }
 }
