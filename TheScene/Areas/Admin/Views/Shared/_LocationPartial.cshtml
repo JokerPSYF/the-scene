@@ -9,11 +9,11 @@
             <br />
             @if (this.User.Identity!.IsAuthenticated)
             {
-                <a asp-controller="Location" asp-action="Details" asp-route-id="@Model.Id"
+                <a asp-area="Admin" asp-controller="Location" asp-action="Details" asp-route-id="@Model.Id"
                class="btn btn-success">Details</a>
-                <a asp-controller="Location" asp-action="Edit" asp-route-id="@Model.Id"
+                <a asp-area="Admin" asp-controller="Location" asp-action="Edit" asp-route-id="@Model.Id"
                class="btn btn-warning">Edit</a>
-                <a asp-controller="Location" asp-action="Delete" asp-route-id="@Model.Id"
+                <a asp-area="Admin" asp-controller="Location" asp-action="Delete" asp-route-id="@Model.Id"
                class="btn btn-danger">Delete</a>
             }
         </div>

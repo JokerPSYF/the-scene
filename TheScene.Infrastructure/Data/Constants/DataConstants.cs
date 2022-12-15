@@ -173,5 +173,24 @@
             public const decimal MinPrice = 0m;
 
         }
+
+        public static class UserConstants
+        {
+            /// <summary>
+            /// The maximum length of the first name
+            /// </summary>
+            public const int FNameMax = 15;
+
+            /// <summary>
+            /// The maximum length of the last name
+            /// </summary>
+            public const int LNameMax = 15;
+
+            /// <summary>
+            /// The maximum length of the user name
+            /// </summary>
+            public const int UsernameMax = 15;
+
+        }
     }
 }

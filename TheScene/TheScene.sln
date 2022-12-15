@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheScene.Core", "..\TheScen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheScene.Infrastructure", "..\TheScene.Infrastructure\TheScene.Infrastructure.csproj", "{0E299D07-BEE8-40ED-8B1C-409E874D39F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheScene.UnitTests", "..\TheScene.UnitTests\TheScene.UnitTests.csproj", "{8BC1194C-11D6-430C-BA84-FAC4F3F8BB56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheScene.UnitTests", "..\TheScene.UnitTests\TheScene.UnitTests.csproj", "{8BC1194C-11D6-430C-BA84-FAC4F3F8BB56}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,13 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TheScene.Areas.Admin.Models;
 using TheScene.Core.Interface;
 using TheScene.Core.Models.Event;
-using TheScene.Models;
 
-namespace TheScene.Controllers
+namespace TheScene.Areas.Admin.Controllers
 {
-    [Authorize]
-    public class EventController : Controller
+    public class EventController : BaseController
     {
         private readonly IEventService eventService;
         private readonly ICommonService commonService;
@@ -54,7 +53,7 @@ namespace TheScene.Controllers
         {
             if (!(await eventService.Exists(id)))
             {
-                return RedirectToAction(nameof(All));
+                return RedirectToAction("Index", "Home");
             }
 
             var model = await eventService.DetailsById(id);
@@ -123,7 +122,7 @@ namespace TheScene.Controllers
         {
             if (!(await eventService.Exists(id)))
             {
-                return RedirectToAction(nameof(All));
+                return RedirectToAction("Index", "Home");
             }
 
 
@@ -183,7 +182,7 @@ namespace TheScene.Controllers
         {
             if (!(await eventService.Exists(id)))
             {
-                return RedirectToAction(nameof(All));
+                return RedirectToAction("Index", "Home");
             }
 
             var Event = await eventService.DetailsById(id);
@@ -209,7 +208,7 @@ namespace TheScene.Controllers
         {
             if (!(await eventService.Exists(id)))
             {
-                return RedirectToAction(nameof(All));
+                return RedirectToAction("Index", "Home");
             }
 
             //if ((await adminService.HasAgentWithId(id, User.Id())) == false)
@@ -219,7 +218,7 @@ namespace TheScene.Controllers
 
             await eventService.Delete(id);
 
-            return RedirectToAction(nameof(All));
+            return RedirectToAction("Index", "Home");
         }
     }
 }

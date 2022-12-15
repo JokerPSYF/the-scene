@@ -3,14 +3,11 @@ using TheScene.Core.Models.Event;
 
 namespace TheScene.Models
 {
-    public class AllEventsQueryModel
+    public class EventsQueryModel
     {
         public const int EventsPerPage = 5;
 
         public string? Genre { get; set; }
-
-        [Display(Name = "Type")]
-        public string? PerfomanceType { get; set; }
 
         [Display(Name = "Search")]
         public string? SearchTerm { get; set; }
@@ -22,8 +19,6 @@ namespace TheScene.Models
         public int TotalEventsCount { get; set; }
 
         public IEnumerable<string> Genres { get; set; } = Enumerable.Empty<string>();
-
-        public IEnumerable<string> PerfomanceTypes { get; set; } = Enumerable.Empty<string>();
 
         public IEnumerable<AllEventModel> Events { get; set; } = Enumerable.Empty<AllEventModel>();
     }
