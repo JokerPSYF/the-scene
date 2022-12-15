@@ -94,7 +94,7 @@ namespace TheScene.Areas.Admin.Controllers
                 ModelState.AddModelError(nameof(model.LocationId), "Location does not exists");
             }
 
-            if (!(await commonService.LocationExists(model.PerfomanceId)))
+            if (!(await commonService.PerfomancesExists(model.PerfomanceId)))
             {
                 ModelState.AddModelError(nameof(model.PerfomanceId), "Perfomance does not exists");
             }

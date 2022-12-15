@@ -37,15 +37,6 @@ namespace TheScene.Controllers
                 return RedirectToAction("All", "Event", new { area = "Admin" });
             }
 
-            if (!string.IsNullOrEmpty(query.PerfomanceType))
-            {
-                TempData["title"] = query.PerfomanceType;
-            }
-            else
-            {
-                TempData["title"] = "Events";
-            }
-
             var result = await eventService.All(
                 query.Genre,
                 query.PerfomanceType,

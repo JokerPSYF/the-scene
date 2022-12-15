@@ -97,9 +97,10 @@ namespace TheScene.Core.Service
         /// <returns>bool</returns>
         public async Task<bool> LocationExists(int locationbId)
         {
-            return await repository.AllReadonly<Location>()
+            var result = await repository.AllReadonly<Location>()
                 .Where(l => l.IsActive)
                 .AnyAsync(l => l.Id == locationbId);
+            return result;
         }
         #endregion
 

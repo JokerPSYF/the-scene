@@ -34,7 +34,7 @@ namespace TheScene.Core.Service
         {
             var result = new QueryModel<AllEventModel>();
             var events = repository.AllReadonly<Event>()
-            .Where(e => e.IsActive /*&& e.Date >= DateTime.Today*/);
+            .Where(e => e.IsActive && e.Date >= DateTime.Today);
 
             if (!string.IsNullOrEmpty(genre))
                 events = events.Where(e => e.Perfomance.Genre.Name == genre);
