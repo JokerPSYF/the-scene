@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TheScene.Infrastructure.Data;
@@ -29,6 +30,7 @@ namespace TheScene
                 options.Password.RequireUppercase = builder.Configuration.GetValue<bool>("Identity:RequiredUppecase");
 
             })
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             builder.Services.AddControllersWithViews()
@@ -73,9 +75,11 @@ namespace TheScene
                   name: "areas",
                   pattern: "{area:exists}/{controller=Event}/{action=All}/{id?}"
                 );
+
+                endpoints.MapRazorPages();
             });
 
-            app.MapRazorPages();
+            //app.MapRazorPages();
 
             app.Run();
         }

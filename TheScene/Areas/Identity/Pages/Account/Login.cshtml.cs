@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 using TheScene.Infrastructure.Data;
+using static TheScene.Areas.Admin.Constants.AdminConstants;
 
 namespace TheScene.Areas.Identity.Pages.Account
 {
@@ -12,10 +13,12 @@ namespace TheScene.Areas.Identity.Pages.Account
     public class LoginModel : PageModel
     {
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly UserManager<AppUser> _userManager;
 
-        public LoginModel(SignInManager<AppUser> signInManager)
+        public LoginModel(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager)
         {
             _signInManager = signInManager;
+            _userManager = userManager;
         }
 
         /// <summary>
@@ -97,6 +100,13 @@ namespace TheScene.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Username, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    var user = await _userManager.FindByNameAsync(Input.Username);
+
+                    if (user != null && await _userManager.IsInRoleAsync(user, Administrator))
+                    {
+                        return RedirectToAction("All", "Event", new { Area = Administrator });
+                    }
+
                     return LocalRedirect(returnUrl);
                 }
                 else

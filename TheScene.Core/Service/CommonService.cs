@@ -68,6 +68,7 @@ namespace TheScene.Core.Service
         {
             return await repository.AllReadonly<Location>()
                 .OrderBy(l => l.Name)
+                .Where(l => l.IsActive)
                 .Select(l => new NomenclatureDTO()
                 {
                     Id = l.Id,
@@ -83,6 +84,7 @@ namespace TheScene.Core.Service
         public async Task<IEnumerable<string>> AllLocationsNames()
         {
             return await repository.AllReadonly<Location>()
+                .Where(l => l.IsActive)
                 .Select(l => l.Name)
                 .Distinct()
                 .ToListAsync();
@@ -96,6 +98,7 @@ namespace TheScene.Core.Service
         public async Task<bool> LocationExists(int locationbId)
         {
             return await repository.AllReadonly<Location>()
+                .Where(l => l.IsActive)
                 .AnyAsync(l => l.Id == locationbId);
         }
         #endregion
@@ -110,6 +113,7 @@ namespace TheScene.Core.Service
         {
             return await repository.AllReadonly<Perfomance>()
                 .OrderBy(p => p.Title)
+                .Where(p => p.IsActive)
                 .Select(p => new NomenclatureDTO()
                 {
                     Id = p.Id,
@@ -125,6 +129,7 @@ namespace TheScene.Core.Service
         public async Task<IEnumerable<string>> AllPerfomancesNames()
         {
             return await repository.AllReadonly<Perfomance>()
+                .Where(p => p.IsActive)
                 .Select(p => p.Title)
                 .Distinct()
                 .ToListAsync();
@@ -138,6 +143,7 @@ namespace TheScene.Core.Service
         public async Task<bool> PerfomancesExists(int perfomanceId)
         {
             return await repository.AllReadonly<Perfomance>()
+               .Where(p => p.IsActive)
                .AnyAsync(p => p.Id == perfomanceId);
         }
         #endregion
