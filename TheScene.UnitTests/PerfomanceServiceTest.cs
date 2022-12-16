@@ -3,7 +3,6 @@ using TheScene.Core.Interface;
 using TheScene.Core.Service;
 using TheScene.Infrastructure.Data.Common;
 using TheScene.Infrastructure.Data;
-using TheScene.Core.Models.Event;
 using TheScene.Core.Models.PerfomanceModels;
 using TheScene.Infrastructure.Data.Entities;
 
