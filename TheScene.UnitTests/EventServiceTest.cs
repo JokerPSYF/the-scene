@@ -50,8 +50,6 @@ namespace TheScene.UnitTests
                 Assert.That(result.Collection.Any(l => l.Id == 6), Is.False);
                 Assert.That(result.Collection.Count, Is.EqualTo(0));
             }
-
-
         }
 
         [Test]
