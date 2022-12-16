@@ -108,7 +108,7 @@
             /// <summary>
             /// Year maximum constant
             /// </summary>
-            public const int MinYear = 1975;
+            public const int MinYear = 1875;
         }
 
         /// <summary>

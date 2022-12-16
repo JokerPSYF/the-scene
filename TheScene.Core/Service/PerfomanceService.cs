@@ -32,7 +32,7 @@ namespace TheScene.Core.Service
             string? searchTerm = null,
             PerfomanceSotring sorting = PerfomanceSotring.Title,
             int currentPage = 1,
-            int perfomancePerPage = 5)
+            int perfomancePerPage = 6)
         {
             var result = new QueryModel<AllPerfomanceModel>();
 
@@ -119,7 +119,8 @@ namespace TheScene.Core.Service
                 Actors = model.Actors,
                 PerfomanceTypeId = model.PerfomanceTypeId,
                 Year = model.Year,
-                ImageURL = model.ImageURL
+                ImageURL = model.ImageURL,
+                Description = model.Description
             };
 
             await repository.AddAsync<Perfomance>(perfomance);
@@ -146,7 +147,7 @@ namespace TheScene.Core.Service
         /// <param name="perfomanceId">perfomance id</param>
         public async Task<DetailPerfomanceModel> DetailsById(int perfomanceId)
         {
-            return await repository.AllReadonly<Perfomance>()
+            var result = await repository.AllReadonly<Perfomance>()
                 .Where(p => p.Id == perfomanceId && p.IsActive)
                 .Select(p => new DetailPerfomanceModel()
                 {
@@ -163,6 +164,8 @@ namespace TheScene.Core.Service
                     Description = p.Description,
                 })
                 .FirstAsync();
+
+            return result;
         }
 
         public async Task Edit(int eventId, PerfomanceModel model)

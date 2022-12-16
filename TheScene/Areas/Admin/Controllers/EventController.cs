@@ -53,7 +53,7 @@ namespace TheScene.Areas.Admin.Controllers
         {
             if (!(await eventService.Exists(id)))
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("All");
             }
 
             var model = await eventService.DetailsById(id);
@@ -94,7 +94,7 @@ namespace TheScene.Areas.Admin.Controllers
                 ModelState.AddModelError(nameof(model.LocationId), "Location does not exists");
             }
 
-            if (!(await commonService.LocationExists(model.PerfomanceId)))
+            if (!(await commonService.PerfomancesExists(model.PerfomanceId)))
             {
                 ModelState.AddModelError(nameof(model.PerfomanceId), "Perfomance does not exists");
             }
@@ -122,7 +122,7 @@ namespace TheScene.Areas.Admin.Controllers
         {
             if (!(await eventService.Exists(id)))
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("All");
             }
 
 
@@ -182,7 +182,7 @@ namespace TheScene.Areas.Admin.Controllers
         {
             if (!(await eventService.Exists(id)))
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("All");
             }
 
             var Event = await eventService.DetailsById(id);
@@ -208,7 +208,7 @@ namespace TheScene.Areas.Admin.Controllers
         {
             if (!(await eventService.Exists(id)))
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("All");
             }
 
             //if ((await adminService.HasAgentWithId(id, User.Id())) == false)
@@ -218,7 +218,7 @@ namespace TheScene.Areas.Admin.Controllers
 
             await eventService.Delete(id);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("All");
         }
     }
 }

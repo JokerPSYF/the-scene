@@ -5,7 +5,7 @@ namespace TheScene.Models
 {
     public class AllLocationQueryModel
     {
-        public const int LocationsPerPage = 5;
+        public const int LocationsPerPage = 6;
 
         [Display(Name = "Search")]
         public string? SearchTerm { get; set; }

@@ -26,7 +26,7 @@
                         <option value="@location.Id">@location.DisplayName</option>
                     }
                 </select>
-                <span asp-validation-for="PerfomanceId" class="small text-danger"></span>
+                <span asp-validation-for="LocationId" class="small text-danger"></span>
                 <input type="button" class="btn btn-primary" value="Add new location"
                        onclick="@("window.location.href='" + @Url.Action("Add", "Location") + "'");" />
             </div>

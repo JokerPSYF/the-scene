@@ -4,9 +4,9 @@ using static TheScene.Areas.Admin.Constants.AdminConstants;
 
 namespace TheScene.Areas.Admin.Controllers
 {
-    [Area(AreaName)]
+    [Area(Administrator)]
     [Route("/Admin/[controller]/[Action]/{id?}")]
-    [Authorize]
+    [Authorize(Roles = Administrator)]
     public class BaseController : Controller
     {
     }

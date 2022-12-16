@@ -14,7 +14,9 @@ namespace TheScene.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.ApplyConfiguration(new RoleConfiguration());
             builder.ApplyConfiguration(new UserConfiguration());
+            builder.ApplyConfiguration(new UserRoleConfiguration());
             builder.ApplyConfiguration(new PerfomanceTypeConfiguration());
             builder.ApplyConfiguration(new PlaceTypeConfiguration());
             builder.ApplyConfiguration(new LocationConfiguration());

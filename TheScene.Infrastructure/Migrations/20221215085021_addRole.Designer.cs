@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TheScene.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using TheScene.Infrastructure.Data;
 namespace TheScene.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221215085021_addRole")]
+    partial class addRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,15 +49,6 @@ namespace TheScene.Infrastructure.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "b97379a1-4a4b-4cdb-b57f-edf338d73730",
-                            ConcurrencyStamp = "7aa3beae-3089-4c75-93df-e242ab89cf7d",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -158,15 +151,15 @@ namespace TheScene.Infrastructure.Migrations
                         {
                             Id = "7a15400e-4991-4d66-87df-05a82c3bf851",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ca1ae573-366e-4b52-a076-78c9d1777162",
+                            ConcurrencyStamp = "ecb190f5-75cc-4d50-9308-a733ec203f4b",
                             Email = "TODOR@MAIL.COM",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "todor@mail.com",
                             NormalizedUserName = "Todor",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGPkeCbzRgLKahillPn7jmmKH39YcRda4KIuPVkkvoQn61YMzlYj2ux3MFY0F5Sgfw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJiZZcCk+n56xmE4LSG/1xtJwLa9wNAiHhAmhM0jr3UUjiJ6IJBDSPypqCVssoY5EQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5db1805b-f97e-4e8d-96a4-8a9cc78e4c3a",
+                            SecurityStamp = "e810efe8-7d55-4a73-bd10-33a77697a34f",
                             TwoFactorEnabled = false,
                             UserName = "TODOR"
                         });
@@ -234,18 +227,6 @@ namespace TheScene.Infrastructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "7361f6f7-fb11-45e9-a59d-05a9b56a15d7",
-                            RoleId = "b97379a1-4a4b-4cdb-b57f-edf338d73730"
-                        },
-                        new
-                        {
-                            UserId = "ccd62d33-055a-494c-b4c4-bb984fca7273",
-                            RoleId = "b97379a1-4a4b-4cdb-b57f-edf338d73730"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

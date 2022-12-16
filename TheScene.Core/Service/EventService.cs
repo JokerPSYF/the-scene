@@ -30,11 +30,11 @@ namespace TheScene.Core.Service
         public async Task<QueryModel<AllEventModel>> All(
             string? genre = null, string? perfomanceType = null,
             string? searchTerm = null, EventSorting sorting = EventSorting.Soonest,
-            int currentPage = 1, int eventPerPage = 5)
+            int currentPage = 1, int eventPerPage = 6)
         {
             var result = new QueryModel<AllEventModel>();
-            var events = repository.AllReadonly<Event>();
-            //.Where(e => e.IsActive && e.Date >= DateTime.Today);
+            var events = repository.AllReadonly<Event>()
+            .Where(e => e.IsActive && e.Date >= DateTime.Today);
 
             if (!string.IsNullOrEmpty(genre))
                 events = events.Where(e => e.Perfomance.Genre.Name == genre);
@@ -113,17 +113,10 @@ namespace TheScene.Core.Service
             {
                 PerfomanceId = model.PerfomanceId,
                 LocationId = model.LocationId,
-                OccupiedSeats = 0,
                 PricePerTicket = model.PricePerTicket,
                 IsPremiere = model.IsPremiere,
                 Date = model.Date
             };
-
-            // We want the to take the seats from the location of the event
-            var location = await repository.GetByIdAsync<Location>(model.LocationId);
-
-            // Add them in freeSeats couse all free
-            eventEntity.FreeSeats = location.Seats;
 
             await repository.AddAsync(eventEntity);
             await repository.SaveChangesAsync();
@@ -204,26 +197,6 @@ namespace TheScene.Core.Service
         {
             return await repository.AllReadonly<Event>()
                 .AnyAsync(e => e.IsActive && e.Id == eventId);
-        }
-
-        /// <summary>
-        /// get genre id of the event
-        /// </summary>
-        /// <param name="eventId">event id</param>
-        /// <returns>genre id</returns>
-        public async Task<int> GetEventGenreId(int eventId)
-        {
-            return (await repository.GetByIdAsync<Event>(eventId)).Perfomance.GenreId;
-        }
-
-        /// <summary>
-        /// Get perfomance type id of the event
-        /// </summary>
-        /// <param name="eventId">event id</param>
-        /// <returns>perfomance type id</returns>
-        public async Task<int> GetEventPerfomanceTypeId(int eventId)
-        {
-            return (await repository.GetByIdAsync<Event>(eventId)).Perfomance.PerfomanceTypeId;
         }
     }
 }

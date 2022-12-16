@@ -8,7 +8,7 @@ namespace TheScene.Core.Interface
         public Task<QueryModel<AllPerfomanceModel>> All(
            string? Genre = null, string? perfomanceType = null,
            string? searchTerm = null, PerfomanceSotring sorting = PerfomanceSotring.Title,
-           int currentPage = 1, int eventPerPage = 5);
+           int currentPage = 1, int eventPerPage = 6);
 
         public Task<int> Create(PerfomanceModel model);
 
