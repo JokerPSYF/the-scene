@@ -9,6 +9,7 @@ namespace TheScene.Models
 
         public string? Genre { get; set; }
 
+        [Display(Name = "Perfomance Type")]
         public string? PerfomanceType { get; set; }
 
         [Display(Name = "Search")]

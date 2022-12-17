@@ -8,9 +8,6 @@ namespace TheScene.Areas.Admin.Models
     /// </summary>
     public class AllEventsQueryModel : EventsQueryModel
     {
-        [Display(Name = "Type")]
-        public string? PerfomanceType { get; set; }
-
         public IEnumerable<string> PerfomanceTypes { get; set; } = Enumerable.Empty<string>();
     }
 }
