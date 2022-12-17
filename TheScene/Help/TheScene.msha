@@ -1,0 +1,20 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>TheScene</title>
+</head>
+<body class="vendor-book">
+    <div class="details">
+        <span class="vendor">Vendor Name</span>
+        <span class="locale">en-us</span>
+        <span class="product">TheScene</span>
+        <span class="name">TheScene</span>
+    </div>
+    <div class="package-list">
+        <div class="package">
+            <!-- NOTE: The "name" span value cannot contain any periods! -->
+            <span class="name">TheScene</span>
+            <a class="current-link" href="TheScene.mshc">TheScene.mshc</a>
+        </div>
+    </div>
+</body>
+</html>

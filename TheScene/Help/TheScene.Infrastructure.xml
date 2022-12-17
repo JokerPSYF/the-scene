@@ -1,0 +1,402 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>TheScene.Infrastructure</name>
+  </assembly>
+  <members>
+    <member name="T:TheScene.Infrastructure.Data.Common.IRepository">
+      <summary>
+   Abstraction of repository access methods
+   </summary>
+    </member>
+    <member name="M:TheScene.Infrastructure.Data.Common.IRepository.All``1">
+      <summary>
+   All records in a table
+   </summary>
+      <returns>Queryable expression tree</returns>
+    </member>
+    <member name="M:TheScene.Infrastructure.Data.Common.IRepository.All``1(Expression{Func{``0, System.Boolean}})">
+      <summary>
+   All records in a table
+   </summary>
+      <returns>Queryable expression tree</returns>
+    </member>
+    <member name="M:TheScene.Infrastructure.Data.Common.IRepository.AllReadonly``1">
+      <summary>
+   The result collection won't be tracked by the context
+   </summary>
+      <returns>Expression tree</returns>
+    </member>
+    <member name="M:TheScene.Infrastructure.Data.Common.IRepository.AllReadonly``1(Expression{Func{``0, System.Boolean}})">
+      <summary>
+   The result collection won't be tracked by the context
+   </summary>
+      <returns>Expression tree</returns>
+    </member>
+    <member name="M:TheScene.Infrastructure.Data.Common.IRepository.GetByIdAsync``1(System.Object)">
+      <summary>
+   Gets specific record from database by primary key
+   </summary>
+      <param name="id">record identificator</param>
+      <returns>Single record</returns>
+    </member>
+    <member name="M:TheScene.Infrastructure.Data.Common.IRepository.AddAsync``1(``0)">
+      <summary>
+   Adds entity to the database
+   </summary>
+      <param name="entity">Entity to add</param>
+    </member>
+    <member name="M:TheScene.Infrastructure.Data.Common.IRepository.AddRangeAsync``1(IEnumerable{``0})">
+      <summary>
+   Ads collection of entities to the database
+   </summary>
+      <param name="entities">Enumerable list of entities</param>
+    </member>
+    <member name="M:TheScene.Infrastructure.Data.Common.IRepository.Update``1(``0)">
+      <summary>
+   Updates a record in database
+   </summary>
+      <param name="entity">Entity for record to be updated</param>
+    </member>
+    <member name="M:TheScene.Infrastructure.Data.Common.IRepository.UpdateRange``1(IEnumerable{``0})">
+      <summary>
+   Updates set of records in the database
+   </summary>
+      <param name="entities">Enumerable collection of entities to be updated</param>
+    </member>
+    <member name="M:TheScene.Infrastructure.Data.Common.IRepository.DeleteAsync``1(System.Object)">
+      <summary>
+   Deletes a record from database
+   </summary>
+      <param name="id">Identificator of record to be deleted</param>
+    </member>
+    <member name="M:TheScene.Infrastructure.Data.Common.IRepository.Delete``1(``0)">
+      <summary>
+   Deletes a record from database
+   </summary>
+      <param name="entity">Entity representing record to be deleted</param>
+    </member>
+    <member name="M:TheScene.Infrastructure.Data.Common.IRepository.Detach``1(``0)">
+      <summary>
+   Detaches given entity from the context
+   </summary>
+      <param name="entity">Entity to be detached</param>
+    </member>
+    <member name="M:TheScene.Infrastructure.Data.Common.IRepository.SaveChangesAsync">
+      <summary>
+   Saves all made changes in trasaction
+   </summary>
+      <returns>Error code</returns>
+    </member>
+    <member name="T:TheScene.Infrastructure.Data.Common.Repository">
+      <summary>
+   Implementation of repository access methods
+   for Relational Database Engine
+   </summary>
+      <typeparam name="T">Type of the data table to which
+   current reposity is attached</typeparam>
+    </member>
+    <member name="M:TheScene.Infrastructure.Data.Common.Repository.AddAsync``1(``0)">
+      <summary>
+   Adds entity to the database
+   </summary>
+      <param name="entity">Entity to add</param>
+    </member>
+    <member name="M:TheScene.Infrastructure.Data.Common.Repository.AddRangeAsync``1(IEnumerable{``0})">
+      <summary>
+   Ads collection of entities to the database
+   </summary>
+      <param name="entities">Enumerable list of entities</param>
+    </member>
+    <member name="M:TheScene.Infrastructure.Data.Common.Repository.All``1">
+      <summary>
+   All records in a table
+   </summary>
+      <returns>Queryable expression tree</returns>
+    </member>
+    <member name="M:TheScene.Infrastructure.Data.Common.Repository.AllReadonly``1">
+      <summary>
+   The result collection won't be tracked by the context
+   </summary>
+      <returns>Expression tree</returns>
+    </member>
+    <member name="M:TheScene.Infrastructure.Data.Common.Repository.DeleteAsync``1(System.Object)">
+      <summary>
+   Deletes a record from database
+   </summary>
+      <param name="id">Identificator of record to be deleted</param>
+    </member>
+    <member name="M:TheScene.Infrastructure.Data.Common.Repository.Delete``1(``0)">
+      <summary>
+   Deletes a record from database
+   </summary>
+      <param name="entity">Entity representing record to be deleted</param>
+    </member>
+    <member name="M:TheScene.Infrastructure.Data.Common.Repository.Detach``1(``0)">
+      <summary>
+   Detaches given entity from the context
+   </summary>
+      <param name="entity">Entity to be detached</param>
+    </member>
+    <member name="M:TheScene.Infrastructure.Data.Common.Repository.Dispose">
+      <summary>
+   Disposing the context when it is not neede
+   Don't have to call this method explicitely
+   Leave it to the IoC container
+   </summary>
+    </member>
+    <member name="M:TheScene.Infrastructure.Data.Common.Repository.GetByIdAsync``1(System.Object)">
+      <summary>
+   Gets specific record from database by primary key
+   </summary>
+      <param name="id">record identificator</param>
+      <returns>Single record</returns>
+    </member>
+    <member name="M:TheScene.Infrastructure.Data.Common.Repository.SaveChangesAsync">
+      <summary>
+   Saves all made changes in trasaction
+   </summary>
+      <returns>Error code</returns>
+    </member>
+    <member name="M:TheScene.Infrastructure.Data.Common.Repository.Update``1(``0)">
+      <summary>
+   Updates a record in database
+   </summary>
+      <param name="entity">Entity for record to be updated</param>
+    </member>
+    <member name="M:TheScene.Infrastructure.Data.Common.Repository.UpdateRange``1(IEnumerable{``0})">
+      <summary>
+   Updates set of records in the database
+   </summary>
+      <param name="entities">Enumerable collection of entities to be updated</param>
+    </member>
+    <member name="T:TheScene.Infrastructure.Data.Constants.DataConstants">
+      <summary>
+   Data constats of all properties of entities.
+   </summary>
+    </member>
+    <member name="T:TheScene.Infrastructure.Data.Constants.DataConstants.GenreConstants">
+      <summary>
+   Data Constants for 'Genre' entity
+   </summary>
+    </member>
+    <member name="T:TheScene.Infrastructure.Data.Constants.DataConstants.PerfomanceTypeConstants">
+      <summary>
+   Data Constants for 'PerfomanceType' entity
+   </summary>
+    </member>
+    <member name="T:TheScene.Infrastructure.Data.Constants.DataConstants.PlaceTypeConstants">
+      <summary>
+   Data Constants for 'PlaceType' entity
+   </summary>
+    </member>
+    <member name="T:TheScene.Infrastructure.Data.Constants.DataConstants.PerfomanceConstants">
+      <summary>
+   Data Constants for 'Perfomance' entity
+   </summary>
+    </member>
+    <member name="T:TheScene.Infrastructure.Data.Constants.DataConstants.LocationConstants">
+      <summary>
+   Data Constants for 'Location' entity
+   </summary>
+    </member>
+    <member name="T:TheScene.Infrastructure.Data.Constants.DataConstants.EventConstants">
+      <summary>
+   Data Constants for 'Event' entity
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.LengthErrorMessage">
+      <summary>
+   This is a default error message
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.GenreConstants.MaxName">
+      <summary>
+   Name maximum lentgth constant
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.PerfomanceTypeConstants.MaxName">
+      <summary>
+   Name maximum lentgth constant
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.PerfomanceTypeConstants.MinName">
+      <summary>
+   Name maximum lentgth constant
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.PlaceTypeConstants.MaxName">
+      <summary>
+   Name maximum lentgth constant
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.PlaceTypeConstants.MinName">
+      <summary>
+   Name maximum lentgth constant
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.PerfomanceConstants.MaxName">
+      <summary>
+   Name maximum lentgth constant
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.PerfomanceConstants.MinName">
+      <summary>
+   Name maximum lentgth constant
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.PerfomanceConstants.MaxDirector">
+      <summary>
+   Dirrector name maximum lentgth constant
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.PerfomanceConstants.MinDirector">
+      <summary>
+   Dirrector name maximum lentgth constant
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.PerfomanceConstants.MaxActors">
+      <summary>
+   Actors name maximum lentgth constant
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.PerfomanceConstants.MinActors">
+      <summary>
+   Actors name maximum lentgth constant
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.PerfomanceConstants.MaxDescription">
+      <summary>
+   Description maximum lentgth constant
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.PerfomanceConstants.MaxImageURL">
+      <summary>
+   ImageUrl maximum lentgth constant
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.PerfomanceConstants.MaxYear">
+      <summary>
+   Year maximum constant
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.PerfomanceConstants.MinYear">
+      <summary>
+   Year maximum constant
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.LocationConstants.MaxName">
+      <summary>
+   Name maximum length constant
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.LocationConstants.MinName">
+      <summary>
+   Name minimum length constant
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.LocationConstants.MaxAddress">
+      <summary>
+   Address maximum lentgth constant
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.LocationConstants.MinAddress">
+      <summary>
+   Address minimum lentgth constant
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.LocationConstants.MaxSeats">
+      <summary>
+   Seat maximum range constant
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.LocationConstants.MinSeats">
+      <summary>
+   Seat minimum range constant
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.EventConstants.MaxSeats">
+      <summary>
+   Seats maximum lentgth constant
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.EventConstants.MinSeats">
+      <summary>
+   Seats minimum lentgth constant
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.EventConstants.MaxPrice">
+      <summary>
+   Price maximum lentgth constant
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.EventConstants.MinPrice">
+      <summary>
+   Price minimum lentgth constant
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.UserConstants.FNameMax">
+      <summary>
+   The maximum length of the first name
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.UserConstants.LNameMax">
+      <summary>
+   The maximum length of the last name
+   </summary>
+    </member>
+    <member name="F:TheScene.Infrastructure.Data.Constants.DataConstants.UserConstants.UsernameMax">
+      <summary>
+   The maximum length of the user name
+   </summary>
+    </member>
+    <member name="P:TheScene.Infrastructure.Data.Entities.Event.IsActive">
+      <summary>
+   It is deleted or not?
+   </summary>
+    </member>
+    <member name="T:TheScene.Infrastructure.Data.Entities.Genre">
+      <summary>
+   Types of genres
+   </summary>
+    </member>
+    <member name="P:TheScene.Infrastructure.Data.Entities.Location.Seats">
+      <summary>
+   The amount of seats that the place have
+   </summary>
+    </member>
+    <member name="P:TheScene.Infrastructure.Data.Entities.Location.IsActive">
+      <summary>
+   It is deleted or not?
+   </summary>
+    </member>
+    <member name="P:TheScene.Infrastructure.Data.Entities.Perfomance.Director">
+      <summary>
+   Director name of the perfomance
+   </summary>
+    </member>
+    <member name="P:TheScene.Infrastructure.Data.Entities.Perfomance.Actors">
+      <summary>
+   Actor's names who play in the perfomance
+   it will add them like string because we need them only like info.
+   </summary>
+    </member>
+    <member name="P:TheScene.Infrastructure.Data.Entities.Perfomance.IsActive">
+      <summary>
+   It is deleted or not?
+   </summary>
+    </member>
+    <member name="T:TheScene.Infrastructure.Data.Entities.PerfomanceType">
+      <summary>
+   We will show different types of perfomances.
+   Like: movie, theatrical perfomance, concert, opera etc.
+   </summary>
+    </member>
+    <member name="T:TheScene.Infrastructure.Data.Entities.PlaceType">
+      <summary>
+   We will have different types of places.
+   Like: cinema, theater, arena  etc.
+   </summary>
+    </member>
+  </members>
+</doc>
