@@ -1,2 +1,3 @@
-# the-scene
-Asp.Net Core App (MVC) 'The scene' it's web app created for my exam on ASP.NET Advanced
+# The Scene
+
+## This is site that you can see when a show, movie or concert is playing.
