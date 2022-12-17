@@ -1,4 +1,15 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿// ***********************************************************************
+// Assembly         : TheScene
+// Author           : Admin
+// Created          : 11-12-2022
+//
+// Last Modified By : Admin
+// Last Modified On : 11-12-2022
+// ***********************************************************************
+// <copyright file="site.js" company="TheScene">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 
 // Write your JavaScript code.

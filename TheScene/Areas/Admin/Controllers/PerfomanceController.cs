@@ -1,4 +1,17 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿// ***********************************************************************
+// Assembly         : TheScene
+// Author           : Admin
+// Created          : 12-16-2022
+//
+// Last Modified By : Admin
+// Last Modified On : 12-16-2022
+// ***********************************************************************
+// <copyright file="PerfomanceController.cs" company="TheScene">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TheScene.Core.Interface;
 using TheScene.Core.Models.Event;
@@ -7,12 +20,28 @@ using TheScene.Models;
 
 namespace TheScene.Areas.Admin.Controllers
 {
+    /// <summary>
+    /// Class PerfomanceController.
+    /// Implements the <see cref="TheScene.Areas.Admin.Controllers.BaseController" />
+    /// </summary>
+    /// <seealso cref="TheScene.Areas.Admin.Controllers.BaseController" />
     [Authorize]
     public class PerfomanceController : BaseController
     {
+        /// <summary>
+        /// The perfomance service
+        /// </summary>
         private readonly IPerfomanceService perfomanceService;
+        /// <summary>
+        /// The common service
+        /// </summary>
         private readonly ICommonService commonService;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PerfomanceController"/> class.
+        /// </summary>
+        /// <param name="_perfomanceService">The perfomance service.</param>
+        /// <param name="_commonService">The common service.</param>
         public PerfomanceController(IPerfomanceService _perfomanceService,
             ICommonService _commonService)
         {
@@ -83,7 +112,7 @@ namespace TheScene.Areas.Admin.Controllers
         /// <summary>
         /// Post, add perfomance
         /// </summary>
-        /// <param name="model"></param>
+        /// <param name="model">The model.</param>
         /// <returns>Ok</returns>
         [HttpPost]
         public async Task<IActionResult> Add(PerfomanceModel model)
@@ -145,7 +174,7 @@ namespace TheScene.Areas.Admin.Controllers
         /// </summary>
         /// <param name="id">perfomance id</param>
         /// <param name="model">PerfomanceModel</param>
-        /// <returns></returns>
+        /// <returns>IActionResult.</returns>
         [HttpPost]
         public async Task<IActionResult> Edit(int id, PerfomanceModel model)
         {
@@ -223,7 +252,7 @@ namespace TheScene.Areas.Admin.Controllers
         /// </summary>
         /// <param name="id">perfomance id</param>
         /// <param name="model">DeletePerfomanceModel</param>
-        /// <returns></returns>
+        /// <returns>IActionResult.</returns>
         [HttpPost]
         public async Task<IActionResult> Delete(int id, DeleteEventModel model)
         {

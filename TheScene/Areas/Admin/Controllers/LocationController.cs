@@ -1,4 +1,17 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿// ***********************************************************************
+// Assembly         : TheScene
+// Author           : Admin
+// Created          : 12-16-2022
+//
+// Last Modified By : Admin
+// Last Modified On : 12-16-2022
+// ***********************************************************************
+// <copyright file="LocationController.cs" company="TheScene">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TheScene.Core.Interface;
 using TheScene.Core.Models.Location;
@@ -6,12 +19,28 @@ using TheScene.Models;
 
 namespace TheScene.Areas.Admin.Controllers
 {
+    /// <summary>
+    /// Class LocationController.
+    /// Implements the <see cref="TheScene.Areas.Admin.Controllers.BaseController" />
+    /// </summary>
+    /// <seealso cref="TheScene.Areas.Admin.Controllers.BaseController" />
     [Authorize]
     public class LocationController : BaseController
     {
+        /// <summary>
+        /// The common service
+        /// </summary>
         private readonly ICommonService commonService;
+        /// <summary>
+        /// The location service
+        /// </summary>
         private readonly ILocationService locationService;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LocationController"/> class.
+        /// </summary>
+        /// <param name="commonService">The common service.</param>
+        /// <param name="locationService">The location service.</param>
         public LocationController(ICommonService commonService, ILocationService locationService)
         {
             this.commonService = commonService;
@@ -42,8 +71,8 @@ namespace TheScene.Areas.Admin.Controllers
         /// <summary>
         /// Show details of an event
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">The identifier.</param>
+        /// <returns>IActionResult.</returns>
         [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
@@ -78,7 +107,7 @@ namespace TheScene.Areas.Admin.Controllers
         /// Post, Add new Location
         /// </summary>
         /// <param name="model">location model</param>
-        /// <returns></returns>
+        /// <returns>IActionResult.</returns>
         [HttpPost]
         public async Task<IActionResult> Add(LocationModel model)
         {
@@ -99,7 +128,7 @@ namespace TheScene.Areas.Admin.Controllers
         /// GET Edit Location
         /// </summary>
         /// <param name="id">location id</param>
-        /// <returns></returns>
+        /// <returns>IActionResult.</returns>
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -150,8 +179,8 @@ namespace TheScene.Areas.Admin.Controllers
         /// <summary>
         /// GET view of delete location
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">The identifier.</param>
+        /// <returns>IActionResult.</returns>
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
@@ -175,9 +204,9 @@ namespace TheScene.Areas.Admin.Controllers
         /// <summary>
         /// POST Delete location
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="model"></param>
-        /// <returns></returns>
+        /// <param name="id">The identifier.</param>
+        /// <param name="model">The model.</param>
+        /// <returns>IActionResult.</returns>
         [HttpPost]
         public async Task<IActionResult> Delete(int id, LocationModel model)
         {

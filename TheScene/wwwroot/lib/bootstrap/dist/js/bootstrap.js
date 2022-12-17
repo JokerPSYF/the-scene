@@ -1,24 +1,53 @@
+// ***********************************************************************
+// Assembly         : TheScene
+// Author           : Admin
+// Created          : 11-12-2022
+//
+// Last Modified By : Admin
+// Last Modified On : 11-12-2022
+// ***********************************************************************
+// <copyright file="bootstrap.js" company="TheScene">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 /*!
   * Bootstrap v5.1.0 (https://getbootstrap.com/)
   * Copyright 2011-2021 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
   */
 (function (global, factory) {
+  /// <summary>
+  /// </summary>
+  /// <param name="global">The global.</param>
+  /// <param name="factory">The factory.</param>
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('@popperjs/core')) :
   typeof define === 'function' && define.amd ? define(['@popperjs/core'], factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.bootstrap = factory(global.Popper));
+/// <summary>
+/// </summary>
+/// <param name="Popper">The popper.</param>
 }(this, (function (Popper) { 'use strict';
 
   function _interopNamespace(e) {
+    /// <summary>
+    /// Interops the namespace.
+    /// </summary>
+    /// <param name="e">The e.</param>
     if (e && e.__esModule) return e;
     var n = Object.create(null);
     if (e) {
       Object.keys(e).forEach(function (k) {
+        /// <summary>
+        /// </summary>
+        /// <param name="k">The k.</param>
         if (k !== 'default') {
           var d = Object.getOwnPropertyDescriptor(e, k);
           Object.defineProperty(n, k, d.get ? d : {
             enumerable: true,
             get: function () {
+              /// <summary>
+              /// </summary>
               return e[k];
             }
           });
@@ -272,6 +301,8 @@
         $.fn[name].Constructor = plugin;
 
         $.fn[name].noConflict = () => {
+          /// <summary>
+          /// </summary>
           $.fn[name] = JQUERY_NO_CONFLICT;
           return plugin.jQueryInterface;
         };
@@ -309,6 +340,8 @@
 
     transitionElement.addEventListener(TRANSITION_END, handler);
     setTimeout(() => {
+      /// <summary>
+      /// </summary>
       if (!called) {
         triggerTransitionEnd(transitionElement);
       }
@@ -373,6 +406,11 @@
    */
 
   function getUidEvent(element, uid) {
+    /// <summary>
+    /// Gets the uid event.
+    /// </summary>
+    /// <param name="element">The element.</param>
+    /// <param name="uid">The uid.</param>
     return uid && `${uid}::${uidEvent++}` || element.uidEvent || uidEvent++;
   }
 
@@ -510,6 +548,9 @@
   function removeNamespacedHandlers(element, events, typeEvent, namespace) {
     const storeElementEvent = events[typeEvent] || {};
     Object.keys(storeElementEvent).forEach(handlerKey => {
+      /// <summary>
+      /// </summary>
+      /// <param name="handlerKey">The handler key.</param>
       if (handlerKey.includes(namespace)) {
         const event = storeElementEvent[handlerKey];
         removeHandler(element, events, typeEvent, event.originalHandler, event.delegationSelector);
@@ -554,6 +595,9 @@
 
       if (isNamespace) {
         Object.keys(events).forEach(elementEvent => {
+          /// <summary>
+          /// </summary>
+          /// <param name="elementEvent">The element event.</param>
           removeNamespacedHandlers(element, events, elementEvent, originalTypeEvent.slice(1));
         });
       }
@@ -605,6 +649,9 @@
 
       if (typeof args !== 'undefined') {
         Object.keys(args).forEach(key => {
+          /// <summary>
+          /// </summary>
+          /// <param name="key">The key.</param>
           Object.defineProperty(evt, key, {
             get() {
               return args[key];
@@ -644,9 +691,11 @@
    * ------------------------------------------------------------------------
    */
   const elementMap = new Map();
+  /// <var>The data</var>
   var Data = {
     set(element, key, instance) {
       if (!elementMap.has(element)) {
+        /// <var>The ?</var>
         elementMap.set(element, new Map());
       }
 
@@ -715,6 +764,9 @@
       Data.remove(this._element, this.constructor.DATA_KEY);
       EventHandler.off(this._element, this.constructor.EVENT_KEY);
       Object.getOwnPropertyNames(this).forEach(propertyName => {
+        /// <summary>
+        /// </summary>
+        /// <param name="propertyName">Name of the property.</param>
         this[propertyName] = null;
       });
     }
@@ -820,6 +872,8 @@
 
       const isAnimated = this._element.classList.contains(CLASS_NAME_FADE$5);
 
+/// <summary>
+/// </summary>
       this._queueCallback(() => this._destroyElement(), this._element, isAnimated);
     } // Private
 
@@ -944,6 +998,10 @@
    * --------------------------------------------------------------------------
    */
   function normalizeData(val) {
+    /// <summary>
+    /// Normalizes the data.
+    /// </summary>
+    /// <param name="val">The value.</param>
     if (val === 'true') {
       return true;
     }
@@ -964,6 +1022,13 @@
   }
 
   function normalizeDataKey(key) {
+    /// <summary>
+    /// Normalizes the data key.
+    /// </summary>
+    /// <param name="key">The key.</param>
+    /// <summary>
+    /// </summary>
+    /// <param name="chr">The character.</param>
     return key.replace(/[A-Z]/g, chr => `-${chr.toLowerCase()}`);
   }
 
@@ -982,6 +1047,9 @@
       }
 
       const attributes = {};
+      /// <summary>
+      /// </summary>
+      /// <param name="key">The key.</param>
       Object.keys(element.dataset).filter(key => key.startsWith('bs')).forEach(key => {
         let pureKey = key.replace(/^bs/, '');
         pureKey = pureKey.charAt(0).toLowerCase() + pureKey.slice(1, pureKey.length);
@@ -1076,6 +1144,9 @@
 
     focusableChildren(element) {
       const focusables = ['a', 'button', 'input', 'textarea', 'select', 'details', '[tabindex]', '[contenteditable="true"]'].map(selector => `${selector}:not([tabindex^="-"])`).join(', ');
+/// <summary>
+/// </summary>
+/// <param name="el">The el.</param>
       return this.find(focusables, element).filter(el => !isDisabled(el) && isVisible(el));
     }
 
@@ -1250,6 +1321,8 @@
       }
 
       if (this._isSliding) {
+/// <summary>
+/// </summary>
         EventHandler.one(this._element, EVENT_SLID, () => this.to(index));
         return;
       }
@@ -1299,6 +1372,9 @@
 
       if (this._config.pause === 'hover') {
         EventHandler.on(this._element, EVENT_MOUSEENTER, event => this.pause(event));
+/// <summary>
+/// </summary>
+/// <param name="event">The event.</param>
         EventHandler.on(this._element, EVENT_MOUSELEAVE, event => this.cycle(event));
       }
 
@@ -1342,21 +1418,36 @@
             clearTimeout(this.touchTimeout);
           }
 
+/// <summary>
+/// </summary>
+/// <param name="event">The event.</param>
           this.touchTimeout = setTimeout(event => this.cycle(event), TOUCHEVENT_COMPAT_WAIT + this._config.interval);
         }
       };
 
       SelectorEngine.find(SELECTOR_ITEM_IMG, this._element).forEach(itemImg => {
+/// <summary>
+/// </summary>
+/// <param name="itemImg">The item img.</param>
+/// <summary>
+/// </summary>
+/// <param name="e">The e.</param>
         EventHandler.on(itemImg, EVENT_DRAG_START, e => e.preventDefault());
       });
 
       if (this._pointerEvent) {
+/// <summary>
+/// </summary>
+/// <param name="event">The event.</param>
         EventHandler.on(this._element, EVENT_POINTERDOWN, event => start(event));
         EventHandler.on(this._element, EVENT_POINTERUP, event => end(event));
 
         this._element.classList.add(CLASS_NAME_POINTER_EVENT);
       } else {
         EventHandler.on(this._element, EVENT_TOUCHSTART, event => start(event));
+/// <summary>
+/// </summary>
+/// <param name="event">The event.</param>
         EventHandler.on(this._element, EVENT_TOUCHMOVE, event => move(event));
         EventHandler.on(this._element, EVENT_TOUCHEND, event => end(event));
       }
@@ -1729,6 +1820,9 @@
 
       if (this._config.parent) {
         const children = SelectorEngine.find(`.${CLASS_NAME_COLLAPSE} .${CLASS_NAME_COLLAPSE}`, this._config.parent);
+/// <summary>
+/// </summary>
+/// <param name="elem">The elem.</param>
         actives = SelectorEngine.find(SELECTOR_ACTIVES, this._config.parent).filter(elem => !children.includes(elem)); // remove children if greater depth
       }
 
@@ -1750,6 +1844,9 @@
       }
 
       actives.forEach(elemActive => {
+        /// <summary>
+        /// </summary>
+        /// <param name="elemActive">The elem active.</param>
         if (container !== elemActive) {
           Collapse.getOrCreateInstance(elemActive, {
             toggle: false
@@ -1867,6 +1964,9 @@
       }
 
       const children = SelectorEngine.find(`.${CLASS_NAME_COLLAPSE} .${CLASS_NAME_COLLAPSE}`, this._config.parent);
+      /// <summary>
+      /// </summary>
+      /// <param name="elem">The elem.</param>
       SelectorEngine.find(SELECTOR_DATA_TOGGLE$4, this._config.parent).filter(elem => !children.includes(elem)).forEach(element => {
         const selected = getElementFromSelector(element);
 
@@ -1930,6 +2030,9 @@
     const selector = getSelectorFromElement(this);
     const selectorElements = SelectorEngine.find(selector);
     selectorElements.forEach(element => {
+      /// <summary>
+      /// </summary>
+      /// <param name="element">The element.</param>
       Collapse.getOrCreateInstance(element, {
         toggle: false
       }).toggle();
@@ -2215,6 +2318,9 @@
       } = this._config;
 
       if (typeof offset === 'string') {
+/// <summary>
+/// </summary>
+/// <param name="val">The value.</param>
         return offset.split(',').map(val => Number.parseInt(val, 10));
       }
 
@@ -2394,6 +2500,9 @@
   EventHandler.on(document, EVENT_CLICK_DATA_API$3, Dropdown.clearMenus);
   EventHandler.on(document, EVENT_KEYUP_DATA_API, Dropdown.clearMenus);
   EventHandler.on(document, EVENT_CLICK_DATA_API$3, SELECTOR_DATA_TOGGLE$3, function (event) {
+    /// <summary>
+    /// </summary>
+    /// <param name="event">The event.</param>
     event.preventDefault();
     Dropdown.getOrCreateInstance(this).toggle();
   });
@@ -2432,6 +2541,9 @@
       this._disableOverFlow(); // give padding to element to balance the hidden scrollbar width
 
 
+/// <summary>
+/// </summary>
+/// <param name="calculatedValue">The calculated value.</param>
       this._setElementAttributes(this._element, 'paddingRight', calculatedValue => calculatedValue + width); // trick: We adjust positive paddingRight and negative marginRight to sticky-top elements to keep showing fullwidth
 
 
@@ -2559,6 +2671,8 @@
       this._getElement().classList.add(CLASS_NAME_SHOW$5);
 
       this._emulateAnimation(() => {
+        /// <summary>
+        /// </summary>
         execute(callback);
       });
     }
@@ -2572,6 +2686,8 @@
       this._getElement().classList.remove(CLASS_NAME_SHOW$5);
 
       this._emulateAnimation(() => {
+        /// <summary>
+        /// </summary>
         this.dispose();
         execute(callback);
       });
@@ -2611,6 +2727,8 @@
       this._config.rootElement.append(this._getElement());
 
       EventHandler.on(this._getElement(), EVENT_MOUSEDOWN, () => {
+        /// <summary>
+        /// </summary>
         execute(this._config.clickCallback);
       });
       this._isAppended = true;
@@ -2681,6 +2799,9 @@
 
       EventHandler.off(document, EVENT_KEY$7); // guard against infinite focus loop
 
+/// <summary>
+/// </summary>
+/// <param name="event">The event.</param>
       EventHandler.on(document, EVENT_FOCUSIN$1, event => this._handleFocusin(event));
       EventHandler.on(document, EVENT_KEYDOWN_TAB, event => this._handleKeydown(event));
       this._isActive = true;
@@ -2845,13 +2966,20 @@
       this._setResizeEvent();
 
       EventHandler.on(this._dialog, EVENT_MOUSEDOWN_DISMISS, () => {
+        /// <summary>
+        /// </summary>
         EventHandler.one(this._element, EVENT_MOUSEUP_DISMISS, event => {
+          /// <summary>
+          /// </summary>
+          /// <param name="event">The event.</param>
           if (event.target === this._element) {
             this._ignoreBackdropClick = true;
           }
         });
       });
 
+/// <summary>
+/// </summary>
       this._showBackdrop(() => this._showElement(relatedTarget));
     }
 
@@ -2885,6 +3013,8 @@
       EventHandler.off(this._element, EVENT_CLICK_DISMISS);
       EventHandler.off(this._dialog, EVENT_MOUSEDOWN_DISMISS);
 
+/// <summary>
+/// </summary>
       this._queueCallback(() => this._hideModal(), this._element, isAnimated);
     }
 
@@ -3005,6 +3135,8 @@
       this._isTransitioning = false;
 
       this._backdrop.hide(() => {
+        /// <summary>
+        /// </summary>
         document.body.classList.remove(CLASS_NAME_OPEN);
 
         this._resetAdjustments();
@@ -3065,10 +3197,14 @@
       classList.add(CLASS_NAME_STATIC);
 
       this._queueCallback(() => {
+        /// <summary>
+        /// </summary>
         classList.remove(CLASS_NAME_STATIC);
 
         if (!isModalOverflowing) {
           this._queueCallback(() => {
+            /// <summary>
+            /// </summary>
             style.overflowY = '';
           }, this._dialog);
         }
@@ -3134,12 +3270,17 @@
     }
 
     EventHandler.one(target, EVENT_SHOW$3, showEvent => {
+      /// <summary>
+      /// </summary>
+      /// <param name="showEvent">The show event.</param>
       if (showEvent.defaultPrevented) {
         // only register focus restorer if modal will actually get shown
         return;
       }
 
       EventHandler.one(target, EVENT_HIDDEN$3, () => {
+        /// <summary>
+        /// </summary>
         if (isVisible(this)) {
           this.focus();
         }
@@ -3390,6 +3531,8 @@
 
     EventHandler.one(target, EVENT_HIDDEN$2, () => {
       // focus on trigger when it is closed
+      /// <summary>
+      /// </summary>
       if (isVisible(this)) {
         this.focus();
       }
@@ -3437,6 +3580,8 @@
 
   const DATA_URL_PATTERN = /^data:(?:image\/(?:bmp|gif|jpeg|jpg|png|tiff|webp)|video\/(?:mpeg|mp4|ogg|webm)|audio\/(?:mp3|oga|ogg|opus));base64,[\d+/a-z]+=*$/i;
 
+  /// <summary>
+  /// </summary>
   const allowedAttribute = (attr, allowedAttributeList) => {
     const attrName = attr.nodeName.toLowerCase();
 
@@ -3493,6 +3638,12 @@
     ul: []
   };
   function sanitizeHtml(unsafeHtml, allowList, sanitizeFn) {
+    /// <summary>
+    /// Sanitizes the HTML.
+    /// </summary>
+    /// <param name="unsafeHtml">The unsafe HTML.</param>
+    /// <param name="allowList">The allow list.</param>
+    /// <param name="sanitizeFn">The sanitize function.</param>
     if (!unsafeHtml.length) {
       return unsafeHtml;
     }
@@ -3518,6 +3669,9 @@
       const attributeList = [].concat(...el.attributes);
       const allowedAttributes = [].concat(allowList['*'] || [], allowList[elName] || []);
       attributeList.forEach(attr => {
+        /// <summary>
+        /// </summary>
+        /// <param name="attr">The attribute.</param>
         if (!allowedAttribute(attr, allowedAttributes)) {
           el.removeAttribute(attr.nodeName);
         }
@@ -3945,6 +4099,9 @@
       } = this._config;
 
       if (typeof offset === 'string') {
+/// <summary>
+/// </summary>
+/// <param name="val">The value.</param>
         return offset.split(',').map(val => Number.parseInt(val, 10));
       }
 
@@ -4011,17 +4168,28 @@
       const triggers = this._config.trigger.split(' ');
 
       triggers.forEach(trigger => {
+        /// <summary>
+        /// </summary>
+        /// <param name="trigger">The trigger.</param>
         if (trigger === 'click') {
+/// <summary>
+/// </summary>
+/// <param name="event">The event.</param>
           EventHandler.on(this._element, this.constructor.Event.CLICK, this._config.selector, event => this.toggle(event));
         } else if (trigger !== TRIGGER_MANUAL) {
           const eventIn = trigger === TRIGGER_HOVER ? this.constructor.Event.MOUSEENTER : this.constructor.Event.FOCUSIN;
           const eventOut = trigger === TRIGGER_HOVER ? this.constructor.Event.MOUSELEAVE : this.constructor.Event.FOCUSOUT;
+/// <summary>
+/// </summary>
+/// <param name="event">The event.</param>
           EventHandler.on(this._element, eventIn, this._config.selector, event => this._enter(event));
           EventHandler.on(this._element, eventOut, this._config.selector, event => this._leave(event));
         }
       });
 
       this._hideModalHandler = () => {
+        /// <summary>
+        /// </summary>
         if (this._element) {
           this.hide();
         }
@@ -4076,6 +4244,8 @@
       }
 
       context._timeout = setTimeout(() => {
+        /// <summary>
+        /// </summary>
         if (context._hoverState === HOVER_STATE_SHOW) {
           context.show();
         }
@@ -4102,6 +4272,8 @@
       }
 
       context._timeout = setTimeout(() => {
+        /// <summary>
+        /// </summary>
         if (context._hoverState === HOVER_STATE_OUT) {
           context.hide();
         }
@@ -4121,6 +4293,9 @@
     _getConfig(config) {
       const dataAttributes = Manipulator.getDataAttributes(this._element);
       Object.keys(dataAttributes).forEach(dataAttr => {
+        /// <summary>
+        /// </summary>
+        /// <param name="dataAttr">The data attribute.</param>
         if (DISALLOWED_ATTRIBUTES.has(dataAttr)) {
           delete dataAttributes[dataAttr];
         }
@@ -4176,6 +4351,9 @@
       const tabClass = tip.getAttribute('class').match(basicClassPrefixRegex);
 
       if (tabClass !== null && tabClass.length > 0) {
+/// <summary>
+/// </summary>
+/// <param name="token">The token.</param>
         tabClass.map(token => token.trim()).forEach(tClass => tip.classList.remove(tClass));
       }
     }
@@ -4392,6 +4570,8 @@
       this._targets = [];
       this._activeTarget = null;
       this._scrollHeight = 0;
+/// <summary>
+/// </summary>
       EventHandler.on(this._scrollElement, EVENT_SCROLL, () => this._process());
       this.refresh();
 
@@ -4429,6 +4609,9 @@
         }
 
         return null;
+      /// <summary>
+      /// </summary>
+      /// <param name="item">The item.</param>
       }).filter(item => item).sort((a, b) => a[0] - b[0]).forEach(item => {
         this._offsets.push(item[0]);
 
@@ -4517,9 +4700,18 @@
         SelectorEngine.parents(link, SELECTOR_NAV_LIST_GROUP$1).forEach(listGroup => {
           // Set triggered links parents as active
           // With both <ul> and <nav> markup a parent is the previous sibling of any nav ancestor
+          /// <summary>
+          /// </summary>
+          /// <param name="listGroup">The list group.</param>
           SelectorEngine.prev(listGroup, `${SELECTOR_NAV_LINKS}, ${SELECTOR_LIST_ITEMS}`).forEach(item => item.classList.add(CLASS_NAME_ACTIVE$1)); // Handle special case when .nav-link is inside .nav-item
 
           SelectorEngine.prev(listGroup, SELECTOR_NAV_ITEMS).forEach(navItem => {
+/// <summary>
+/// </summary>
+/// <param name="navItem">The nav item.</param>
+/// <summary>
+/// </summary>
+/// <param name="item">The item.</param>
             SelectorEngine.children(navItem, SELECTOR_NAV_LINKS).forEach(item => item.classList.add(CLASS_NAME_ACTIVE$1));
           });
         });
@@ -4714,6 +4906,9 @@
         const dropdownElement = element.closest(SELECTOR_DROPDOWN);
 
         if (dropdownElement) {
+/// <summary>
+/// </summary>
+/// <param name="dropdown">The dropdown.</param>
           SelectorEngine.find(SELECTOR_DROPDOWN_TOGGLE, dropdownElement).forEach(dropdown => dropdown.classList.add(CLASS_NAME_ACTIVE));
         }
 
@@ -4962,6 +5157,9 @@
 
     _setListeners() {
       EventHandler.on(this._element, EVENT_MOUSEOVER, event => this._onInteraction(event, true));
+/// <summary>
+/// </summary>
+/// <param name="event">The event.</param>
       EventHandler.on(this._element, EVENT_MOUSEOUT, event => this._onInteraction(event, false));
       EventHandler.on(this._element, EVENT_FOCUSIN, event => this._onInteraction(event, true));
       EventHandler.on(this._element, EVENT_FOCUSOUT, event => this._onInteraction(event, false));
@@ -5005,6 +5203,7 @@
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+  /// <var>The index umd</var>
   var index_umd = {
     Alert,
     Button,

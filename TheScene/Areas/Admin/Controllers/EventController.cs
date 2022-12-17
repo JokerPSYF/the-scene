@@ -1,4 +1,17 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿// ***********************************************************************
+// Assembly         : TheScene
+// Author           : Admin
+// Created          : 12-16-2022
+//
+// Last Modified By : Admin
+// Last Modified On : 12-16-2022
+// ***********************************************************************
+// <copyright file="EventController.cs" company="TheScene">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TheScene.Areas.Admin.Models;
 using TheScene.Core.Interface;
@@ -6,11 +19,27 @@ using TheScene.Core.Models.Event;
 
 namespace TheScene.Areas.Admin.Controllers
 {
+    /// <summary>
+    /// Class EventController.
+    /// Implements the <see cref="TheScene.Areas.Admin.Controllers.BaseController" />
+    /// </summary>
+    /// <seealso cref="TheScene.Areas.Admin.Controllers.BaseController" />
     public class EventController : BaseController
     {
+        /// <summary>
+        /// The event service
+        /// </summary>
         private readonly IEventService eventService;
+        /// <summary>
+        /// The common service
+        /// </summary>
         private readonly ICommonService commonService;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EventController"/> class.
+        /// </summary>
+        /// <param name="_eventService">The event service.</param>
+        /// <param name="_commonService">The common service.</param>
         public EventController(IEventService _eventService,
             ICommonService _commonService)
         {
@@ -46,8 +75,8 @@ namespace TheScene.Areas.Admin.Controllers
         /// <summary>
         /// Show details of an event
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">The identifier.</param>
+        /// <returns>IActionResult.</returns>
         [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
@@ -64,7 +93,7 @@ namespace TheScene.Areas.Admin.Controllers
         /// <summary>
         /// GET Add new event
         /// </summary>
-        /// <returns></returns>
+        /// <returns>IActionResult.</returns>
         [HttpGet]
         public async Task<IActionResult> Add()
         {
@@ -82,8 +111,8 @@ namespace TheScene.Areas.Admin.Controllers
         /// <summary>
         /// POST Add new event
         /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
+        /// <param name="model">The model.</param>
+        /// <returns>IActionResult.</returns>
         [HttpPost]
         public async Task<IActionResult> Add(EventModel model)
         {
@@ -115,8 +144,8 @@ namespace TheScene.Areas.Admin.Controllers
         /// <summary>
         /// GET Edit evet
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">The identifier.</param>
+        /// <returns>IActionResult.</returns>
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -147,9 +176,9 @@ namespace TheScene.Areas.Admin.Controllers
         /// <summary>
         /// POST edit event
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">The identifier.</param>
         /// <param name="model">Event model</param>
-        /// <returns></returns>
+        /// <returns>IActionResult.</returns>
         [HttpPost]
         public async Task<IActionResult> Edit(int id, EventModel model)
         {
@@ -175,8 +204,8 @@ namespace TheScene.Areas.Admin.Controllers
         /// <summary>
         /// GET delete event
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">The identifier.</param>
+        /// <returns>IActionResult.</returns>
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
@@ -200,9 +229,9 @@ namespace TheScene.Areas.Admin.Controllers
         /// <summary>
         /// POST Delete event
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="model"></param>
-        /// <returns></returns>
+        /// <param name="id">The identifier.</param>
+        /// <param name="model">The model.</param>
+        /// <returns>IActionResult.</returns>
         [HttpPost]
         public async Task<IActionResult> Delete(int id, DeleteEventModel model)
         {
