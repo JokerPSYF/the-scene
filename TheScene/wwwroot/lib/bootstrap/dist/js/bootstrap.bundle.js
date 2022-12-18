@@ -1,12 +1,31 @@
+// ***********************************************************************
+// Assembly         : TheScene
+// Author           : Admin
+// Created          : 11-12-2022
+//
+// Last Modified By : Admin
+// Last Modified On : 11-12-2022
+// ***********************************************************************
+// <copyright file="bootstrap.bundle.js" company="TheScene">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 /*!
   * Bootstrap v5.1.0 (https://getbootstrap.com/)
   * Copyright 2011-2021 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
   */
 (function (global, factory) {
+  /// <summary>
+  /// </summary>
+  /// <param name="global">The global.</param>
+  /// <param name="factory">The factory.</param>
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.bootstrap = factory());
+/// <summary>
+/// </summary>
 }(this, (function () { 'use strict';
 
   /**
@@ -250,6 +269,8 @@
         $.fn[name].Constructor = plugin;
 
         $.fn[name].noConflict = () => {
+          /// <summary>
+          /// </summary>
           $.fn[name] = JQUERY_NO_CONFLICT;
           return plugin.jQueryInterface;
         };
@@ -287,6 +308,8 @@
 
     transitionElement.addEventListener(TRANSITION_END, handler);
     setTimeout(() => {
+      /// <summary>
+      /// </summary>
       if (!called) {
         triggerTransitionEnd(transitionElement);
       }
@@ -351,6 +374,11 @@
    */
 
   function getUidEvent(element, uid) {
+    /// <summary>
+    /// Gets the uid event.
+    /// </summary>
+    /// <param name="element">The element.</param>
+    /// <param name="uid">The uid.</param>
     return uid && `${uid}::${uidEvent++}` || element.uidEvent || uidEvent++;
   }
 
@@ -488,6 +516,9 @@
   function removeNamespacedHandlers(element, events, typeEvent, namespace) {
     const storeElementEvent = events[typeEvent] || {};
     Object.keys(storeElementEvent).forEach(handlerKey => {
+      /// <summary>
+      /// </summary>
+      /// <param name="handlerKey">The handler key.</param>
       if (handlerKey.includes(namespace)) {
         const event = storeElementEvent[handlerKey];
         removeHandler(element, events, typeEvent, event.originalHandler, event.delegationSelector);
@@ -532,6 +563,9 @@
 
       if (isNamespace) {
         Object.keys(events).forEach(elementEvent => {
+          /// <summary>
+          /// </summary>
+          /// <param name="elementEvent">The element event.</param>
           removeNamespacedHandlers(element, events, elementEvent, originalTypeEvent.slice(1));
         });
       }
@@ -583,6 +617,9 @@
 
       if (typeof args !== 'undefined') {
         Object.keys(args).forEach(key => {
+          /// <summary>
+          /// </summary>
+          /// <param name="key">The key.</param>
           Object.defineProperty(evt, key, {
             get() {
               return args[key];
@@ -622,9 +659,11 @@
    * ------------------------------------------------------------------------
    */
   const elementMap = new Map();
+  /// <var>The data</var>
   var Data = {
     set(element, key, instance) {
       if (!elementMap.has(element)) {
+        /// <var>The ?</var>
         elementMap.set(element, new Map());
       }
 
@@ -693,6 +732,9 @@
       Data.remove(this._element, this.constructor.DATA_KEY);
       EventHandler.off(this._element, this.constructor.EVENT_KEY);
       Object.getOwnPropertyNames(this).forEach(propertyName => {
+        /// <summary>
+        /// </summary>
+        /// <param name="propertyName">Name of the property.</param>
         this[propertyName] = null;
       });
     }
@@ -798,6 +840,8 @@
 
       const isAnimated = this._element.classList.contains(CLASS_NAME_FADE$5);
 
+/// <summary>
+/// </summary>
       this._queueCallback(() => this._destroyElement(), this._element, isAnimated);
     } // Private
 
@@ -922,6 +966,10 @@
    * --------------------------------------------------------------------------
    */
   function normalizeData(val) {
+    /// <summary>
+    /// Normalizes the data.
+    /// </summary>
+    /// <param name="val">The value.</param>
     if (val === 'true') {
       return true;
     }
@@ -942,6 +990,13 @@
   }
 
   function normalizeDataKey(key) {
+    /// <summary>
+    /// Normalizes the data key.
+    /// </summary>
+    /// <param name="key">The key.</param>
+    /// <summary>
+    /// </summary>
+    /// <param name="chr">The character.</param>
     return key.replace(/[A-Z]/g, chr => `-${chr.toLowerCase()}`);
   }
 
@@ -960,6 +1015,9 @@
       }
 
       const attributes = {};
+      /// <summary>
+      /// </summary>
+      /// <param name="key">The key.</param>
       Object.keys(element.dataset).filter(key => key.startsWith('bs')).forEach(key => {
         let pureKey = key.replace(/^bs/, '');
         pureKey = pureKey.charAt(0).toLowerCase() + pureKey.slice(1, pureKey.length);
@@ -1054,6 +1112,9 @@
 
     focusableChildren(element) {
       const focusables = ['a', 'button', 'input', 'textarea', 'select', 'details', '[tabindex]', '[contenteditable="true"]'].map(selector => `${selector}:not([tabindex^="-"])`).join(', ');
+/// <summary>
+/// </summary>
+/// <param name="el">The el.</param>
       return this.find(focusables, element).filter(el => !isDisabled(el) && isVisible(el));
     }
 
@@ -1228,6 +1289,8 @@
       }
 
       if (this._isSliding) {
+/// <summary>
+/// </summary>
         EventHandler.one(this._element, EVENT_SLID, () => this.to(index));
         return;
       }
@@ -1277,6 +1340,9 @@
 
       if (this._config.pause === 'hover') {
         EventHandler.on(this._element, EVENT_MOUSEENTER, event => this.pause(event));
+/// <summary>
+/// </summary>
+/// <param name="event">The event.</param>
         EventHandler.on(this._element, EVENT_MOUSELEAVE, event => this.cycle(event));
       }
 
@@ -1320,21 +1386,36 @@
             clearTimeout(this.touchTimeout);
           }
 
+/// <summary>
+/// </summary>
+/// <param name="event">The event.</param>
           this.touchTimeout = setTimeout(event => this.cycle(event), TOUCHEVENT_COMPAT_WAIT + this._config.interval);
         }
       };
 
       SelectorEngine.find(SELECTOR_ITEM_IMG, this._element).forEach(itemImg => {
+/// <summary>
+/// </summary>
+/// <param name="itemImg">The item img.</param>
+/// <summary>
+/// </summary>
+/// <param name="e">The e.</param>
         EventHandler.on(itemImg, EVENT_DRAG_START, e => e.preventDefault());
       });
 
       if (this._pointerEvent) {
+/// <summary>
+/// </summary>
+/// <param name="event">The event.</param>
         EventHandler.on(this._element, EVENT_POINTERDOWN, event => start(event));
         EventHandler.on(this._element, EVENT_POINTERUP, event => end(event));
 
         this._element.classList.add(CLASS_NAME_POINTER_EVENT);
       } else {
         EventHandler.on(this._element, EVENT_TOUCHSTART, event => start(event));
+/// <summary>
+/// </summary>
+/// <param name="event">The event.</param>
         EventHandler.on(this._element, EVENT_TOUCHMOVE, event => move(event));
         EventHandler.on(this._element, EVENT_TOUCHEND, event => end(event));
       }
@@ -1707,6 +1788,9 @@
 
       if (this._config.parent) {
         const children = SelectorEngine.find(`.${CLASS_NAME_COLLAPSE} .${CLASS_NAME_COLLAPSE}`, this._config.parent);
+/// <summary>
+/// </summary>
+/// <param name="elem">The elem.</param>
         actives = SelectorEngine.find(SELECTOR_ACTIVES, this._config.parent).filter(elem => !children.includes(elem)); // remove children if greater depth
       }
 
@@ -1728,6 +1812,9 @@
       }
 
       actives.forEach(elemActive => {
+        /// <summary>
+        /// </summary>
+        /// <param name="elemActive">The elem active.</param>
         if (container !== elemActive) {
           Collapse.getOrCreateInstance(elemActive, {
             toggle: false
@@ -1845,6 +1932,9 @@
       }
 
       const children = SelectorEngine.find(`.${CLASS_NAME_COLLAPSE} .${CLASS_NAME_COLLAPSE}`, this._config.parent);
+      /// <summary>
+      /// </summary>
+      /// <param name="elem">The elem.</param>
       SelectorEngine.find(SELECTOR_DATA_TOGGLE$4, this._config.parent).filter(elem => !children.includes(elem)).forEach(element => {
         const selected = getElementFromSelector(element);
 
@@ -1908,6 +1998,9 @@
     const selector = getSelectorFromElement(this);
     const selectorElements = SelectorEngine.find(selector);
     selectorElements.forEach(element => {
+      /// <summary>
+      /// </summary>
+      /// <param name="element">The element.</param>
       Collapse.getOrCreateInstance(element, {
         toggle: false
       }).toggle();
@@ -1922,43 +2015,83 @@
 
   defineJQueryPlugin(Collapse);
 
+  /// <var>The top</var>
   var top = 'top';
+  /// <var>The bottom</var>
   var bottom = 'bottom';
+  /// <var>The right</var>
   var right = 'right';
+  /// <var>The left</var>
   var left = 'left';
+  /// <var>The automatic</var>
   var auto = 'auto';
+  /// <var>The base placements</var>
   var basePlacements = [top, bottom, right, left];
+  /// <var>The start</var>
   var start = 'start';
+  /// <var>The end</var>
   var end = 'end';
+  /// <var>The clipping parents</var>
   var clippingParents = 'clippingParents';
+  /// <var>The viewport</var>
   var viewport = 'viewport';
+  /// <var>The popper</var>
   var popper = 'popper';
+  /// <var>The reference</var>
   var reference = 'reference';
+  /// <var>The variation placements</var>
   var variationPlacements = /*#__PURE__*/basePlacements.reduce(function (acc, placement) {
+    /// <summary>
+    /// </summary>
+    /// <param name="acc">The acc.</param>
+    /// <param name="placement">The placement.</param>
     return acc.concat([placement + "-" + start, placement + "-" + end]);
   }, []);
+  /// <var>The placements</var>
   var placements = /*#__PURE__*/[].concat(basePlacements, [auto]).reduce(function (acc, placement) {
+    /// <summary>
+    /// </summary>
+    /// <param name="acc">The acc.</param>
+    /// <param name="placement">The placement.</param>
     return acc.concat([placement, placement + "-" + start, placement + "-" + end]);
   }, []); // modifiers that need to read the DOM
 
+  /// <var>The before read</var>
   var beforeRead = 'beforeRead';
+  /// <var>The read</var>
   var read = 'read';
+  /// <var>The after read</var>
   var afterRead = 'afterRead'; // pure-logic modifiers
 
+  /// <var>The before main</var>
   var beforeMain = 'beforeMain';
+  /// <var>The main</var>
   var main = 'main';
+  /// <var>The after main</var>
   var afterMain = 'afterMain'; // modifier with the purpose to write to the DOM (or write into a framework state)
 
+  /// <var>The before write</var>
   var beforeWrite = 'beforeWrite';
+  /// <var>The write</var>
   var write = 'write';
+  /// <var>The after write</var>
   var afterWrite = 'afterWrite';
+  /// <var>The modifier phases</var>
   var modifierPhases = [beforeRead, read, afterRead, beforeMain, main, afterMain, beforeWrite, write, afterWrite];
 
   function getNodeName(element) {
+    /// <summary>
+    /// Gets the name of the node.
+    /// </summary>
+    /// <param name="element">The element.</param>
     return element ? (element.nodeName || '').toLowerCase() : null;
   }
 
   function getWindow(node) {
+    /// <summary>
+    /// Gets the window.
+    /// </summary>
+    /// <param name="node">The node.</param>
     if (node == null) {
       return window;
     }
@@ -1972,17 +2105,32 @@
   }
 
   function isElement(node) {
+    /// <summary>
+    /// Determines whether the specified node is element.
+    /// </summary>
+    /// <param name="node">The node.</param>
+    /// <returns><c>true</c> if the specified node is element; otherwise, <c>false</c>.</returns>
     var OwnElement = getWindow(node).Element;
     return node instanceof OwnElement || node instanceof Element;
   }
 
   function isHTMLElement(node) {
+    /// <summary>
+    /// Determines whether [is HTML element] [the specified node].
+    /// </summary>
+    /// <param name="node">The node.</param>
+    /// <returns><c>true</c> if [is HTML element] [the specified node]; otherwise, <c>false</c>.</returns>
     var OwnElement = getWindow(node).HTMLElement;
     return node instanceof OwnElement || node instanceof HTMLElement;
   }
 
   function isShadowRoot(node) {
     // IE 11 has no ShadowRoot
+    /// <summary>
+    /// Determines whether [is shadow root] [the specified node].
+    /// </summary>
+    /// <param name="node">The node.</param>
+    /// <returns><c>true</c> if [is shadow root] [the specified node]; otherwise, <c>false</c>.</returns>
     if (typeof ShadowRoot === 'undefined') {
       return false;
     }
@@ -1994,8 +2142,15 @@
   // and applies them to the HTMLElements such as popper and arrow
 
   function applyStyles(_ref) {
+    /// <summary>
+    /// Applies the styles.
+    /// </summary>
+    /// <param name="_ref">The reference.</param>
     var state = _ref.state;
     Object.keys(state.elements).forEach(function (name) {
+      /// <summary>
+      /// </summary>
+      /// <param name="name">The name.</param>
       var style = state.styles[name] || {};
       var attributes = state.attributes[name] || {};
       var element = state.elements[name]; // arrow is optional + virtual elements
@@ -2009,6 +2164,9 @@
 
       Object.assign(element.style, style);
       Object.keys(attributes).forEach(function (name) {
+        /// <summary>
+        /// </summary>
+        /// <param name="name">The name.</param>
         var value = attributes[name];
 
         if (value === false) {
@@ -2021,6 +2179,10 @@
   }
 
   function effect$2(_ref2) {
+    /// <summary>
+    /// Effect$2s the specified ref2.
+    /// </summary>
+    /// <param name="_ref2">The ref2.</param>
     var state = _ref2.state;
     var initialStyles = {
       popper: {
@@ -2042,12 +2204,21 @@
     }
 
     return function () {
+      /// <summary>
+      /// </summary>
       Object.keys(state.elements).forEach(function (name) {
+        /// <summary>
+        /// </summary>
+        /// <param name="name">The name.</param>
         var element = state.elements[name];
         var attributes = state.attributes[name] || {};
         var styleProperties = Object.keys(state.styles.hasOwnProperty(name) ? state.styles[name] : initialStyles[name]); // Set all values to an empty string to unset them
 
         var style = styleProperties.reduce(function (style, property) {
+          /// <summary>
+          /// </summary>
+          /// <param name="style">The style.</param>
+          /// <param name="property">The property.</param>
           style[property] = '';
           return style;
         }, {}); // arrow is optional + virtual elements
@@ -2058,6 +2229,9 @@
 
         Object.assign(element.style, style);
         Object.keys(attributes).forEach(function (attribute) {
+          /// <summary>
+          /// </summary>
+          /// <param name="attribute">The attribute.</param>
           element.removeAttribute(attribute);
         });
       });
@@ -2065,6 +2239,7 @@
   } // eslint-disable-next-line import/no-unused-modules
 
 
+  /// <var>The apply styles$1</var>
   var applyStyles$1 = {
     name: 'applyStyles',
     enabled: true,
@@ -2075,11 +2250,21 @@
   };
 
   function getBasePlacement(placement) {
+    /// <summary>
+    /// Gets the base placement.
+    /// </summary>
+    /// <param name="placement">The placement.</param>
     return placement.split('-')[0];
   }
 
+  /// <var>The round$1</var>
   var round$1 = Math.round;
   function getBoundingClientRect(element, includeScale) {
+    /// <summary>
+    /// Gets the bounding client rect.
+    /// </summary>
+    /// <param name="element">The element.</param>
+    /// <param name="includeScale">The include scale.</param>
     if (includeScale === void 0) {
       includeScale = false;
     }
@@ -2109,6 +2294,10 @@
   // means it doesn't take into account transforms.
 
   function getLayoutRect(element) {
+    /// <summary>
+    /// Gets the layout rect.
+    /// </summary>
+    /// <param name="element">The element.</param>
     var clientRect = getBoundingClientRect(element); // Use the clientRect sizes if it's not been transformed.
     // Fixes https://github.com/popperjs/popper-core/issues/1223
 
@@ -2132,6 +2321,12 @@
   }
 
   function contains(parent, child) {
+    /// <summary>
+    /// Determines whether [contains] [the specified parent].
+    /// </summary>
+    /// <param name="parent">The parent.</param>
+    /// <param name="child">The child.</param>
+    /// <returns><c>true</c> if [contains] [the specified parent]; otherwise, <c>false</c>.</returns>
     var rootNode = child.getRootNode && child.getRootNode(); // First, attempt with faster native method
 
     if (parent.contains(child)) {
@@ -2155,20 +2350,37 @@
   }
 
   function getComputedStyle$1(element) {
+    /// <summary>
+    /// Gets the computed style$1.
+    /// </summary>
+    /// <param name="element">The element.</param>
     return getWindow(element).getComputedStyle(element);
   }
 
   function isTableElement(element) {
+    /// <summary>
+    /// Determines whether [is table element] [the specified element].
+    /// </summary>
+    /// <param name="element">The element.</param>
+    /// <returns><c>true</c> if [is table element] [the specified element]; otherwise, <c>false</c>.</returns>
     return ['table', 'td', 'th'].indexOf(getNodeName(element)) >= 0;
   }
 
   function getDocumentElement(element) {
     // $FlowFixMe[incompatible-return]: assume body is always available
+    /// <summary>
+    /// Gets the document element.
+    /// </summary>
+    /// <param name="element">The element.</param>
     return ((isElement(element) ? element.ownerDocument : // $FlowFixMe[prop-missing]
     element.document) || window.document).documentElement;
   }
 
   function getParentNode(element) {
+    /// <summary>
+    /// Gets the parent node.
+    /// </summary>
+    /// <param name="element">The element.</param>
     if (getNodeName(element) === 'html') {
       return element;
     }
@@ -2186,6 +2398,10 @@
   }
 
   function getTrueOffsetParent(element) {
+    /// <summary>
+    /// Gets the true offset parent.
+    /// </summary>
+    /// <param name="element">The element.</param>
     if (!isHTMLElement(element) || // https://github.com/popperjs/popper-core/issues/837
     getComputedStyle$1(element).position === 'fixed') {
       return null;
@@ -2197,6 +2413,10 @@
 
 
   function getContainingBlock(element) {
+    /// <summary>
+    /// Gets the containing block.
+    /// </summary>
+    /// <param name="element">The element.</param>
     var isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') !== -1;
     var isIE = navigator.userAgent.indexOf('Trident') !== -1;
 
@@ -2229,6 +2449,10 @@
 
 
   function getOffsetParent(element) {
+    /// <summary>
+    /// Gets the offset parent.
+    /// </summary>
+    /// <param name="element">The element.</param>
     var window = getWindow(element);
     var offsetParent = getTrueOffsetParent(element);
 
@@ -2244,18 +2468,34 @@
   }
 
   function getMainAxisFromPlacement(placement) {
+    /// <summary>
+    /// Gets the main axis from placement.
+    /// </summary>
+    /// <param name="placement">The placement.</param>
     return ['top', 'bottom'].indexOf(placement) >= 0 ? 'x' : 'y';
   }
 
+  /// <var>The maximum</var>
   var max = Math.max;
+  /// <var>The minimum</var>
   var min = Math.min;
+  /// <var>The round</var>
   var round = Math.round;
 
   function within(min$1, value, max$1) {
+    /// <summary>
+    /// Withins the specified min$1.
+    /// </summary>
+    /// <param name="min$1">The min$1.</param>
+    /// <param name="value">The value.</param>
+    /// <param name="max$1">The max$1.</param>
     return max(min$1, min(value, max$1));
   }
 
   function getFreshSideObject() {
+    /// <summary>
+    /// Gets the fresh side object.
+    /// </summary>
     return {
       top: 0,
       right: 0,
@@ -2265,17 +2505,36 @@
   }
 
   function mergePaddingObject(paddingObject) {
+    /// <summary>
+    /// Merges the padding object.
+    /// </summary>
+    /// <param name="paddingObject">The padding object.</param>
     return Object.assign({}, getFreshSideObject(), paddingObject);
   }
 
   function expandToHashMap(value, keys) {
+    /// <summary>
+    /// Expands to hash map.
+    /// </summary>
+    /// <param name="value">The value.</param>
+    /// <param name="keys">The keys.</param>
     return keys.reduce(function (hashMap, key) {
+      /// <summary>
+      /// </summary>
+      /// <param name="hashMap">The hash map.</param>
+      /// <param name="key">The key.</param>
       hashMap[key] = value;
       return hashMap;
     }, {});
   }
 
+  /// <var>To padding object</var>
   var toPaddingObject = function toPaddingObject(padding, state) {
+    /// <summary>
+    /// To the padding object.
+    /// </summary>
+    /// <param name="padding">The padding.</param>
+    /// <param name="state">The state.</param>
     padding = typeof padding === 'function' ? padding(Object.assign({}, state.rects, {
       placement: state.placement
     })) : padding;
@@ -2283,6 +2542,10 @@
   };
 
   function arrow(_ref) {
+    /// <summary>
+    /// Arrows the specified reference.
+    /// </summary>
+    /// <param name="_ref">The reference.</param>
     var _state$modifiersData$;
 
     var state = _ref.state,
@@ -2320,6 +2583,10 @@
   }
 
   function effect$1(_ref2) {
+    /// <summary>
+    /// Effect$1s the specified ref2.
+    /// </summary>
+    /// <param name="_ref2">The ref2.</param>
     var state = _ref2.state,
         options = _ref2.options;
     var _options$element = options.element,
@@ -2347,6 +2614,7 @@
   } // eslint-disable-next-line import/no-unused-modules
 
 
+  /// <var>The arrow$1</var>
   var arrow$1 = {
     name: 'arrow',
     enabled: true,
@@ -2357,6 +2625,7 @@
     requiresIfExists: ['preventOverflow']
   };
 
+  /// <var>The unset sides</var>
   var unsetSides = {
     top: 'auto',
     right: 'auto',
@@ -2367,6 +2636,10 @@
   // cleanly divide the values into the appropriate subpixels.
 
   function roundOffsetsByDPR(_ref) {
+    /// <summary>
+    /// Rounds the offsets by DPR.
+    /// </summary>
+    /// <param name="_ref">The reference.</param>
     var x = _ref.x,
         y = _ref.y;
     var win = window;
@@ -2378,6 +2651,10 @@
   }
 
   function mapToStyles(_ref2) {
+    /// <summary>
+    /// Maps to styles.
+    /// </summary>
+    /// <param name="_ref2">The ref2.</param>
     var _Object$assign2;
 
     var popper = _ref2.popper,
@@ -2447,6 +2724,10 @@
   }
 
   function computeStyles(_ref4) {
+    /// <summary>
+    /// Computes the styles.
+    /// </summary>
+    /// <param name="_ref4">The ref4.</param>
     var state = _ref4.state,
         options = _ref4.options;
     var _options$gpuAccelerat = options.gpuAcceleration,
@@ -2487,6 +2768,7 @@
   } // eslint-disable-next-line import/no-unused-modules
 
 
+  /// <var>The compute styles$1</var>
   var computeStyles$1 = {
     name: 'computeStyles',
     enabled: true,
@@ -2495,11 +2777,16 @@
     data: {}
   };
 
+  /// <var>The passive</var>
   var passive = {
     passive: true
   };
 
   function effect(_ref) {
+    /// <summary>
+    /// Effects the specified reference.
+    /// </summary>
+    /// <param name="_ref">The reference.</param>
     var state = _ref.state,
         instance = _ref.instance,
         options = _ref.options;
@@ -2512,6 +2799,9 @@
 
     if (scroll) {
       scrollParents.forEach(function (scrollParent) {
+        /// <summary>
+        /// </summary>
+        /// <param name="scrollParent">The scroll parent.</param>
         scrollParent.addEventListener('scroll', instance.update, passive);
       });
     }
@@ -2521,8 +2811,13 @@
     }
 
     return function () {
+      /// <summary>
+      /// </summary>
       if (scroll) {
         scrollParents.forEach(function (scrollParent) {
+          /// <summary>
+          /// </summary>
+          /// <param name="scrollParent">The scroll parent.</param>
           scrollParent.removeEventListener('scroll', instance.update, passive);
         });
       }
@@ -2534,15 +2829,20 @@
   } // eslint-disable-next-line import/no-unused-modules
 
 
+  /// <var>The event listeners</var>
   var eventListeners = {
     name: 'eventListeners',
     enabled: true,
     phase: 'write',
+/// <summary>
+/// Functions this instance.
+/// </summary>
     fn: function fn() {},
     effect: effect,
     data: {}
   };
 
+  /// <var>The hash$1</var>
   var hash$1 = {
     left: 'right',
     right: 'left',
@@ -2550,22 +2850,41 @@
     top: 'bottom'
   };
   function getOppositePlacement(placement) {
+    /// <summary>
+    /// Gets the opposite placement.
+    /// </summary>
+    /// <param name="placement">The placement.</param>
     return placement.replace(/left|right|bottom|top/g, function (matched) {
+      /// <summary>
+      /// </summary>
+      /// <param name="matched">The matched.</param>
       return hash$1[matched];
     });
   }
 
+  /// <var>The hash</var>
   var hash = {
     start: 'end',
     end: 'start'
   };
   function getOppositeVariationPlacement(placement) {
+    /// <summary>
+    /// Gets the opposite variation placement.
+    /// </summary>
+    /// <param name="placement">The placement.</param>
     return placement.replace(/start|end/g, function (matched) {
+      /// <summary>
+      /// </summary>
+      /// <param name="matched">The matched.</param>
       return hash[matched];
     });
   }
 
   function getWindowScroll(node) {
+    /// <summary>
+    /// Gets the window scroll.
+    /// </summary>
+    /// <param name="node">The node.</param>
     var win = getWindow(node);
     var scrollLeft = win.pageXOffset;
     var scrollTop = win.pageYOffset;
@@ -2583,10 +2902,18 @@
     // anyway.
     // Browsers where the left scrollbar doesn't cause an issue report `0` for
     // this (e.g. Edge 2019, IE11, Safari)
+    /// <summary>
+    /// Gets the window scroll bar x.
+    /// </summary>
+    /// <param name="element">The element.</param>
     return getBoundingClientRect(getDocumentElement(element)).left + getWindowScroll(element).scrollLeft;
   }
 
   function getViewportRect(element) {
+    /// <summary>
+    /// Gets the viewport rect.
+    /// </summary>
+    /// <param name="element">The element.</param>
     var win = getWindow(element);
     var html = getDocumentElement(element);
     var visualViewport = win.visualViewport;
@@ -2627,6 +2954,10 @@
   // of the `<html>` and `<body>` rect bounds if horizontally scrollable
 
   function getDocumentRect(element) {
+    /// <summary>
+    /// Gets the document rect.
+    /// </summary>
+    /// <param name="element">The element.</param>
     var _element$ownerDocumen;
 
     var html = getDocumentElement(element);
@@ -2651,6 +2982,11 @@
 
   function isScrollParent(element) {
     // Firefox wants us to check `-x` and `-y` variations as well
+    /// <summary>
+    /// Determines whether [is scroll parent] [the specified element].
+    /// </summary>
+    /// <param name="element">The element.</param>
+    /// <returns><c>true</c> if [is scroll parent] [the specified element]; otherwise, <c>false</c>.</returns>
     var _getComputedStyle = getComputedStyle$1(element),
         overflow = _getComputedStyle.overflow,
         overflowX = _getComputedStyle.overflowX,
@@ -2660,6 +2996,10 @@
   }
 
   function getScrollParent(node) {
+    /// <summary>
+    /// Gets the scroll parent.
+    /// </summary>
+    /// <param name="node">The node.</param>
     if (['html', 'body', '#document'].indexOf(getNodeName(node)) >= 0) {
       // $FlowFixMe[incompatible-return]: assume body is always available
       return node.ownerDocument.body;
@@ -2680,6 +3020,11 @@
   */
 
   function listScrollParents(element, list) {
+    /// <summary>
+    /// Lists the scroll parents.
+    /// </summary>
+    /// <param name="element">The element.</param>
+    /// <param name="list">The list.</param>
     var _element$ownerDocumen;
 
     if (list === void 0) {
@@ -2696,6 +3041,10 @@
   }
 
   function rectToClientRect(rect) {
+    /// <summary>
+    /// Rects to client rect.
+    /// </summary>
+    /// <param name="rect">The rect.</param>
     return Object.assign({}, rect, {
       left: rect.x,
       top: rect.y,
@@ -2705,6 +3054,10 @@
   }
 
   function getInnerBoundingClientRect(element) {
+    /// <summary>
+    /// Gets the inner bounding client rect.
+    /// </summary>
+    /// <param name="element">The element.</param>
     var rect = getBoundingClientRect(element);
     rect.top = rect.top + element.clientTop;
     rect.left = rect.left + element.clientLeft;
@@ -2718,6 +3071,11 @@
   }
 
   function getClientRectFromMixedType(element, clippingParent) {
+    /// <summary>
+    /// Gets the type of the client rect from mixed.
+    /// </summary>
+    /// <param name="element">The element.</param>
+    /// <param name="clippingParent">The clipping parent.</param>
     return clippingParent === viewport ? rectToClientRect(getViewportRect(element)) : isHTMLElement(clippingParent) ? getInnerBoundingClientRect(clippingParent) : rectToClientRect(getDocumentRect(getDocumentElement(element)));
   } // A "clipping parent" is an overflowable container with the characteristic of
   // clipping (or hiding) overflowing elements with a position different from
@@ -2725,6 +3083,10 @@
 
 
   function getClippingParents(element) {
+    /// <summary>
+    /// Gets the clipping parents.
+    /// </summary>
+    /// <param name="element">The element.</param>
     var clippingParents = listScrollParents(getParentNode(element));
     var canEscapeClipping = ['absolute', 'fixed'].indexOf(getComputedStyle$1(element).position) >= 0;
     var clipperElement = canEscapeClipping && isHTMLElement(element) ? getOffsetParent(element) : element;
@@ -2735,6 +3097,9 @@
 
 
     return clippingParents.filter(function (clippingParent) {
+      /// <summary>
+      /// </summary>
+      /// <param name="clippingParent">The clipping parent.</param>
       return isElement(clippingParent) && contains(clippingParent, clipperElement) && getNodeName(clippingParent) !== 'body';
     });
   } // Gets the maximum area that the element is visible in due to any number of
@@ -2742,10 +3107,20 @@
 
 
   function getClippingRect(element, boundary, rootBoundary) {
+    /// <summary>
+    /// Gets the clipping rect.
+    /// </summary>
+    /// <param name="element">The element.</param>
+    /// <param name="boundary">The boundary.</param>
+    /// <param name="rootBoundary">The root boundary.</param>
     var mainClippingParents = boundary === 'clippingParents' ? getClippingParents(element) : [].concat(boundary);
     var clippingParents = [].concat(mainClippingParents, [rootBoundary]);
     var firstClippingParent = clippingParents[0];
     var clippingRect = clippingParents.reduce(function (accRect, clippingParent) {
+      /// <summary>
+      /// </summary>
+      /// <param name="accRect">The acc rect.</param>
+      /// <param name="clippingParent">The clipping parent.</param>
       var rect = getClientRectFromMixedType(element, clippingParent);
       accRect.top = max(rect.top, accRect.top);
       accRect.right = min(rect.right, accRect.right);
@@ -2761,10 +3136,18 @@
   }
 
   function getVariation(placement) {
+    /// <summary>
+    /// Gets the variation.
+    /// </summary>
+    /// <param name="placement">The placement.</param>
     return placement.split('-')[1];
   }
 
   function computeOffsets(_ref) {
+    /// <summary>
+    /// Computes the offsets.
+    /// </summary>
+    /// <param name="_ref">The reference.</param>
     var reference = _ref.reference,
         element = _ref.element,
         placement = _ref.placement;
@@ -2830,6 +3213,11 @@
   }
 
   function detectOverflow(state, options) {
+    /// <summary>
+    /// Detects the overflow.
+    /// </summary>
+    /// <param name="state">The state.</param>
+    /// <param name="options">The options.</param>
     if (options === void 0) {
       options = {};
     }
@@ -2875,6 +3263,9 @@
     if (elementContext === popper && offsetData) {
       var offset = offsetData[placement];
       Object.keys(overflowOffsets).forEach(function (key) {
+        /// <summary>
+        /// </summary>
+        /// <param name="key">The key.</param>
         var multiply = [right, bottom].indexOf(key) >= 0 ? 1 : -1;
         var axis = [top, bottom].indexOf(key) >= 0 ? 'y' : 'x';
         overflowOffsets[key] += offset[axis] * multiply;
@@ -2885,6 +3276,11 @@
   }
 
   function computeAutoPlacement(state, options) {
+    /// <summary>
+    /// Computes the automatic placement.
+    /// </summary>
+    /// <param name="state">The state.</param>
+    /// <param name="options">The options.</param>
     if (options === void 0) {
       options = {};
     }
@@ -2899,9 +3295,15 @@
         allowedAutoPlacements = _options$allowedAutoP === void 0 ? placements : _options$allowedAutoP;
     var variation = getVariation(placement);
     var placements$1 = variation ? flipVariations ? variationPlacements : variationPlacements.filter(function (placement) {
+      /// <summary>
+      /// </summary>
+      /// <param name="placement">The placement.</param>
       return getVariation(placement) === variation;
     }) : basePlacements;
     var allowedPlacements = placements$1.filter(function (placement) {
+      /// <summary>
+      /// </summary>
+      /// <param name="placement">The placement.</param>
       return allowedAutoPlacements.indexOf(placement) >= 0;
     });
 
@@ -2911,6 +3313,10 @@
 
 
     var overflows = allowedPlacements.reduce(function (acc, placement) {
+      /// <summary>
+      /// </summary>
+      /// <param name="acc">The acc.</param>
+      /// <param name="placement">The placement.</param>
       acc[placement] = detectOverflow(state, {
         placement: placement,
         boundary: boundary,
@@ -2920,11 +3326,19 @@
       return acc;
     }, {});
     return Object.keys(overflows).sort(function (a, b) {
+      /// <summary>
+      /// </summary>
+      /// <param name="a">a.</param>
+      /// <param name="b">The b.</param>
       return overflows[a] - overflows[b];
     });
   }
 
   function getExpandedFallbackPlacements(placement) {
+    /// <summary>
+    /// Gets the expanded fallback placements.
+    /// </summary>
+    /// <param name="placement">The placement.</param>
     if (getBasePlacement(placement) === auto) {
       return [];
     }
@@ -2934,6 +3348,10 @@
   }
 
   function flip(_ref) {
+    /// <summary>
+    /// Flips the specified reference.
+    /// </summary>
+    /// <param name="_ref">The reference.</param>
     var state = _ref.state,
         options = _ref.options,
         name = _ref.name;
@@ -2959,6 +3377,10 @@
     var isBasePlacement = basePlacement === preferredPlacement;
     var fallbackPlacements = specifiedFallbackPlacements || (isBasePlacement || !flipVariations ? [getOppositePlacement(preferredPlacement)] : getExpandedFallbackPlacements(preferredPlacement));
     var placements = [preferredPlacement].concat(fallbackPlacements).reduce(function (acc, placement) {
+      /// <summary>
+      /// </summary>
+      /// <param name="acc">The acc.</param>
+      /// <param name="placement">The placement.</param>
       return acc.concat(getBasePlacement(placement) === auto ? computeAutoPlacement(state, {
         placement: placement,
         boundary: boundary,
@@ -3007,6 +3429,9 @@
       }
 
       if (checks.every(function (check) {
+        /// <summary>
+        /// </summary>
+        /// <param name="check">The check.</param>
         return check;
       })) {
         firstFittingPlacement = placement;
@@ -3022,11 +3447,21 @@
       var numberOfChecks = flipVariations ? 3 : 1;
 
       var _loop = function _loop(_i) {
+        /// <summary>
+        /// Loops the specified i.
+        /// </summary>
+        /// <param name="_i">The i.</param>
         var fittingPlacement = placements.find(function (placement) {
+          /// <summary>
+          /// </summary>
+          /// <param name="placement">The placement.</param>
           var checks = checksMap.get(placement);
 
           if (checks) {
             return checks.slice(0, _i).every(function (check) {
+              /// <summary>
+              /// </summary>
+              /// <param name="check">The check.</param>
               return check;
             });
           }
@@ -3053,6 +3488,7 @@
   } // eslint-disable-next-line import/no-unused-modules
 
 
+  /// <var>The flip$1</var>
   var flip$1 = {
     name: 'flip',
     enabled: true,
@@ -3065,6 +3501,12 @@
   };
 
   function getSideOffsets(overflow, rect, preventedOffsets) {
+    /// <summary>
+    /// Gets the side offsets.
+    /// </summary>
+    /// <param name="overflow">The overflow.</param>
+    /// <param name="rect">The rect.</param>
+    /// <param name="preventedOffsets">The prevented offsets.</param>
     if (preventedOffsets === void 0) {
       preventedOffsets = {
         x: 0,
@@ -3081,12 +3523,24 @@
   }
 
   function isAnySideFullyClipped(overflow) {
+    /// <summary>
+    /// Determines whether [is any side fully clipped] [the specified overflow].
+    /// </summary>
+    /// <param name="overflow">The overflow.</param>
+    /// <returns><c>true</c> if [is any side fully clipped] [the specified overflow]; otherwise, <c>false</c>.</returns>
     return [top, right, bottom, left].some(function (side) {
+      /// <summary>
+      /// </summary>
+      /// <param name="side">The side.</param>
       return overflow[side] >= 0;
     });
   }
 
   function hide(_ref) {
+    /// <summary>
+    /// Hides the specified reference.
+    /// </summary>
+    /// <param name="_ref">The reference.</param>
     var state = _ref.state,
         name = _ref.name;
     var referenceRect = state.rects.reference;
@@ -3115,6 +3569,7 @@
   } // eslint-disable-next-line import/no-unused-modules
 
 
+  /// <var>The hide$1</var>
   var hide$1 = {
     name: 'hide',
     enabled: true,
@@ -3124,6 +3579,12 @@
   };
 
   function distanceAndSkiddingToXY(placement, rects, offset) {
+    /// <summary>
+    /// Distances the and skidding to xy.
+    /// </summary>
+    /// <param name="placement">The placement.</param>
+    /// <param name="rects">The rects.</param>
+    /// <param name="offset">The offset.</param>
     var basePlacement = getBasePlacement(placement);
     var invertDistance = [left, top].indexOf(basePlacement) >= 0 ? -1 : 1;
 
@@ -3145,12 +3606,20 @@
   }
 
   function offset(_ref2) {
+    /// <summary>
+    /// Offsets the specified ref2.
+    /// </summary>
+    /// <param name="_ref2">The ref2.</param>
     var state = _ref2.state,
         options = _ref2.options,
         name = _ref2.name;
     var _options$offset = options.offset,
         offset = _options$offset === void 0 ? [0, 0] : _options$offset;
     var data = placements.reduce(function (acc, placement) {
+      /// <summary>
+      /// </summary>
+      /// <param name="acc">The acc.</param>
+      /// <param name="placement">The placement.</param>
       acc[placement] = distanceAndSkiddingToXY(placement, state.rects, offset);
       return acc;
     }, {});
@@ -3167,6 +3636,7 @@
   } // eslint-disable-next-line import/no-unused-modules
 
 
+  /// <var>The offset$1</var>
   var offset$1 = {
     name: 'offset',
     enabled: true,
@@ -3176,6 +3646,10 @@
   };
 
   function popperOffsets(_ref) {
+    /// <summary>
+    /// Poppers the offsets.
+    /// </summary>
+    /// <param name="_ref">The reference.</param>
     var state = _ref.state,
         name = _ref.name;
     // Offsets are the actual position the popper needs to have to be
@@ -3191,6 +3665,7 @@
   } // eslint-disable-next-line import/no-unused-modules
 
 
+  /// <var>The popper offsets$1</var>
   var popperOffsets$1 = {
     name: 'popperOffsets',
     enabled: true,
@@ -3200,10 +3675,18 @@
   };
 
   function getAltAxis(axis) {
+    /// <summary>
+    /// Gets the alt axis.
+    /// </summary>
+    /// <param name="axis">The axis.</param>
     return axis === 'x' ? 'y' : 'x';
   }
 
   function preventOverflow(_ref) {
+    /// <summary>
+    /// Prevents the overflow.
+    /// </summary>
+    /// <param name="_ref">The reference.</param>
     var state = _ref.state,
         options = _ref.options,
         name = _ref.name;
@@ -3307,6 +3790,7 @@
   } // eslint-disable-next-line import/no-unused-modules
 
 
+  /// <var>The prevent overflow$1</var>
   var preventOverflow$1 = {
     name: 'preventOverflow',
     enabled: true,
@@ -3316,6 +3800,10 @@
   };
 
   function getHTMLElementScroll(element) {
+    /// <summary>
+    /// Gets the HTML element scroll.
+    /// </summary>
+    /// <param name="element">The element.</param>
     return {
       scrollLeft: element.scrollLeft,
       scrollTop: element.scrollTop
@@ -3323,6 +3811,10 @@
   }
 
   function getNodeScroll(node) {
+    /// <summary>
+    /// Gets the node scroll.
+    /// </summary>
+    /// <param name="node">The node.</param>
     if (node === getWindow(node) || !isHTMLElement(node)) {
       return getWindowScroll(node);
     } else {
@@ -3331,6 +3823,11 @@
   }
 
   function isElementScaled(element) {
+    /// <summary>
+    /// Determines whether [is element scaled] [the specified element].
+    /// </summary>
+    /// <param name="element">The element.</param>
+    /// <returns><c>true</c> if [is element scaled] [the specified element]; otherwise, <c>false</c>.</returns>
     var rect = element.getBoundingClientRect();
     var scaleX = rect.width / element.offsetWidth || 1;
     var scaleY = rect.height / element.offsetHeight || 1;
@@ -3340,6 +3837,12 @@
 
 
   function getCompositeRect(elementOrVirtualElement, offsetParent, isFixed) {
+    /// <summary>
+    /// Gets the composite rect.
+    /// </summary>
+    /// <param name="elementOrVirtualElement">The element or virtual element.</param>
+    /// <param name="offsetParent">The offset parent.</param>
+    /// <param name="isFixed">The is fixed.</param>
     if (isFixed === void 0) {
       isFixed = false;
     }
@@ -3381,17 +3884,31 @@
   }
 
   function order(modifiers) {
+    /// <summary>
+    /// Orders the specified modifiers.
+    /// </summary>
+    /// <param name="modifiers">The modifiers.</param>
     var map = new Map();
     var visited = new Set();
     var result = [];
     modifiers.forEach(function (modifier) {
+      /// <summary>
+      /// </summary>
+      /// <param name="modifier">The modifier.</param>
       map.set(modifier.name, modifier);
     }); // On visiting object, check for its dependencies and visit them recursively
 
     function sort(modifier) {
+      /// <summary>
+      /// Sorts the specified modifier.
+      /// </summary>
+      /// <param name="modifier">The modifier.</param>
       visited.add(modifier.name);
       var requires = [].concat(modifier.requires || [], modifier.requiresIfExists || []);
       requires.forEach(function (dep) {
+        /// <summary>
+        /// </summary>
+        /// <param name="dep">The dep.</param>
         if (!visited.has(dep)) {
           var depModifier = map.get(dep);
 
@@ -3404,6 +3921,9 @@
     }
 
     modifiers.forEach(function (modifier) {
+      /// <summary>
+      /// </summary>
+      /// <param name="modifier">The modifier.</param>
       if (!visited.has(modifier.name)) {
         // check for visited object
         sort(modifier);
@@ -3414,21 +3934,43 @@
 
   function orderModifiers(modifiers) {
     // order based on dependencies
+    /// <summary>
+    /// Orders the modifiers.
+    /// </summary>
+    /// <param name="modifiers">The modifiers.</param>
     var orderedModifiers = order(modifiers); // order based on phase
 
     return modifierPhases.reduce(function (acc, phase) {
+      /// <summary>
+      /// </summary>
+      /// <param name="acc">The acc.</param>
+      /// <param name="phase">The phase.</param>
       return acc.concat(orderedModifiers.filter(function (modifier) {
+        /// <summary>
+        /// </summary>
+        /// <param name="modifier">The modifier.</param>
         return modifier.phase === phase;
       }));
     }, []);
   }
 
   function debounce(fn) {
+    /// <summary>
+    /// Debounces the specified function.
+    /// </summary>
+    /// <param name="fn">The function.</param>
     var pending;
     return function () {
+      /// <summary>
+      /// </summary>
       if (!pending) {
         pending = new Promise(function (resolve) {
+          /// <summary>
+          /// </summary>
+          /// <param name="resolve">The resolve.</param>
           Promise.resolve().then(function () {
+            /// <summary>
+            /// </summary>
             pending = undefined;
             resolve(fn());
           });
@@ -3440,7 +3982,15 @@
   }
 
   function mergeByName(modifiers) {
+    /// <summary>
+    /// Merges the name of the by.
+    /// </summary>
+    /// <param name="modifiers">The modifiers.</param>
     var merged = modifiers.reduce(function (merged, current) {
+      /// <summary>
+      /// </summary>
+      /// <param name="merged">The merged.</param>
+      /// <param name="current">The current.</param>
       var existing = merged[current.name];
       merged[current.name] = existing ? Object.assign({}, existing, current, {
         options: Object.assign({}, existing.options, current.options),
@@ -3450,10 +4000,14 @@
     }, {}); // IE11 does not support Object.values
 
     return Object.keys(merged).map(function (key) {
+      /// <summary>
+      /// </summary>
+      /// <param name="key">The key.</param>
       return merged[key];
     });
   }
 
+  /// <var>The default options</var>
   var DEFAULT_OPTIONS = {
     placement: 'bottom',
     modifiers: [],
@@ -3461,16 +4015,26 @@
   };
 
   function areValidElements() {
+    /// <summary>
+    /// Ares the valid elements.
+    /// </summary>
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
     return !args.some(function (element) {
+      /// <summary>
+      /// </summary>
+      /// <param name="element">The element.</param>
       return !(element && typeof element.getBoundingClientRect === 'function');
     });
   }
 
   function popperGenerator(generatorOptions) {
+    /// <summary>
+    /// Poppers the generator.
+    /// </summary>
+    /// <param name="generatorOptions">The generator options.</param>
     if (generatorOptions === void 0) {
       generatorOptions = {};
     }
@@ -3481,6 +4045,12 @@
         _generatorOptions$def2 = _generatorOptions.defaultOptions,
         defaultOptions = _generatorOptions$def2 === void 0 ? DEFAULT_OPTIONS : _generatorOptions$def2;
     return function createPopper(reference, popper, options) {
+      /// <summary>
+      /// Creates the popper.
+      /// </summary>
+      /// <param name="reference">The reference.</param>
+      /// <param name="popper">The popper.</param>
+      /// <param name="options">The options.</param>
       if (options === void 0) {
         options = defaultOptions;
       }
@@ -3502,6 +4072,10 @@
       var instance = {
         state: state,
         setOptions: function setOptions(options) {
+          /// <summary>
+          /// Sets the options.
+          /// </summary>
+          /// <param name="options">The options.</param>
           cleanupModifierEffects();
           state.options = Object.assign({}, defaultOptions, state.options, options);
           state.scrollParents = {
@@ -3513,6 +4087,9 @@
           var orderedModifiers = orderModifiers(mergeByName([].concat(defaultModifiers, state.options.modifiers))); // Strip out disabled modifiers
 
           state.orderedModifiers = orderedModifiers.filter(function (m) {
+            /// <summary>
+            /// </summary>
+            /// <param name="m">The m.</param>
             return m.enabled;
           }); // Validate the provided modifiers so that the consumer will get warned
 
@@ -3525,6 +4102,9 @@
         // For high frequency updates (e.g. `resize` and `scroll` events), always
         // prefer the async Popper#update method
         forceUpdate: function forceUpdate() {
+          /// <summary>
+          /// Forces the update.
+          /// </summary>
           if (isDestroyed) {
             return;
           }
@@ -3556,6 +4136,9 @@
           // To ensure persistent data, use `${name}#persistent`
 
           state.orderedModifiers.forEach(function (modifier) {
+            /// <summary>
+            /// </summary>
+            /// <param name="modifier">The modifier.</param>
             return state.modifiersData[modifier.name] = Object.assign({}, modifier.data);
           });
 
@@ -3586,12 +4169,20 @@
         // Async and optimistically optimized update – it will not be executed if
         // not necessary (debounced to run at most once-per-tick)
         update: debounce(function () {
+          /// <summary>
+          /// </summary>
           return new Promise(function (resolve) {
+            /// <summary>
+            /// </summary>
+            /// <param name="resolve">The resolve.</param>
             instance.forceUpdate();
             resolve(state);
           });
         }),
         destroy: function destroy() {
+          /// <summary>
+          /// Destroys this instance.
+          /// </summary>
           cleanupModifierEffects();
           isDestroyed = true;
         }
@@ -3603,6 +4194,9 @@
       }
 
       instance.setOptions(options).then(function (state) {
+        /// <summary>
+        /// </summary>
+        /// <param name="state">The state.</param>
         if (!isDestroyed && options.onFirstUpdate) {
           options.onFirstUpdate(state);
         }
@@ -3613,7 +4207,13 @@
       // one.
 
       function runModifierEffects() {
+        /// <summary>
+        /// Runs the modifier effects.
+        /// </summary>
         state.orderedModifiers.forEach(function (_ref3) {
+          /// <summary>
+          /// </summary>
+          /// <param name="_ref3">The ref3.</param>
           var name = _ref3.name,
               _ref3$options = _ref3.options,
               options = _ref3$options === void 0 ? {} : _ref3$options,
@@ -3627,6 +4227,9 @@
               options: options
             });
 
+/// <summary>
+/// Noops the function.
+/// </summary>
             var noopFn = function noopFn() {};
 
             effectCleanupFns.push(cleanupFn || noopFn);
@@ -3635,7 +4238,13 @@
       }
 
       function cleanupModifierEffects() {
+        /// <summary>
+        /// Cleanups the modifier effects.
+        /// </summary>
         effectCleanupFns.forEach(function (fn) {
+          /// <summary>
+          /// </summary>
+          /// <param name="fn">The function.</param>
           return fn();
         });
         effectCleanupFns = [];
@@ -3644,18 +4253,24 @@
       return instance;
     };
   }
+  /// <var>The create popper$2</var>
   var createPopper$2 = /*#__PURE__*/popperGenerator(); // eslint-disable-next-line import/no-unused-modules
 
+  /// <var>The default modifiers$1</var>
   var defaultModifiers$1 = [eventListeners, popperOffsets$1, computeStyles$1, applyStyles$1];
+  /// <var>The create popper$1</var>
   var createPopper$1 = /*#__PURE__*/popperGenerator({
     defaultModifiers: defaultModifiers$1
   }); // eslint-disable-next-line import/no-unused-modules
 
+  /// <var>The default modifiers</var>
   var defaultModifiers = [eventListeners, popperOffsets$1, computeStyles$1, applyStyles$1, offset$1, flip$1, preventOverflow$1, arrow$1, hide$1];
+  /// <var>The create popper</var>
   var createPopper = /*#__PURE__*/popperGenerator({
     defaultModifiers: defaultModifiers
   }); // eslint-disable-next-line import/no-unused-modules
 
+  /// <var>The popper</var>
   var Popper = /*#__PURE__*/Object.freeze({
     __proto__: null,
     popperGenerator: popperGenerator,
@@ -3969,6 +4584,9 @@
       } = this._config;
 
       if (typeof offset === 'string') {
+/// <summary>
+/// </summary>
+/// <param name="val">The value.</param>
         return offset.split(',').map(val => Number.parseInt(val, 10));
       }
 
@@ -4148,6 +4766,9 @@
   EventHandler.on(document, EVENT_CLICK_DATA_API$3, Dropdown.clearMenus);
   EventHandler.on(document, EVENT_KEYUP_DATA_API, Dropdown.clearMenus);
   EventHandler.on(document, EVENT_CLICK_DATA_API$3, SELECTOR_DATA_TOGGLE$3, function (event) {
+    /// <summary>
+    /// </summary>
+    /// <param name="event">The event.</param>
     event.preventDefault();
     Dropdown.getOrCreateInstance(this).toggle();
   });
@@ -4186,6 +4807,9 @@
       this._disableOverFlow(); // give padding to element to balance the hidden scrollbar width
 
 
+/// <summary>
+/// </summary>
+/// <param name="calculatedValue">The calculated value.</param>
       this._setElementAttributes(this._element, 'paddingRight', calculatedValue => calculatedValue + width); // trick: We adjust positive paddingRight and negative marginRight to sticky-top elements to keep showing fullwidth
 
 
@@ -4313,6 +4937,8 @@
       this._getElement().classList.add(CLASS_NAME_SHOW$5);
 
       this._emulateAnimation(() => {
+        /// <summary>
+        /// </summary>
         execute(callback);
       });
     }
@@ -4326,6 +4952,8 @@
       this._getElement().classList.remove(CLASS_NAME_SHOW$5);
 
       this._emulateAnimation(() => {
+        /// <summary>
+        /// </summary>
         this.dispose();
         execute(callback);
       });
@@ -4365,6 +4993,8 @@
       this._config.rootElement.append(this._getElement());
 
       EventHandler.on(this._getElement(), EVENT_MOUSEDOWN, () => {
+        /// <summary>
+        /// </summary>
         execute(this._config.clickCallback);
       });
       this._isAppended = true;
@@ -4435,6 +5065,9 @@
 
       EventHandler.off(document, EVENT_KEY$7); // guard against infinite focus loop
 
+/// <summary>
+/// </summary>
+/// <param name="event">The event.</param>
       EventHandler.on(document, EVENT_FOCUSIN$1, event => this._handleFocusin(event));
       EventHandler.on(document, EVENT_KEYDOWN_TAB, event => this._handleKeydown(event));
       this._isActive = true;
@@ -4599,13 +5232,20 @@
       this._setResizeEvent();
 
       EventHandler.on(this._dialog, EVENT_MOUSEDOWN_DISMISS, () => {
+        /// <summary>
+        /// </summary>
         EventHandler.one(this._element, EVENT_MOUSEUP_DISMISS, event => {
+          /// <summary>
+          /// </summary>
+          /// <param name="event">The event.</param>
           if (event.target === this._element) {
             this._ignoreBackdropClick = true;
           }
         });
       });
 
+/// <summary>
+/// </summary>
       this._showBackdrop(() => this._showElement(relatedTarget));
     }
 
@@ -4639,6 +5279,8 @@
       EventHandler.off(this._element, EVENT_CLICK_DISMISS);
       EventHandler.off(this._dialog, EVENT_MOUSEDOWN_DISMISS);
 
+/// <summary>
+/// </summary>
       this._queueCallback(() => this._hideModal(), this._element, isAnimated);
     }
 
@@ -4759,6 +5401,8 @@
       this._isTransitioning = false;
 
       this._backdrop.hide(() => {
+        /// <summary>
+        /// </summary>
         document.body.classList.remove(CLASS_NAME_OPEN);
 
         this._resetAdjustments();
@@ -4819,10 +5463,14 @@
       classList.add(CLASS_NAME_STATIC);
 
       this._queueCallback(() => {
+        /// <summary>
+        /// </summary>
         classList.remove(CLASS_NAME_STATIC);
 
         if (!isModalOverflowing) {
           this._queueCallback(() => {
+            /// <summary>
+            /// </summary>
             style.overflowY = '';
           }, this._dialog);
         }
@@ -4888,12 +5536,17 @@
     }
 
     EventHandler.one(target, EVENT_SHOW$3, showEvent => {
+      /// <summary>
+      /// </summary>
+      /// <param name="showEvent">The show event.</param>
       if (showEvent.defaultPrevented) {
         // only register focus restorer if modal will actually get shown
         return;
       }
 
       EventHandler.one(target, EVENT_HIDDEN$3, () => {
+        /// <summary>
+        /// </summary>
         if (isVisible(this)) {
           this.focus();
         }
@@ -5144,6 +5797,8 @@
 
     EventHandler.one(target, EVENT_HIDDEN$2, () => {
       // focus on trigger when it is closed
+      /// <summary>
+      /// </summary>
       if (isVisible(this)) {
         this.focus();
       }
@@ -5191,6 +5846,8 @@
 
   const DATA_URL_PATTERN = /^data:(?:image\/(?:bmp|gif|jpeg|jpg|png|tiff|webp)|video\/(?:mpeg|mp4|ogg|webm)|audio\/(?:mp3|oga|ogg|opus));base64,[\d+/a-z]+=*$/i;
 
+  /// <summary>
+  /// </summary>
   const allowedAttribute = (attr, allowedAttributeList) => {
     const attrName = attr.nodeName.toLowerCase();
 
@@ -5247,6 +5904,12 @@
     ul: []
   };
   function sanitizeHtml(unsafeHtml, allowList, sanitizeFn) {
+    /// <summary>
+    /// Sanitizes the HTML.
+    /// </summary>
+    /// <param name="unsafeHtml">The unsafe HTML.</param>
+    /// <param name="allowList">The allow list.</param>
+    /// <param name="sanitizeFn">The sanitize function.</param>
     if (!unsafeHtml.length) {
       return unsafeHtml;
     }
@@ -5272,6 +5935,9 @@
       const attributeList = [].concat(...el.attributes);
       const allowedAttributes = [].concat(allowList['*'] || [], allowList[elName] || []);
       attributeList.forEach(attr => {
+        /// <summary>
+        /// </summary>
+        /// <param name="attr">The attribute.</param>
         if (!allowedAttribute(attr, allowedAttributes)) {
           el.removeAttribute(attr.nodeName);
         }
@@ -5699,6 +6365,9 @@
       } = this._config;
 
       if (typeof offset === 'string') {
+/// <summary>
+/// </summary>
+/// <param name="val">The value.</param>
         return offset.split(',').map(val => Number.parseInt(val, 10));
       }
 
@@ -5765,17 +6434,28 @@
       const triggers = this._config.trigger.split(' ');
 
       triggers.forEach(trigger => {
+        /// <summary>
+        /// </summary>
+        /// <param name="trigger">The trigger.</param>
         if (trigger === 'click') {
+/// <summary>
+/// </summary>
+/// <param name="event">The event.</param>
           EventHandler.on(this._element, this.constructor.Event.CLICK, this._config.selector, event => this.toggle(event));
         } else if (trigger !== TRIGGER_MANUAL) {
           const eventIn = trigger === TRIGGER_HOVER ? this.constructor.Event.MOUSEENTER : this.constructor.Event.FOCUSIN;
           const eventOut = trigger === TRIGGER_HOVER ? this.constructor.Event.MOUSELEAVE : this.constructor.Event.FOCUSOUT;
+/// <summary>
+/// </summary>
+/// <param name="event">The event.</param>
           EventHandler.on(this._element, eventIn, this._config.selector, event => this._enter(event));
           EventHandler.on(this._element, eventOut, this._config.selector, event => this._leave(event));
         }
       });
 
       this._hideModalHandler = () => {
+        /// <summary>
+        /// </summary>
         if (this._element) {
           this.hide();
         }
@@ -5830,6 +6510,8 @@
       }
 
       context._timeout = setTimeout(() => {
+        /// <summary>
+        /// </summary>
         if (context._hoverState === HOVER_STATE_SHOW) {
           context.show();
         }
@@ -5856,6 +6538,8 @@
       }
 
       context._timeout = setTimeout(() => {
+        /// <summary>
+        /// </summary>
         if (context._hoverState === HOVER_STATE_OUT) {
           context.hide();
         }
@@ -5875,6 +6559,9 @@
     _getConfig(config) {
       const dataAttributes = Manipulator.getDataAttributes(this._element);
       Object.keys(dataAttributes).forEach(dataAttr => {
+        /// <summary>
+        /// </summary>
+        /// <param name="dataAttr">The data attribute.</param>
         if (DISALLOWED_ATTRIBUTES.has(dataAttr)) {
           delete dataAttributes[dataAttr];
         }
@@ -5930,6 +6617,9 @@
       const tabClass = tip.getAttribute('class').match(basicClassPrefixRegex);
 
       if (tabClass !== null && tabClass.length > 0) {
+/// <summary>
+/// </summary>
+/// <param name="token">The token.</param>
         tabClass.map(token => token.trim()).forEach(tClass => tip.classList.remove(tClass));
       }
     }
@@ -6146,6 +6836,8 @@
       this._targets = [];
       this._activeTarget = null;
       this._scrollHeight = 0;
+/// <summary>
+/// </summary>
       EventHandler.on(this._scrollElement, EVENT_SCROLL, () => this._process());
       this.refresh();
 
@@ -6183,6 +6875,9 @@
         }
 
         return null;
+      /// <summary>
+      /// </summary>
+      /// <param name="item">The item.</param>
       }).filter(item => item).sort((a, b) => a[0] - b[0]).forEach(item => {
         this._offsets.push(item[0]);
 
@@ -6271,9 +6966,18 @@
         SelectorEngine.parents(link, SELECTOR_NAV_LIST_GROUP$1).forEach(listGroup => {
           // Set triggered links parents as active
           // With both <ul> and <nav> markup a parent is the previous sibling of any nav ancestor
+          /// <summary>
+          /// </summary>
+          /// <param name="listGroup">The list group.</param>
           SelectorEngine.prev(listGroup, `${SELECTOR_NAV_LINKS}, ${SELECTOR_LIST_ITEMS}`).forEach(item => item.classList.add(CLASS_NAME_ACTIVE$1)); // Handle special case when .nav-link is inside .nav-item
 
           SelectorEngine.prev(listGroup, SELECTOR_NAV_ITEMS).forEach(navItem => {
+/// <summary>
+/// </summary>
+/// <param name="navItem">The nav item.</param>
+/// <summary>
+/// </summary>
+/// <param name="item">The item.</param>
             SelectorEngine.children(navItem, SELECTOR_NAV_LINKS).forEach(item => item.classList.add(CLASS_NAME_ACTIVE$1));
           });
         });
@@ -6468,6 +7172,9 @@
         const dropdownElement = element.closest(SELECTOR_DROPDOWN);
 
         if (dropdownElement) {
+/// <summary>
+/// </summary>
+/// <param name="dropdown">The dropdown.</param>
           SelectorEngine.find(SELECTOR_DROPDOWN_TOGGLE, dropdownElement).forEach(dropdown => dropdown.classList.add(CLASS_NAME_ACTIVE));
         }
 
@@ -6716,6 +7423,9 @@
 
     _setListeners() {
       EventHandler.on(this._element, EVENT_MOUSEOVER, event => this._onInteraction(event, true));
+/// <summary>
+/// </summary>
+/// <param name="event">The event.</param>
       EventHandler.on(this._element, EVENT_MOUSEOUT, event => this._onInteraction(event, false));
       EventHandler.on(this._element, EVENT_FOCUSIN, event => this._onInteraction(event, true));
       EventHandler.on(this._element, EVENT_FOCUSOUT, event => this._onInteraction(event, false));
@@ -6759,6 +7469,7 @@
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+  /// <var>The index umd</var>
   var index_umd = {
     Alert,
     Button,

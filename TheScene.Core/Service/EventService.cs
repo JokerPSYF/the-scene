@@ -66,8 +66,6 @@ namespace TheScene.Core.Service
 
             }
 
-
-
             switch (sorting)
             {
                 case EventSorting.Soonest:

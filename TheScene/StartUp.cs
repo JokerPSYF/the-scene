@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : TheScene
+// Author           : Admin
+// Created          : 11-12-2022
+//
+// Last Modified By : Admin
+// Last Modified On : 12-16-2022
+// ***********************************************************************
+// <copyright file="StartUp.cs" company="TheScene">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -6,8 +19,16 @@ using TheScene.ModelBinders;
 
 namespace TheScene
 {
+    /// <summary>
+    /// Class StartUp.
+    /// </summary>
     public class StartUp
     {
+        /// <summary>
+        /// Defines the entry point of the application.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
+        /// <exception cref="System.InvalidOperationException">Connection string 'DefaultConnection' not found.</exception>
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);

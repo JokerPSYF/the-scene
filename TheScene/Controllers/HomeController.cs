@@ -1,4 +1,17 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿// ***********************************************************************
+// Assembly         : TheScene
+// Author           : Admin
+// Created          : 11-12-2022
+//
+// Last Modified By : Admin
+// Last Modified On : 12-17-2022
+// ***********************************************************************
+// <copyright file="HomeController.cs" company="TheScene">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using TheScene.Core.Interface;
@@ -14,9 +27,20 @@ namespace TheScene.Controllers
     public class HomeController : Controller
     {
 
+        /// <summary>
+        /// The event service
+        /// </summary>
         private readonly IEventService eventService;
+        /// <summary>
+        /// The common service
+        /// </summary>
         private readonly ICommonService commonService;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HomeController"/> class.
+        /// </summary>
+        /// <param name="_eventService">The event service.</param>
+        /// <param name="_commonService">The common service.</param>
         public HomeController(IEventService _eventService,
             ICommonService _commonService)
         {
@@ -77,8 +101,8 @@ namespace TheScene.Controllers
         /// <summary>
         /// Show details of an event
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">The identifier.</param>
+        /// <returns>IActionResult.</returns>
         public async Task<IActionResult> Details(int id)
         {
             if (!(await eventService.Exists(id)))
@@ -94,7 +118,7 @@ namespace TheScene.Controllers
         /// <summary>
         /// Show Error
         /// </summary>
-        /// <returns></returns>
+        /// <returns>IActionResult.</returns>
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

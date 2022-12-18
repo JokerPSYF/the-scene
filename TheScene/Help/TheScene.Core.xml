@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>TheScene.Core</name>
+  </assembly>
+  <members>
+    <member name="T:TheScene.Core.Models.PerfomanceModels.AllPerfomanceModel">
+      <summary>
+   Perfomance view model that will show all the perfomance
+   </summary>
+    </member>
+    <member name="T:TheScene.Core.Service.CommonService">
+      <summary>
+   Get all all common things like genres, perfomances, perfoamnesType etc.
+   </summary>
+    </member>
+    <member name="M:TheScene.Core.Service.CommonService.AllGenres">
+      <summary>
+   All Genres ids and names
+   </summary>
+      <returns>IEnumerable of NomenclatureDTO</returns>
+    </member>
+    <member name="M:TheScene.Core.Service.CommonService.AllGenresNames">
+      <summary>
+        <font color="red">Badly formed XML comment.</font>
+      </summary>
+    </member>
+    <member name="M:TheScene.Core.Service.CommonService.GenreExists(System.Int32)">
+      <summary>
+   Check if that genre exissts
+   </summary>
+      <param name="genreId">genre id (int)</param>
+      <returns>bool</returns>
+    </member>
+    <member name="M:TheScene.Core.Service.CommonService.AllLocations">
+      <summary>
+   All location ids and name
+   </summary>
+      <returns>IEnumerable of NomenclatureDTO</returns>
+    </member>
+    <member name="M:TheScene.Core.Service.CommonService.AllLocationsNames">
+      <summary>
+   All locations name
+   </summary>
+      <returns>IEnumerable of string</returns>
+    </member>
+    <member name="M:TheScene.Core.Service.CommonService.LocationExists(System.Int32)">
+      <summary>
+   Check if that location exists
+   </summary>
+      <param name="locationbId">location id (int)</param>
+      <returns>bool</returns>
+    </member>
+    <member name="M:TheScene.Core.Service.CommonService.AllPerfomances">
+      <summary>
+   All perfomances id's and names
+   </summary>
+      <returns>IEnumerable of NomenclatureDTO</returns>
+    </member>
+    <member name="M:TheScene.Core.Service.CommonService.AllPerfomancesNames">
+      <summary>
+   All perfomances names
+   </summary>
+      <returns>IEnumerable of string</returns>
+    </member>
+    <member name="M:TheScene.Core.Service.CommonService.PerfomancesExists(System.Int32)">
+      <summary>
+   Check if that perfomance exists
+   </summary>
+      <param name="perfomanceId">perfomance id (int)</param>
+      <returns>bool</returns>
+    </member>
+    <member name="M:TheScene.Core.Service.CommonService.AllPerfomancesTypes">
+      <summary>
+   All perfomances types id's and names
+   </summary>
+      <returns>IEnumerable of NomenclatureDTO</returns>
+    </member>
+    <member name="M:TheScene.Core.Service.CommonService.AllPerfomanceTypesNames">
+      <summary>
+   All perfomances types names
+   </summary>
+      <returns>IEnumerable of string</returns>
+    </member>
+    <member name="M:TheScene.Core.Service.CommonService.PerfomanceTypesExists(System.Int32)">
+      <summary>
+   Check if perfomance type exists
+   </summary>
+      <param name="perfomanceTypeId">perfomance type id (int)</param>
+      <returns>bool</returns>
+    </member>
+    <member name="M:TheScene.Core.Service.CommonService.AllPlaceTypes">
+      <summary>
+   All place types id and names
+   </summary>
+      <returns>IEnumerable of NomenclatureDTO</returns>
+    </member>
+    <member name="M:TheScene.Core.Service.CommonService.AllPlaceTypesNames">
+      <summary>
+   All place types names
+   </summary>
+      <returns>IEnumerable of string</returns>
+    </member>
+    <member name="M:TheScene.Core.Service.CommonService.PlaceTypeExists(System.Int32)">
+      <summary>
+   Check if place type exists
+   </summary>
+      <param name="placeTypeId">place type id (int)</param>
+      <returns>bool</returns>
+    </member>
+    <member name="M:TheScene.Core.Service.EventService.All(System.Nullable{System.String},System.Nullable{System.String},System.Nullable{System.String},EventSorting,System.Int32,System.Int32)">
+      <summary>
+   All events by the given criteria
+   </summary>
+      <param name="genre">genre name</param>
+      <param name="perfomanceType">perfomance type name</param>
+      <param name="searchTerm">search filter</param>
+      <param name="sorting">EventSortning sort</param>
+      <param name="currentPage">current page (int)</param>
+      <param name="eventPerPage">how many events per page</param>
+      <returns>QueryModel of AllEventModel</returns>
+    </member>
+    <member name="M:TheScene.Core.Service.EventService.Create(EventModel)">
+      <summary>
+   Create Event
+   </summary>
+      <param name="model">EventModel</param>
+      <returns>event id</returns>
+    </member>
+    <member name="M:TheScene.Core.Service.EventService.Delete(System.Int32)">
+      <summary>
+   Delete event
+   </summary>
+      <param name="eventId">event id</param>
+    </member>
+    <member name="M:TheScene.Core.Service.EventService.DetailsById(System.Int32)">
+      <summary>
+   Show event details
+   </summary>
+      <param name="eventId">event id</param>
+    </member>
+    <member name="M:TheScene.Core.Service.EventService.Edit(System.Int32,EventModel)">
+      <summary>
+   Edit event
+   </summary>
+      <param name="eventId">event id</param>
+      <param name="model">event model (changed)</param>
+    </member>
+    <member name="M:TheScene.Core.Service.EventService.Exists(System.Int32)">
+      <summary>
+   check if event exists
+   </summary>
+      <param name="eventId">event id</param>
+      <returns>bool</returns>
+    </member>
+    <member name="M:TheScene.Core.Service.LocationService.AllLocationsInfo(System.Nullable{System.String},System.Nullable{System.String},System.Int32,System.Int32)">
+      <summary>
+   All location by the given criteria
+   </summary>
+      <param name="placeType">place type name</param>
+      <param name="searchTerm">search filter</param>
+      <param name="currentPage">current page (int)</param>
+      <param name="locationPerPage">how many locations pee page</param>
+      <returns>QueryModel of LocationModel</returns>
+    </member>
+    <member name="M:TheScene.Core.Service.LocationService.CreateLocation(LocationModel)">
+      <summary>
+   Create new location
+   </summary>
+      <param name="model">LocationModel</param>
+      <returns>location id</returns>
+    </member>
+    <member name="M:TheScene.Core.Service.LocationService.LocationDetailsById(System.Int32)">
+      <summary>
+   location detail
+   </summary>
+      <param name="id">location id</param>
+      <returns>LocationModel</returns>
+    </member>
+    <member name="M:TheScene.Core.Service.LocationService.LocationEdit(System.Int32,LocationModel)">
+      <summary>
+   Edit location
+   </summary>
+      <param name="id">location id</param>
+      <param name="model">location model</param>
+    </member>
+    <member name="M:TheScene.Core.Service.LocationService.LocationDelete(System.Int32)">
+      <summary>
+   delete location
+   </summary>
+      <param name="id">location id</param>
+    </member>
+    <member name="M:TheScene.Core.Service.PerfomanceService.All(System.Nullable{System.String},System.Nullable{System.String},System.Nullable{System.String},PerfomanceSotring,System.Int32,System.Int32)">
+      <summary>
+   All Perfomances by the given criteria
+   </summary>
+      <param name="genre">genre name</param>
+      <param name="perfomanceType">perfomance type name</param>
+      <param name="searchTerm">search filter</param>
+      <param name="sorting">PerfomanceSorting sort</param>
+      <param name="currentPage">current page (int)</param>
+      <param name="perfomancePerPage">how many perfomance can you have per page</param>
+      <returns>QueryModel of AllPerfomanceModel</returns>
+    </member>
+    <member name="M:TheScene.Core.Service.PerfomanceService.Create(PerfomanceModel)">
+      <summary>
+   Create perfomance
+   </summary>
+      <param name="model">perfomance model</param>
+      <returns>perfomance id</returns>
+    </member>
+    <member name="M:TheScene.Core.Service.PerfomanceService.Delete(System.Int32)">
+      <summary>
+   delete perfomance
+   </summary>
+      <param name="perfomanceId">perfomance id</param>
+    </member>
+    <member name="M:TheScene.Core.Service.PerfomanceService.DetailsById(System.Int32)">
+      <summary>
+   Perfomance details
+   </summary>
+      <param name="perfomanceId">perfomance id</param>
+    </member>
+    <member name="M:TheScene.Core.Service.PerfomanceService.Exists(System.Int32)">
+      <summary>
+   Check if perfomance exists
+   </summary>
+      <param name="perfomanceId">perfomance id</param>
+      <returns>bool</returns>
+    </member>
+  </members>
+</doc>

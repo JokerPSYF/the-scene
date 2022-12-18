@@ -50,8 +50,6 @@ namespace TheScene.UnitTests
                 Assert.That(result.Collection.Any(l => l.Id == 6), Is.False);
                 Assert.That(result.Collection.Count, Is.EqualTo(0));
             }
-
-
         }
 
         [Test]
@@ -123,12 +121,12 @@ namespace TheScene.UnitTests
             var ev = await this.repo.GetByIdAsync<Event>(1);
             await repo.SaveChangesAsync();
 
-            Assert.That(evBefore, Is.Not.Null);
-            Assert.That(evBefore.PerfomanceId, Is.EqualTo(2));
-            Assert.That(evBefore.LocationId, Is.EqualTo(3));
-            Assert.That(evBefore.PricePerTicket, Is.EqualTo(5));
-            Assert.That(evBefore.IsPremiere, Is.EqualTo(true));
-            Assert.That(evBefore.Date, Is.EqualTo(new DateTime(2022, 12, 18, 19, 30, 00)));
+            Assert.That(ev, Is.Not.Null);
+            Assert.That(ev.PerfomanceId, Is.EqualTo(2));
+            Assert.That(ev.LocationId, Is.EqualTo(3));
+            Assert.That(ev.PricePerTicket, Is.EqualTo(5));
+            Assert.That(ev.IsPremiere, Is.EqualTo(true));
+            Assert.That(ev.Date, Is.EqualTo(new DateTime(2022, 12, 18, 19, 30, 00)));
         }
 
         [Test]
