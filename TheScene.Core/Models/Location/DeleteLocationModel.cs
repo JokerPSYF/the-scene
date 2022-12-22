@@ -9,5 +9,7 @@
         public int? Seats { get; set; }
 
         public string PlaceType { get; set; } = null!;
+
+        public string? Link { get; set; }
     }
 }

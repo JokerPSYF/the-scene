@@ -35,6 +35,12 @@ namespace TheScene.Infrastructure.Data.Entities
         public int? Seats { get; set; }
 
         /// <summary>
+        /// Link so you can show a map of the location
+        /// </summary>
+        [RegularExpression(@"^(https:\/\/www.google.com\/maps\/embed\?.+)$")]
+        public string? Link { get; set; }
+
+        /// <summary>
         /// It is deleted or not?
         /// </summary>
         public bool IsActive { get; set; } = true;

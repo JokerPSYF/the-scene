@@ -15,7 +15,7 @@
         </div>
         <div class="card col-12 border-0" style="background-color: #6da14d !important; font-size: 20px;">
             <p style="font-size:25px !important;">Title: <u>@Model.Perfomance.Title @Model.Perfomance.Year</u></p>          
-            <p>Place: <b>@Model.LocationName, @Model.Address</b></p>
+            <p>Place: <b>@Model.Location.Name, @Model.Location.Address</b></p>
             <p>Date: <b>@Model.Date</b></p>
             <p>
                 Price:
@@ -38,6 +38,12 @@
             @if (!string.IsNullOrEmpty(Model.Perfomance.Description))
             {
                 <p>@Model.Perfomance.Description</p>
+            }
+
+            @if (!string.IsNullOrEmpty(Model.Location.Link))
+            {
+                <iframe src="@Model.Location.Link" width="100%" height="300" style="border:0;"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             }
         </div>
     </div>
