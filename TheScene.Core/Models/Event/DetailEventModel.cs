@@ -1,4 +1,5 @@
-﻿using TheScene.Core.Models.PerfomanceModels;
+﻿using TheScene.Core.Models.Location;
+using TheScene.Core.Models.PerfomanceModels;
 
 namespace TheScene.Core.Models.Event
 {
@@ -8,11 +9,13 @@ namespace TheScene.Core.Models.Event
 
         public DetailPerfomanceModel Perfomance { get; set; } = null!;
 
-        public int LocationId { get; set; }
+        public LocationModel Location { get; set; }
 
-        public string LocationName { get; set; } = null!;
+        //public int LocationId { get; set; }
 
-        public string Address { get; set; } = null!;
+        //public string LocationName { get; set; } = null!;
+
+        //public string Address { get; set; } = null!;
 
         public decimal PricePerTicket { get; set; }
 

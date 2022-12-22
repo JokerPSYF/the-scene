@@ -16,6 +16,11 @@
             {
                 <p>Seats: <b>@Model.Seats</b></p>
             }
+            @if (!string.IsNullOrEmpty(Model.Link))
+            {
+                <iframe src="@Model.Link" width="100%" height="300" style="border:0;"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            }
         </div>
 
     </div>

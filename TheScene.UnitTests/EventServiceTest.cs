@@ -91,7 +91,7 @@ namespace TheScene.UnitTests
             var result = await eventService.DetailsById(1);
 
             Assert.That(result.Perfomance.Title, Is.EqualTo("Верига от думи"));
-            Assert.That(result.LocationName, Is.EqualTo("Държавен куклен театър"));
+            Assert.That(result.Location.Name, Is.EqualTo("Държавен куклен театър"));
             Assert.That(result.PricePerTicket, Is.EqualTo(12));
             Assert.That(result.Date, Is.EqualTo(new DateTime(2022, 12, 13, 19, 00, 00)));
         }

@@ -62,6 +62,7 @@ namespace TheScene.Core.Service
                     Address = e.Address,
                     Seats = e.Seats,
                     PlaceTypeName = e.PlaceType.Name,
+                    Link = e.Link
                 })
                 .ToListAsync();
 
@@ -83,7 +84,8 @@ namespace TheScene.Core.Service
                 Name = model.Name,
                 Address = model.Address,
                 Seats = model.Seats,
-                PlaceTypeId = model.PlaceTypeId
+                PlaceTypeId = model.PlaceTypeId,
+                Link = model.Link
             };
 
             await repository.AddAsync(locationEntity);
@@ -108,7 +110,8 @@ namespace TheScene.Core.Service
                     Address = l.Address,
                     Seats = l.Seats,
                     PlaceTypeId = l.PlaceTypeId,
-                    PlaceTypeName = l.PlaceType.Name
+                    PlaceTypeName = l.PlaceType.Name,
+                    Link = l.Link
                 }).FirstAsync();
 
             return result;
@@ -127,6 +130,7 @@ namespace TheScene.Core.Service
             locEntity.Address = model.Address;
             locEntity.Seats = model.Seats;
             locEntity.PlaceTypeId = model.PlaceTypeId;
+            locEntity.Link = model.Link;
 
             await repository.SaveChangesAsync();
         }

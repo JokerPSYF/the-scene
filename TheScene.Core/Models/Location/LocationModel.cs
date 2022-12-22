@@ -30,6 +30,10 @@ namespace TheScene.Core.Models.Location
         [Display(Name = "Place Type")]
         public string? PlaceTypeName { get; set; }
 
+        [RegularExpression(@"^(https:\/\/www.google.com\/maps\/embed\?.+)$",
+            ErrorMessage = "Go to google maps, find your location -> Share -> Embed a map -> copy the src only of the link")]
+        public string? Link { get; set; }
+
         public IEnumerable<NomenclatureDTO> PlaceTypes { get; set; } = new List<NomenclatureDTO>();
     }
 }

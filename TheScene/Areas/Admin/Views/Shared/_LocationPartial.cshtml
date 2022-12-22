@@ -6,6 +6,11 @@
             <h6>Location: <b>@Model.Name, @Model.Address</b></h6>
             <h6>Type: <b>@Model.PlaceTypeName</b></h6>
             <h6>Seats: <b>@Model.Seats</b></h6>
+            @if (!string.IsNullOrEmpty(Model.Link))
+            {
+                <iframe src="@Model.Link" width="100%" style="border:0;"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            }
             <br />
             @if (this.User.Identity!.IsAuthenticated)
             {

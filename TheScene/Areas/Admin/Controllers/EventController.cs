@@ -161,7 +161,7 @@ namespace TheScene.Areas.Admin.Controllers
             {
                 Id = Event.Id,
                 PerfomanceId = Event.Perfomance.Id,
-                LocationId = Event.LocationId,
+                LocationId = Event.Location.Id,
                 PricePerTicket = Event.PricePerTicket,
                 Date = Event.Date,
                 IsPremiere = Event.IsPremiere
@@ -218,7 +218,7 @@ namespace TheScene.Areas.Admin.Controllers
             var model = new DeleteEventModel()
             {
                 Title = Event.Perfomance.Title,
-                Location = Event.LocationName,
+                Location = Event.Location.Name,
                 Image = Event.Perfomance.ImageURL,
                 Date = Event.Date
             };

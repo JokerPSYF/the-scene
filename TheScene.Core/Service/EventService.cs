@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using TheScene.Core.Interface;
 using TheScene.Core.Models.Common;
 using TheScene.Core.Models.Event;
+using TheScene.Core.Models.Location;
 using TheScene.Core.Models.PerfomanceModels;
 using TheScene.Infrastructure.Data.Common;
 using TheScene.Infrastructure.Data.Entities;
@@ -91,7 +92,7 @@ namespace TheScene.Core.Service
                     PricePerTicket = e.PricePerTicket,
                     Date = e.Date,
                     IsPremiere = e.IsPremiere ?? false,
-                    Year = e.Perfomance.Year
+                    Year = e.Perfomance.Year,
                 })
                 .ToListAsync();
 
@@ -158,9 +159,19 @@ namespace TheScene.Core.Service
                         ImageURL = e.Perfomance.ImageURL,
                         Description = e.Perfomance.Description
                     },
-                    LocationId = e.Location.Id,
-                    LocationName = e.Location.Name,
-                    Address = e.Location.Address,
+                    Location = new LocationModel()
+                    {
+                        Id = e.Location.Id,
+                        Name = e.Location.Name,
+                        Address = e.Location.Address,
+                        Seats = e.Location.Seats,
+                        PlaceTypeId = e.Location.PlaceTypeId,
+                        PlaceTypeName = e.Location.PlaceType.Name,
+                        Link = e.Location.Link
+                    },
+                    //LocationId = e.Location.Id,
+                    //LocationName = e.Location.Name,
+                    //Address = e.Location.Address,
                     PricePerTicket = e.PricePerTicket,
                     Date = e.Date,
                     IsPremiere = e.IsPremiere ?? false
