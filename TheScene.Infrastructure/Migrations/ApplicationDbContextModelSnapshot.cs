@@ -17,10 +17,13 @@ namespace TheScene.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.12")
+                .HasAnnotation("ProductVersion", "9.0.3")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -52,7 +55,6 @@ namespace TheScene.Infrastructure.Migrations
                         new
                         {
                             Id = "b97379a1-4a4b-4cdb-b57f-edf338d73730",
-                            ConcurrencyStamp = "549fc033-7a1d-4f62-a213-987cf3fccd42",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -64,7 +66,7 @@ namespace TheScene.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -97,7 +99,8 @@ namespace TheScene.Infrastructure.Migrations
 
                     b.Property<string>("Discriminator")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -151,7 +154,9 @@ namespace TheScene.Infrastructure.Migrations
 
                     b.ToTable("AspNetUsers", (string)null);
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
+                    b.HasDiscriminator().HasValue("IdentityUser");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -160,7 +165,7 @@ namespace TheScene.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -252,7 +257,7 @@ namespace TheScene.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -291,7 +296,7 @@ namespace TheScene.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Date = new DateTime(2022, 12, 13, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2022, 12, 13, 19, 0, 0, 0, DateTimeKind.Utc),
                             IsActive = true,
                             IsPremiere = false,
                             LocationId = 6,
@@ -302,7 +307,7 @@ namespace TheScene.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            Date = new DateTime(2022, 11, 24, 22, 30, 0, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2022, 11, 24, 22, 30, 0, 0, DateTimeKind.Utc),
                             IsActive = true,
                             IsPremiere = false,
                             LocationId = 5,
@@ -313,7 +318,7 @@ namespace TheScene.Infrastructure.Migrations
                         new
                         {
                             Id = 3,
-                            Date = new DateTime(2022, 11, 22, 14, 0, 0, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2022, 11, 22, 14, 0, 0, 0, DateTimeKind.Utc),
                             IsActive = true,
                             IsPremiere = false,
                             LocationId = 7,
@@ -324,7 +329,7 @@ namespace TheScene.Infrastructure.Migrations
                         new
                         {
                             Id = 4,
-                            Date = new DateTime(2022, 12, 23, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2022, 12, 23, 19, 0, 0, 0, DateTimeKind.Utc),
                             IsActive = true,
                             IsPremiere = false,
                             LocationId = 7,
@@ -335,7 +340,7 @@ namespace TheScene.Infrastructure.Migrations
                         new
                         {
                             Id = 5,
-                            Date = new DateTime(2022, 12, 18, 20, 0, 0, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2022, 12, 18, 20, 0, 0, 0, DateTimeKind.Utc),
                             IsActive = true,
                             IsPremiere = false,
                             LocationId = 4,
@@ -351,7 +356,7 @@ namespace TheScene.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -461,7 +466,7 @@ namespace TheScene.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -570,7 +575,7 @@ namespace TheScene.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Actors")
                         .HasMaxLength(2000)
@@ -680,7 +685,7 @@ namespace TheScene.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -725,7 +730,7 @@ namespace TheScene.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -785,15 +790,15 @@ namespace TheScene.Infrastructure.Migrations
                         {
                             Id = "7a15400e-4991-4d66-87df-05a82c3bf851",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a44a3088-9e7b-491d-8ffc-04387a929072",
+                            ConcurrencyStamp = "e18f0f2e-65be-465e-8282-c7a3df7a96e5",
                             Email = "teo@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "TEO@MAIL.COM",
                             NormalizedUserName = "TEO",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOUwVsSmGxUkuxOhbQ2a1zO4eVs3Utc5ETRlV+4RvInpgYNvKOdhPdSCDYU7vTr3Hg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJBsRBxz18jKe8hYwRWgmhelXKImLu6LhOxKtzgTCFnx3KIEPqfTb5gjmTGot+o6zQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "84fc3742-966b-4bc1-ab01-cf62dc73dc26",
+                            SecurityStamp = "6cb2e500-bad3-4dda-af5f-592aca5c7fc3",
                             TwoFactorEnabled = false,
                             UserName = "Teo",
                             FirstName = "Todor",

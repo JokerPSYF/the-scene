@@ -3,10 +3,14 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace TheScene.Infrastructure.Migrations
 {
-    public partial class geolocation : Migration
+    /// <inheritdoc />
+    public partial class newSeed : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -28,7 +32,7 @@ namespace TheScene.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true, comment: "The first name of the user"),
                     LastName = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true, comment: "The first name of the user"),
                     IsActive = table.Column<bool>(type: "bit", nullable: true),
@@ -289,12 +293,12 @@ namespace TheScene.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "b97379a1-4a4b-4cdb-b57f-edf338d73730", "549fc033-7a1d-4f62-a213-987cf3fccd42", "Admin", "ADMIN" });
+                values: new object[] { "b97379a1-4a4b-4cdb-b57f-edf338d73730", null, "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "IsActive", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "7a15400e-4991-4d66-87df-05a82c3bf851", 0, "a44a3088-9e7b-491d-8ffc-04387a929072", "AppUser", "teo@mail.com", false, "Todor", true, "Vasilev", false, null, "TEO@MAIL.COM", "TEO", "AQAAAAEAACcQAAAAEOUwVsSmGxUkuxOhbQ2a1zO4eVs3Utc5ETRlV+4RvInpgYNvKOdhPdSCDYU7vTr3Hg==", null, false, "84fc3742-966b-4bc1-ab01-cf62dc73dc26", false, "Teo" });
+                values: new object[] { "7a15400e-4991-4d66-87df-05a82c3bf851", 0, "e18f0f2e-65be-465e-8282-c7a3df7a96e5", "AppUser", "teo@mail.com", false, "Todor", true, "Vasilev", false, null, "TEO@MAIL.COM", "TEO", "AQAAAAIAAYagAAAAEJBsRBxz18jKe8hYwRWgmhelXKImLu6LhOxKtzgTCFnx3KIEPqfTb5gjmTGot+o6zQ==", null, false, "6cb2e500-bad3-4dda-af5f-592aca5c7fc3", false, "Teo" });
 
             migrationBuilder.InsertData(
                 table: "Genres",
@@ -380,11 +384,11 @@ namespace TheScene.Infrastructure.Migrations
                 columns: new[] { "Id", "Date", "FreeSeats", "IsActive", "IsPremiere", "LocationId", "OccupiedSeats", "PerfomanceId", "PricePerTicket" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 12, 13, 19, 0, 0, 0, DateTimeKind.Unspecified), null, true, false, 6, 0, 1, 12m },
-                    { 2, new DateTime(2022, 11, 24, 22, 30, 0, 0, DateTimeKind.Unspecified), null, true, false, 5, 0, 2, 14m },
-                    { 3, new DateTime(2022, 11, 22, 14, 0, 0, 0, DateTimeKind.Unspecified), null, true, false, 7, 0, 3, 12m },
-                    { 4, new DateTime(2022, 12, 23, 19, 0, 0, 0, DateTimeKind.Unspecified), null, true, false, 7, 0, 4, 25m },
-                    { 5, new DateTime(2022, 12, 18, 20, 0, 0, 0, DateTimeKind.Unspecified), null, true, false, 4, 0, 5, 40m }
+                    { 1, new DateTime(2022, 12, 13, 19, 0, 0, 0, DateTimeKind.Utc), null, true, false, 6, 0, 1, 12m },
+                    { 2, new DateTime(2022, 11, 24, 22, 30, 0, 0, DateTimeKind.Utc), null, true, false, 5, 0, 2, 14m },
+                    { 3, new DateTime(2022, 11, 22, 14, 0, 0, 0, DateTimeKind.Utc), null, true, false, 7, 0, 3, 12m },
+                    { 4, new DateTime(2022, 12, 23, 19, 0, 0, 0, DateTimeKind.Utc), null, true, false, 7, 0, 4, 25m },
+                    { 5, new DateTime(2022, 12, 18, 20, 0, 0, 0, DateTimeKind.Utc), null, true, false, 4, 0, 5, 40m }
                 });
 
             migrationBuilder.CreateIndex(
@@ -452,6 +456,7 @@ namespace TheScene.Infrastructure.Migrations
                 column: "PerfomanceTypeId");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

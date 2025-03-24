@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using TheScene.Infrastructure.Configuration;
 using TheScene.Infrastructure.Data.Entities;
 
@@ -25,6 +26,12 @@ namespace TheScene.Infrastructure.Data
             builder.ApplyConfiguration(new EventConfiguration());
 
             base.OnModelCreating(builder);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.ConfigureWarnings(warnings => warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
+            base.OnConfiguring(optionsBuilder);
         }
 
         public DbSet<AppUser> AppUsers { get; set; } = null!;

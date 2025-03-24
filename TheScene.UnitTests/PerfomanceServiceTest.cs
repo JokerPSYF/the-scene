@@ -150,6 +150,7 @@ namespace TheScene.UnitTests
         public void TearDown()
         {
             context.Dispose();
+            repo.Dispose();
         }
     }
 }

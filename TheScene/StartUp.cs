@@ -40,7 +40,6 @@ namespace TheScene
                 .UseLazyLoadingProxies()
                 .UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
             builder.Services.AddDefaultIdentity<AppUser>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = builder.Configuration.GetValue<bool>("Identity:RequireConfirmedAccount");
@@ -64,11 +63,11 @@ namespace TheScene
             builder.Services.AddAplicationServices();
 
             var app = builder.Build();
-
+            
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
-
+                
                 app.UseDeveloperExceptionPage();
             }
             else
